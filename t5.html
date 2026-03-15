@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DigiWed — Ivory Garden Template Concept</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #F9F5EF;
+    --ivory: #EFE8DC;
+    --sand: #D8CCBA;
+    --moss: #7A8C6E;
+    --gold: #B89A5E;
+    --deep: #2C2416;
+    --blush: #E8D5C4;
+    --text: #3A2F22;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 24px 80px;
+    background: var(--cream);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 20% 80%, rgba(184,154,94,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 80% 20%, rgba(122,140,110,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* decorative corner botanical SVGs */
+  .corner-tl, .corner-br {
+    position: absolute;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .corner-tl { top: 0; left: 0; width: 200px; transform: rotate(0deg); }
+  .corner-br { bottom: 0; right: 0; width: 200px; transform: rotate(180deg); }
+
+  .bismillah {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(13px, 3vw, 16px);
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .couple-names {
+    text-align: center;
+    animation: fadeUp 1s 0.2s ease both;
+    margin-bottom: 28px;
+  }
+
+  .groom-name, .bride-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(52px, 14vw, 96px);
+    line-height: 1;
+    color: var(--deep);
+    letter-spacing: -0.02em;
+  }
+
+  .weds-divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 16px auto;
+    width: fit-content;
+  }
+  .weds-line { width: 60px; height: 1px; background: var(--gold); opacity: 0.6; }
+  .weds-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(15px, 3.5vw, 20px);
+    color: var(--moss);
+    letter-spacing: 0.15em;
+    margin-top: 24px;
+    animation: fadeUp 1s 0.35s ease both;
+  }
+
+  .hero-photo-frame {
+    width: clamp(160px, 55vw, 280px);
+    height: clamp(200px, 70vw, 360px);
+    border-radius: 120px 120px 4px 4px;
+    background: var(--ivory);
+    border: 1px solid var(--sand);
+    overflow: hidden;
+    margin: 36px auto 0;
+    position: relative;
+    animation: fadeUp 1s 0.45s ease both;
+    box-shadow: 0 20px 60px rgba(44,36,22,0.10);
+  }
+
+  .hero-photo-inner {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, var(--blush) 0%, var(--ivory) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photo-placeholder-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--sand);
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+  .scroll-hint span {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sand);
+  }
+  .scroll-dot {
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollLine 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* ── COUNTDOWN ── */
+  .section { padding: 80px 24px; max-width: 480px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--sand); }
+
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .countdown-item {
+    background: var(--ivory);
+    border: 1px solid var(--sand);
+    border-radius: 12px;
+    padding: 18px 8px 14px;
+    text-align: center;
+  }
+
+  .countdown-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: var(--deep);
+    line-height: 1;
+    display: block;
+  }
+
+  .countdown-lbl {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ── EVENTS ── */
+  .event-card {
+    background: var(--ivory);
+    border: 1px solid var(--sand);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 14px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .event-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(44,36,22,0.10);
+  }
+
+  .event-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--moss);
+    border-radius: 0 2px 2px 0;
+  }
+
+  .event-icon {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  .event-info { flex: 1; }
+
+  .event-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--deep);
+    margin-bottom: 4px;
+  }
+
+  .event-meta {
+    font-size: 12px;
+    color: var(--moss);
+    line-height: 1.7;
+    letter-spacing: 0.03em;
+  }
+
+  .event-map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+  }
+
+  /* ── FAMILY ── */
+  .family-block {
+    background: var(--ivory);
+    border: 1px solid var(--sand);
+    border-radius: 20px;
+    padding: 32px 24px;
+    margin-bottom: 14px;
+  }
+
+  .family-side {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 16px;
+  }
+
+  .family-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--deep);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .family-parents {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.8;
+    opacity: 0.8;
+  }
+
+  .family-divider {
+    height: 1px;
+    background: var(--sand);
+    margin: 24px 0;
+  }
+
+  /* ── THINGS TO KNOW ── */
+  .know-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .know-item {
+    background: var(--ivory);
+    border: 1px solid var(--sand);
+    border-radius: 14px;
+    padding: 20px 16px;
+  }
+
+  .know-emoji { font-size: 20px; margin-bottom: 10px; display: block; }
+
+  .know-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--deep);
+    margin-bottom: 4px;
+  }
+
+  .know-desc {
+    font-size: 11.5px;
+    color: var(--text);
+    opacity: 0.7;
+    line-height: 1.6;
+  }
+
+  /* ── PHOTO STRIP ── */
+  .photo-strip {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 0 24px 16px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .photo-strip::-webkit-scrollbar { display: none; }
+
+  .strip-photo {
+    flex-shrink: 0;
+    width: 160px;
+    height: 200px;
+    background: var(--ivory);
+    border: 1px solid var(--sand);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .strip-photo:nth-child(2n) { margin-top: 20px; }
+  .strip-photo span {
+    font-size: 11px;
+    color: var(--sand);
+    letter-spacing: 0.1em;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── WISH WALL ── */
+  .wish-form {
+    background: var(--ivory);
+    border: 1px solid var(--sand);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+
+  .wish-input {
+    width: 100%;
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--text);
+    resize: none;
+    outline: none;
+    margin-bottom: 12px;
+    font-weight: 300;
+  }
+
+  .wish-btn {
+    display: block;
+    width: 100%;
+    background: var(--deep);
+    color: var(--cream);
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .wish-btn:hover { background: var(--moss); }
+
+  .wish-card {
+    background: var(--ivory);
+    border: 1px solid var(--sand);
+    border-radius: 14px;
+    padding: 20px 20px;
+    margin-bottom: 10px;
+  }
+  .wish-author {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .wish-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--deep);
+    font-weight: 300;
+  }
+
+  /* ── FOOTER CTA ── */
+  .footer-cta {
+    padding: 60px 24px 40px;
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .cta-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 9vw, 52px);
+    font-weight: 300;
+    color: var(--deep);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .cta-sub {
+    font-size: 13px;
+    color: var(--moss);
+    letter-spacing: 0.05em;
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--deep);
+    color: var(--cream);
+    border-radius: 100px;
+    padding: 16px 32px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .btn-primary:hover { background: var(--moss); }
+
+  .btn-secondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: transparent;
+    color: var(--deep);
+    border: 1px solid var(--sand);
+    border-radius: 100px;
+    padding: 15px 32px;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: border-color 0.2s ease;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .footer-brand {
+    margin-top: 60px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sand);
+    padding-bottom: 40px;
+  }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    width: 52px; height: 52px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    z-index: 100;
+    text-decoration: none;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.35); }
+    50% { box-shadow: 0 4px 28px rgba(37,211,102,0.6); }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── SECTION HEADING ── */
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 9vw, 48px);
+    font-weight: 300;
+    color: var(--deep);
+    line-height: 1.15;
+    margin-bottom: 28px;
+  }
+
+  /* ── THINGS-TO-KNOW FULL WIDTH ── */
+  .full-bleed { padding: 80px 24px; background: var(--ivory); }
+  .full-bleed .section { padding: 0; }
+
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Corner botanical illustrations -->
+  <svg class="corner-tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10,10 Q40,80 80,60 Q120,40 100,100 Q80,140 40,160 Q20,140 10,100 Z" fill="#7A8C6E"/>
+    <path d="M30,20 Q20,60 60,70 Q90,78 80,110" stroke="#B89A5E" stroke-width="1.5" fill="none"/>
+    <circle cx="60" cy="70" r="4" fill="#B89A5E" opacity="0.6"/>
+    <circle cx="90" cy="45" r="3" fill="#7A8C6E" opacity="0.5"/>
+    <path d="M15,50 Q50,55 45,90 Q42,110 20,115" stroke="#7A8C6E" stroke-width="1" fill="none" stroke-dasharray="3,4"/>
+    <path d="M50,10 Q55,50 90,60" stroke="#B89A5E" stroke-width="0.8" fill="none"/>
+    <ellipse cx="95" cy="58" rx="6" ry="4" fill="#B89A5E" opacity="0.4" transform="rotate(-30 95 58)"/>
+    <ellipse cx="45" cy="88" rx="5" ry="3" fill="#7A8C6E" opacity="0.5" transform="rotate(20 45 88)"/>
+  </svg>
+
+  <svg class="corner-br" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10,10 Q40,80 80,60 Q120,40 100,100 Q80,140 40,160 Q20,140 10,100 Z" fill="#7A8C6E"/>
+    <path d="M30,20 Q20,60 60,70 Q90,78 80,110" stroke="#B89A5E" stroke-width="1.5" fill="none"/>
+    <circle cx="60" cy="70" r="4" fill="#B89A5E" opacity="0.6"/>
+    <circle cx="90" cy="45" r="3" fill="#7A8C6E" opacity="0.5"/>
+    <path d="M15,50 Q50,55 45,90 Q42,110 20,115" stroke="#7A8C6E" stroke-width="1" fill="none" stroke-dasharray="3,4"/>
+    <path d="M50,10 Q55,50 90,60" stroke="#B89A5E" stroke-width="0.8" fill="none"/>
+    <ellipse cx="95" cy="58" rx="6" ry="4" fill="#B89A5E" opacity="0.4" transform="rotate(-30 95 58)"/>
+    <ellipse cx="45" cy="88" rx="5" ry="3" fill="#7A8C6E" opacity="0.5" transform="rotate(20 45 88)"/>
+  </svg>
+
+  <p class="bismillah">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+
+  <div class="couple-names">
+    <div class="groom-name">Adnan</div>
+    <div class="weds-divider">
+      <div class="weds-line"></div>
+      <div class="weds-text">weds</div>
+      <div class="weds-line"></div>
+    </div>
+    <div class="bride-name">Fathima</div>
+  </div>
+
+  <p class="hero-date">Saturday, 12 April 2025 &nbsp;·&nbsp; Thrithala</p>
+
+  <div class="hero-photo-frame">
+    <div class="hero-photo-inner">
+      <p class="photo-placeholder-text">Couple photo<br/>goes here</p>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="section reveal">
+  <p class="section-label">The Big Day</p>
+  <h2 class="section-heading">Counting<br/>the days</h2>
+  <div class="countdown-grid">
+    <div class="countdown-item">
+      <span class="countdown-num" id="days">00</span>
+      <span class="countdown-lbl">Days</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="hours">00</span>
+      <span class="countdown-lbl">Hours</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="mins">00</span>
+      <span class="countdown-lbl">Mins</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-num" id="secs">00</span>
+      <span class="countdown-lbl">Secs</span>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="section reveal">
+  <p class="section-label">Celebrations</p>
+  <h2 class="section-heading">Join us for<br/>every moment</h2>
+
+  <div class="event-card">
+    <div class="event-icon">🌙</div>
+    <div class="event-info">
+      <div class="event-name">Nikah</div>
+      <div class="event-meta">
+        Saturday, 12 April 2025<br/>
+        10:00 AM onwards<br/>
+        Masjid Al-Noor, Thrithala
+      </div>
+      <a href="#" class="event-map-btn">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Open in Maps
+      </a>
+    </div>
+  </div>
+
+  <div class="event-card">
+    <div class="event-icon">🌿</div>
+    <div class="event-info">
+      <div class="event-name">Walima</div>
+      <div class="event-meta">
+        Sunday, 13 April 2025<br/>
+        7:00 PM onwards<br/>
+        Green Palace Convention, Pattambi
+      </div>
+      <a href="#" class="event-map-btn">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Open in Maps
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP -->
+<div class="reveal" style="padding: 20px 0 60px; overflow: hidden;">
+  <p class="section-label" style="padding: 0 24px; max-width:480px; margin: 0 auto 24px;">Pre-Wedding Shoot</p>
+  <div class="photo-strip">
+    <div class="strip-photo"><span>Photo 1</span></div>
+    <div class="strip-photo"><span>Photo 2</span></div>
+    <div class="strip-photo"><span>Photo 3</span></div>
+    <div class="strip-photo"><span>Photo 4</span></div>
+    <div class="strip-photo"><span>Photo 5</span></div>
+  </div>
+</div>
+
+<!-- FAMILY -->
+<section class="section reveal">
+  <p class="section-label">Our Families</p>
+  <h2 class="section-heading">With blessings<br/>from both sides</h2>
+
+  <div class="family-block">
+    <p class="family-side">Groom's family</p>
+    <p class="family-name">Adnan<br/>Muhammed</p>
+    <p class="family-parents">
+      Son of <strong>Abdul Rahiman</strong> &amp; <strong>Faseela</strong><br/>
+      Tharayil House, Thrithala
+    </p>
+    <div class="family-divider"></div>
+    <p class="family-side">Bride's family</p>
+    <p class="family-name">Fathima<br/>Nasreen</p>
+    <p class="family-parents">
+      Daughter of <strong>Sulaiman</strong> &amp; <strong>Mariyam</strong><br/>
+      Moonnamkuzhy House, Pattambi
+    </p>
+  </div>
+</section>
+
+<!-- THINGS TO KNOW -->
+<div class="full-bleed reveal">
+  <div class="section" style="padding: 0;">
+    <p class="section-label">Things to Know</p>
+    <h2 class="section-heading">A few notes<br/>before you arrive</h2>
+    <div class="know-grid">
+      <div class="know-item">
+        <span class="know-emoji">🚗</span>
+        <div class="know-title">Parking</div>
+        <p class="know-desc">Ample parking available at both venues</p>
+      </div>
+      <div class="know-item">
+        <span class="know-emoji">👗</span>
+        <div class="know-title">Dress Code</div>
+        <p class="know-desc">Traditional or formal attire preferred</p>
+      </div>
+      <div class="know-item">
+        <span class="know-emoji">📍</span>
+        <div class="know-title">Directions</div>
+        <p class="know-desc">GPS links in the events section above</p>
+      </div>
+      <div class="know-item">
+        <span class="know-emoji">📷</span>
+        <div class="know-title">Photos</div>
+        <p class="know-desc">Tag us — #AdnanWedsFathima</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WISH WALL -->
+<section class="section reveal">
+  <p class="section-label">Wish Wall</p>
+  <h2 class="section-heading">Leave your<br/>blessing</h2>
+
+  <div class="wish-form">
+    <input type="text" class="wish-input" placeholder="Your name" style="height:46px; resize:none;" />
+    <textarea class="wish-input" rows="3" placeholder="Write your wish for the couple…"></textarea>
+    <button class="wish-btn">Send Wish ✦</button>
+  </div>
+
+  <div class="wish-card">
+    <p class="wish-author">Rahul &amp; Family</p>
+    <p class="wish-text">"May Allah bless your union with love, laughter, and endless happiness."</p>
+  </div>
+
+  <div class="wish-card">
+    <p class="wish-author">Aisha</p>
+    <p class="wish-text">"Wishing you both a lifetime of joy. So happy for you both!"</p>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta reveal">
+  <h2 class="cta-heading">See you on<br/>the 12th ✦</h2>
+  <p class="cta-sub">We can't wait to celebrate with you.<br/>Click below to confirm you're coming.</p>
+  <div class="cta-buttons">
+    <a href="https://wa.me/919876543210" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      RSVP on WhatsApp
+    </a>
+    <a href="#" class="btn-secondary">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Add to Calendar
+    </a>
+  </div>
+  <p class="footer-brand" style="margin-top: 56px;">Made with ✦ DigiWed</p>
+</div>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/919876543210" class="wa-float" title="Contact us on WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  // Countdown
+  const weddingDate = new Date('2025-04-12T10:00:00');
+  function tick() {
+    const now = new Date();
+    const diff = weddingDate - now;
+    if (diff <= 0) {
+      document.getElementById('days').textContent = '00';
+      document.getElementById('hours').textContent = '00';
+      document.getElementById('mins').textContent = '00';
+      document.getElementById('secs').textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('days').textContent = String(d).padStart(2, '0');
+    document.getElementById('hours').textContent = String(h).padStart(2, '0');
+    document.getElementById('mins').textContent = String(m).padStart(2, '0');
+    document.getElementById('secs').textContent = String(s).padStart(2, '0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

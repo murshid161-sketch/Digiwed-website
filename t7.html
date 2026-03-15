@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Abhilash & Sandra — Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ivory:   #fdf8f0;
+    --cream:   #f7efe0;
+    --gold:    #b8922a;
+    --gold2:   #d4aa50;
+    --dark:    #2c2016;
+    --text:    #3d2e1a;
+    --muted:   #7a6548;
+    --white:   #ffffff;
+    --green:   #4a6741;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ivory);
+    color: var(--text);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto;
+    overflow-x: hidden;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100svh;
+    background: linear-gradient(180deg, #fdf6e8 0%, #f9eedc 60%, #f4e5cc 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  /* Floral SVG corners */
+  .floral-tl, .floral-tr, .floral-bl, .floral-br {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    opacity: .75;
+    pointer-events: none;
+  }
+  .floral-tl { top: -10px; left: -10px; }
+  .floral-tr { top: -10px; right: -10px; transform: scaleX(-1); }
+  .floral-bl { bottom: -10px; left: -10px; transform: scaleY(-1); }
+  .floral-br { bottom: -10px; right: -10px; transform: scale(-1); }
+
+  .cover-cross {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 14px;
+    opacity: .7;
+    animation: fadeUp .8s ease both;
+  }
+
+  .cover-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    animation: fadeUp .8s .1s ease both;
+  }
+
+  .cover-for {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    animation: fadeUp .8s .15s ease both;
+  }
+
+  .cover-groom {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1;
+    animation: fadeUp .8s .2s ease both;
+  }
+
+  .cover-amp {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+    margin: 6px 0;
+    animation: fadeUp .8s .25s ease both;
+  }
+
+  .cover-bride {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1;
+    animation: fadeUp .8s .3s ease both;
+  }
+
+  .cover-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 22px auto;
+    animation: fadeUp .8s .35s ease both;
+  }
+
+  .cover-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 260px;
+    margin: 0 auto 6px;
+    animation: fadeUp .8s .4s ease both;
+  }
+
+  .cover-ref {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    animation: fadeUp .8s .42s ease both;
+  }
+
+  .cover-date-pill {
+    margin-top: 28px;
+    background: var(--dark);
+    color: var(--ivory);
+    padding: 14px 32px;
+    border-radius: 2px;
+    animation: fadeUp .8s .5s ease both;
+  }
+  .cover-date-pill .dow {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gold2);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .cover-date-pill .dmy {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+  .cover-date-pill .time {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold2);
+    margin-top: 4px;
+    display: block;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    animation: fadeUp .8s .8s ease both;
+  }
+  .scroll-hint span {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--muted);
+  }
+  .scroll-hint svg { animation: bob 1.6s ease-in-out infinite; }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 48px 24px;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .gold-rule {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 28px;
+  }
+
+  /* ── VENUE CARD ── */
+  .venue-card {
+    background: var(--dark);
+    color: var(--ivory);
+    border-radius: 4px;
+    padding: 32px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .venue-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b8922a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: .4;
+  }
+  .venue-card .church-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 16px;
+    opacity: .7;
+  }
+  .venue-card .vname {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gold2);
+    line-height: 1.4;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .venue-card .vaddr {
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: rgba(253,248,240,.6);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .venue-card .map-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--dark);
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    border-radius: 2px;
+    position: relative;
+    transition: background .2s;
+  }
+  .venue-card .map-btn:hover { background: var(--gold2); }
+
+  /* ── COUNTDOWN ── */
+  .countdown-wrap {
+    background: linear-gradient(135deg, #f9eedc, #f4e5cc);
+    border: 1px solid rgba(184,146,42,.2);
+    border-radius: 4px;
+    padding: 28px 16px;
+  }
+  .cd-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 8px;
+  }
+  .cd-unit {
+    text-align: center;
+  }
+  .cd-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1;
+    display: block;
+  }
+  .cd-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-top: 4px;
+    display: block;
+  }
+  .cd-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: var(--gold2);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2px;
+  }
+
+  /* ── CALENDAR BUTTONS ── */
+  .cal-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .cal-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid rgba(184,146,42,.4);
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--dark);
+    background: var(--white);
+    transition: all .2s;
+  }
+  .cal-btn:hover { background: var(--dark); color: var(--ivory); border-color: var(--dark); }
+
+  /* ── FAMILY ── */
+  .family-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .family-card {
+    background: var(--white);
+    border: 1px solid rgba(184,146,42,.2);
+    border-radius: 4px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .family-card .fc-role {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .family-card .fc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .family-card .fc-parents {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .family-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 8px 0;
+  }
+  .family-divider .line { flex: 1; height: 1px; background: rgba(184,146,42,.25); }
+
+  /* ── WISH WALL ── */
+  .wishes-section {
+    background: var(--dark);
+    color: var(--ivory);
+    padding: 48px 24px;
+  }
+  .wishes-section .section-label { color: var(--gold2); }
+  .wishes-section .section-title { color: var(--ivory); }
+  .wish-input-wrap {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(184,146,42,.3);
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .wish-input-wrap input, .wish-input-wrap textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(184,146,42,.3);
+    color: var(--ivory);
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    padding: 10px 0;
+    margin-bottom: 12px;
+    outline: none;
+  }
+  .wish-input-wrap input::placeholder, .wish-input-wrap textarea::placeholder { color: rgba(253,248,240,.35); }
+  .wish-input-wrap textarea { resize: none; height: 70px; }
+  .wish-btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    border-radius: 2px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .wish-btn:hover { background: var(--gold2); }
+  .wish-list { display: flex; flex-direction: column; gap: 12px; }
+  .wish-item {
+    background: rgba(255,255,255,.05);
+    border-left: 2px solid var(--gold);
+    padding: 14px 16px;
+    border-radius: 0 4px 4px 0;
+  }
+  .wish-item .wi-name {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--gold2);
+    margin-bottom: 6px;
+  }
+  .wish-item .wi-msg {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: rgba(253,248,240,.8);
+    line-height: 1.6;
+  }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .contact-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    transition: all .2s;
+  }
+  .contact-btn.call { background: var(--dark); color: var(--ivory); }
+  .contact-btn.whatsapp { background: #25d366; color: #fff; }
+  .contact-btn:hover { transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(253,248,240,.4);
+    text-align: center;
+    padding: 28px 24px;
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+  footer .brand { color: var(--gold2); margin-top: 6px; display: block; }
+
+  /* ── WHATSAPP FLOAT ── */
+  .wa-float {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,.45);
+    z-index: 999;
+    transition: transform .2s;
+    text-decoration: none;
+  }
+  .wa-float:hover { transform: scale(1.08); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bob {
+    0%,100% { transform: translateY(0); }
+    50%      { transform: translateY(5px); }
+  }
+
+  .rv {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .rv.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ══ COVER ══ -->
+<div class="cover">
+  <!-- Floral SVG corners -->
+  <svg class="floral-tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="30" cy="30" rx="18" ry="26" fill="rgba(200,180,140,.35)" transform="rotate(-30 30 30)"/>
+    <ellipse cx="60" cy="20" rx="14" ry="20" fill="rgba(210,160,130,.3)" transform="rotate(-10 60 20)"/>
+    <ellipse cx="15" cy="65" rx="13" ry="19" fill="rgba(180,200,150,.3)" transform="rotate(20 15 65)"/>
+    <ellipse cx="50" cy="55" rx="20" ry="14" fill="rgba(220,150,120,.25)" transform="rotate(-45 50 55)"/>
+    <ellipse cx="85" cy="30" rx="11" ry="17" fill="rgba(180,210,160,.28)" transform="rotate(15 85 30)"/>
+    <ellipse cx="25" cy="95" rx="16" ry="11" fill="rgba(200,170,130,.25)" transform="rotate(-20 25 95)"/>
+    <ellipse cx="70" cy="80" rx="10" ry="15" fill="rgba(210,180,140,.22)" transform="rotate(35 70 80)"/>
+    <circle cx="45" cy="42" r="5" fill="rgba(220,170,100,.5)"/>
+    <circle cx="28" cy="75" r="3.5" fill="rgba(210,180,120,.45)"/>
+    <circle cx="75" cy="55" r="4" fill="rgba(180,220,150,.4)"/>
+    <path d="M10,10 Q40,50 80,30 Q60,80 20,100" stroke="rgba(130,160,90,.3)" stroke-width="1.5" fill="none"/>
+    <path d="M50,5 Q30,40 60,70" stroke="rgba(130,160,90,.25)" stroke-width="1" fill="none"/>
+    <path d="M5,50 Q30,60 45,90" stroke="rgba(130,160,90,.2)" stroke-width="1" fill="none"/>
+    <!-- small flowers -->
+    <circle cx="42" cy="22" r="7" fill="rgba(240,210,180,.45)"/>
+    <circle cx="42" cy="22" r="3" fill="rgba(220,160,100,.6)"/>
+    <circle cx="20" cy="48" r="5.5" fill="rgba(230,200,170,.4)"/>
+    <circle cx="20" cy="48" r="2.5" fill="rgba(200,140,90,.55)"/>
+  </svg>
+  <svg class="floral-tr" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="30" cy="30" rx="18" ry="26" fill="rgba(200,180,140,.35)" transform="rotate(-30 30 30)"/>
+    <ellipse cx="60" cy="20" rx="14" ry="20" fill="rgba(210,160,130,.3)" transform="rotate(-10 60 20)"/>
+    <ellipse cx="15" cy="65" rx="13" ry="19" fill="rgba(180,200,150,.3)" transform="rotate(20 15 65)"/>
+    <ellipse cx="50" cy="55" rx="20" ry="14" fill="rgba(220,150,120,.25)" transform="rotate(-45 50 55)"/>
+    <ellipse cx="85" cy="30" rx="11" ry="17" fill="rgba(180,210,160,.28)" transform="rotate(15 85 30)"/>
+    <circle cx="45" cy="42" r="5" fill="rgba(220,170,100,.5)"/>
+    <circle cx="28" cy="75" r="3.5" fill="rgba(210,180,120,.45)"/>
+    <path d="M10,10 Q40,50 80,30 Q60,80 20,100" stroke="rgba(130,160,90,.3)" stroke-width="1.5" fill="none"/>
+    <circle cx="42" cy="22" r="7" fill="rgba(240,210,180,.45)"/>
+    <circle cx="42" cy="22" r="3" fill="rgba(220,160,100,.6)"/>
+  </svg>
+  <svg class="floral-bl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="30" cy="30" rx="18" ry="26" fill="rgba(200,180,140,.35)" transform="rotate(-30 30 30)"/>
+    <ellipse cx="60" cy="20" rx="14" ry="20" fill="rgba(210,160,130,.3)" transform="rotate(-10 60 20)"/>
+    <ellipse cx="15" cy="65" rx="13" ry="19" fill="rgba(180,200,150,.3)" transform="rotate(20 15 65)"/>
+    <ellipse cx="50" cy="55" rx="20" ry="14" fill="rgba(220,150,120,.25)" transform="rotate(-45 50 55)"/>
+    <circle cx="45" cy="42" r="5" fill="rgba(220,170,100,.5)"/>
+    <path d="M10,10 Q40,50 80,30 Q60,80 20,100" stroke="rgba(130,160,90,.3)" stroke-width="1.5" fill="none"/>
+    <circle cx="42" cy="22" r="7" fill="rgba(240,210,180,.45)"/>
+    <circle cx="42" cy="22" r="3" fill="rgba(220,160,100,.6)"/>
+  </svg>
+  <svg class="floral-br" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="30" cy="30" rx="18" ry="26" fill="rgba(200,180,140,.35)" transform="rotate(-30 30 30)"/>
+    <ellipse cx="60" cy="20" rx="14" ry="20" fill="rgba(210,160,130,.3)" transform="rotate(-10 60 20)"/>
+    <ellipse cx="15" cy="65" rx="13" ry="19" fill="rgba(180,200,150,.3)" transform="rotate(20 15 65)"/>
+    <ellipse cx="50" cy="55" rx="20" ry="14" fill="rgba(220,150,120,.25)" transform="rotate(-45 50 55)"/>
+    <circle cx="45" cy="42" r="5" fill="rgba(220,170,100,.5)"/>
+    <path d="M10,10 Q40,50 80,30 Q60,80 20,100" stroke="rgba(130,160,90,.3)" stroke-width="1.5" fill="none"/>
+    <circle cx="42" cy="22" r="7" fill="rgba(240,210,180,.45)"/>
+    <circle cx="42" cy="22" r="3" fill="rgba(220,160,100,.6)"/>
+  </svg>
+
+  <!-- Cross -->
+  <svg class="cover-cross" viewBox="0 0 36 36" fill="none">
+    <rect x="15" y="2" width="6" height="32" rx="2" fill="rgba(184,146,42,.55)"/>
+    <rect x="4" y="10" width="28" height="6" rx="2" fill="rgba(184,146,42,.55)"/>
+  </svg>
+
+  <div class="cover-eyebrow">The Wedding of</div>
+  <div class="cover-for">Save the Date</div>
+
+  <div class="cover-groom">Abhilash</div>
+  <span class="cover-amp">&amp;</span>
+  <div class="cover-bride">Sandra</div>
+
+  <div class="cover-divider"></div>
+
+  <p class="cover-verse">"Therefore what God has joined together,<br>let no one separate."</p>
+  <span class="cover-ref">Mark 10:9</span>
+
+  <div class="cover-date-pill">
+    <span class="dow">Wednesday</span>
+    <span class="dmy">27 · May · 2026</span>
+    <span class="time">10:00 AM</span>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 3v10M4 9l4 4 4-4" stroke="rgba(122,101,72,.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</div>
+
+
+<!-- ══ VENUE ══ -->
+<section class="rv">
+  <div class="section-label">Ceremony</div>
+  <div class="section-title">Where We Gather</div>
+  <div class="gold-rule"></div>
+
+  <div class="venue-card">
+    <svg class="church-icon" viewBox="0 0 48 48" fill="none">
+      <rect x="20" y="2" width="8" height="20" rx="1" fill="rgba(184,146,42,.5)"/>
+      <rect x="16" y="10" width="16" height="4" rx="1" fill="rgba(184,146,42,.5)"/>
+      <rect x="8" y="22" width="32" height="22" rx="1" fill="rgba(184,146,42,.22)" stroke="rgba(184,146,42,.4)" stroke-width="1"/>
+      <rect x="20" y="34" width="8" height="10" fill="rgba(184,146,42,.3)"/>
+      <rect x="10" y="26" width="8" height="8" rx="1" fill="rgba(184,146,42,.2)" stroke="rgba(184,146,42,.3)" stroke-width=".8"/>
+      <rect x="30" y="26" width="8" height="8" rx="1" fill="rgba(184,146,42,.2)" stroke="rgba(184,146,42,.3)" stroke-width=".8"/>
+    </svg>
+    <div class="vname">St. Thomas Evangelical Church of India (STECI)</div>
+    <div class="vaddr">Thiruvalla Parish<br>Thiruvalla, Kerala</div>
+    <a class="map-btn" href="https://maps.google.com/?q=St+Thomas+Evangelical+Church+STECI+Thiruvalla" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Get Directions
+    </a>
+  </div>
+</section>
+
+
+<!-- ══ COUNTDOWN ══ -->
+<section style="background:var(--cream);padding-top:0" class="rv">
+  <div class="section-label">Counting Down</div>
+  <div class="section-title">Days Until We Say I Do</div>
+  <div class="gold-rule"></div>
+
+  <div class="countdown-wrap">
+    <div class="cd-grid">
+      <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-label">Days</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-label">Hours</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-label">Mins</span></div>
+      <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-label">Secs</span></div>
+    </div>
+  </div>
+
+  <div class="cal-btns">
+    <a class="cal-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Abhilash+%26+Sandra+Wedding&dates=20260527T043000Z/20260527T073000Z&details=Wedding+Ceremony+at+STECI+Thiruvalla+Parish&location=St+Thomas+Evangelical+Church+Thiruvalla" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-2 .89-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.11-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+      Google Calendar
+    </a>
+    <a class="cal-btn" href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR%0AVERSION:2.0%0ABEGIN:VEVENT%0ADTSTART:20260527T043000Z%0ADTEND:20260527T073000Z%0ASUMMARY:Abhilash %26 Sandra Wedding%0ADESCRIPTION:Wedding Ceremony at STECI Thiruvalla Parish%0ALOCATION:St Thomas Evangelical Church Thiruvalla%0AEND:VEVENT%0AEND:VCALENDAR" download="abhilash-sandra-wedding.ics">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+      Apple Calendar
+    </a>
+  </div>
+</section>
+
+
+<!-- ══ FAMILY ══ -->
+<section class="rv">
+  <div class="section-label">With Blessings From</div>
+  <div class="section-title">Our Families</div>
+  <div class="gold-rule"></div>
+
+  <div class="family-grid">
+    <div class="family-card">
+      <span class="fc-role">Groom</span>
+      <div class="fc-name">Abhilash</div>
+      <div class="fc-parents">
+        Son of<br>
+        <strong>[Father's Name]</strong><br>
+        &amp; <strong>[Mother's Name]</strong>
+      </div>
+    </div>
+    <div class="family-card">
+      <span class="fc-role">Bride</span>
+      <div class="fc-name">Sandra</div>
+      <div class="fc-parents">
+        Daughter of<br>
+        <strong>[Father's Name]</strong><br>
+        &amp; <strong>[Mother's Name]</strong>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:28px;text-align:center">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--muted);line-height:1.8">
+      We are delighted to invite you to the<br>wedding reception of Abhilash &amp; Sandra.
+    </p>
+  </div>
+</section>
+
+
+<!-- ══ WISH WALL ══ -->
+<div class="wishes-section rv">
+  <div class="section-label" style="color:var(--gold2)">Leave a Message</div>
+  <div class="section-title" style="color:var(--ivory)">Bless the Couple</div>
+  <div class="gold-rule"></div>
+
+  <div class="wish-input-wrap">
+    <input type="text" id="wish-name" placeholder="Your name"/>
+    <textarea id="wish-msg" placeholder="Write your blessing or message..."></textarea>
+    <button class="wish-btn" onclick="addWish()">Send Blessing ✦</button>
+  </div>
+
+  <div class="wish-list" id="wish-list">
+    <div class="wish-item">
+      <div class="wi-name">Arun Thomas</div>
+      <div class="wi-msg">"May your marriage be blessed with love, laughter, and endless grace. Congratulations!"</div>
+    </div>
+    <div class="wish-item">
+      <div class="wi-name">Meera &amp; Suresh</div>
+      <div class="wi-msg">"Wishing you a lifetime of joy together. God bless your new journey!"</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ CONTACT ══ -->
+<section class="rv">
+  <div class="section-label">Get in Touch</div>
+  <div class="section-title">Contact Us</div>
+  <div class="gold-rule"></div>
+
+  <div class="contact-grid">
+    <a href="tel:+919999999999" class="contact-btn call">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      Call Us
+    </a>
+    <a href="https://wa.me/919999999999?text=Congratulations+Abhilash+%26+Sandra!" class="contact-btn whatsapp" target="_blank">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  With Joy &amp; Gratitude
+  <span class="brand">Created by DigiWed ✦ @digi_.wed</span>
+</footer>
+
+<!-- WhatsApp Float -->
+<a class="wa-float" href="https://wa.me/919999999999?text=Congratulations+Abhilash+%26+Sandra!" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+
+<script>
+  // ── Countdown ──
+  function tick() {
+    const target = new Date('2026-05-27T10:00:00+05:30');
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00');
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ── Wish Wall ──
+  function addWish() {
+    const name = document.getElementById('wish-name').value.trim();
+    const msg = document.getElementById('wish-msg').value.trim();
+    if (!name || !msg) return;
+    const list = document.getElementById('wish-list');
+    const item = document.createElement('div');
+    item.className = 'wish-item';
+    item.innerHTML = `<div class="wi-name">${name}</div><div class="wi-msg">"${msg}"</div>`;
+    list.prepend(item);
+    document.getElementById('wish-name').value = '';
+    document.getElementById('wish-msg').value = '';
+  }
+
+  // ── Scroll reveal ──
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

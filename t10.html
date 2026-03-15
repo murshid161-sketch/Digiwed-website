@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Murshid & Shibila — A Love Story</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --dark:#0a0806;
+  --dark2:#110e08;
+  --dark3:#1c1610;
+  --cream:#f0e8d8;
+  --cream2:#e8dcc8;
+  --gold:#c8960a;
+  --gold2:#e8b820;
+  --rose:#b85060;
+  --rose2:#d4607a;
+  --ink:#f0e8d8;
+  --muted:rgba(240,232,216,.45);
+  --very-muted:rgba(240,232,216,.2);
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--cream);font-family:'Jost',sans-serif;overflow-x:hidden;}
+
+/* ── REVEAL ANIMATIONS ── */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1.1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1);}
+.rv.in{opacity:1;transform:translateY(0);}
+.rv-up{opacity:0;transform:translateY(20px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);}
+.rv-up.in{opacity:1;transform:translateY(0);}
+.rv-left{opacity:0;transform:translateX(-30px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);}
+.rv-left.in{opacity:1;transform:translateX(0);}
+.rv-right{opacity:0;transform:translateX(30px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);}
+.rv-right.in{opacity:1;transform:translateX(0);}
+.rv-fade{opacity:0;transition:opacity 1.4s ease;}
+.rv-fade.in{opacity:1;}
+.d1{transition-delay:.1s}.d2{transition-delay:.22s}.d3{transition-delay:.34s}.d4{transition-delay:.46s}.d5{transition-delay:.58s}
+
+/* ── GRAIN OVERLAY ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1000;opacity:.4;
+}
+
+/* ══════════════════
+   COVER — CINEMATIC
+══════════════════ */
+.cover{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  padding:80px 28px 88px;
+  background:radial-gradient(ellipse at 50% 60%, rgba(28,22,16,.0) 0%, var(--dark) 70%);
+}
+
+/* large faded script name bg */
+.cover-bg-script{
+  position:absolute;
+  font-family:'Pinyon Script',cursive;
+  font-size:clamp(140px,38vw,220px);
+  color:rgba(200,150,10,.06);
+  pointer-events:none;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  white-space:nowrap;z-index:1;
+  line-height:1;
+}
+
+/* couple SVG positioning */
+.cover-couple-wrap{
+  position:absolute;
+  bottom:10%;left:50%;transform:translateX(-50%);
+  width:min(300px,78vw);z-index:2;
+}
+
+/* floating gold particles */
+@keyframes particle{
+  0%{opacity:0;transform:translateY(0) scale(0)}
+  30%{opacity:.6}
+  100%{opacity:0;transform:translateY(-100px) scale(1) rotate(360deg)}
+}
+.particle{
+  position:absolute;border-radius:50%;
+  background:var(--gold2);
+  animation:particle 4s ease-in infinite;
+  pointer-events:none;
+}
+
+.cover-content{position:relative;z-index:5;text-align:center;}
+
+.cover-eyebrow{
+  font-family:'Jost',sans-serif;font-size:9px;letter-spacing:8px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:28px;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+}
+.cover-eyebrow::before,.cover-eyebrow::after{
+  content:'';display:block;width:32px;height:1px;background:var(--gold);opacity:.5;
+}
+
+.cover-name-main{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(72px,19vw,104px);
+  font-weight:300;color:var(--cream);
+  line-height:.82;display:block;
+  letter-spacing:-1px;
+}
+.cover-name-main.gold{color:var(--gold2);}
+
+.cover-amp-line{
+  font-family:'Pinyon Script',cursive;
+  font-size:clamp(32px,8vw,44px);
+  color:var(--rose2);
+  display:block;text-align:center;
+  margin:8px 0 4px;
+  opacity:.85;
+}
+
+.cover-date-block{
+  margin-top:20px;
+  display:inline-flex;align-items:center;gap:14px;
+  border:1px solid rgba(200,150,10,.2);
+  padding:10px 22px;
+}
+.cover-date-text{
+  font-family:'Jost',sans-serif;font-size:11px;
+  letter-spacing:4px;color:var(--muted);text-transform:uppercase;
+}
+
+.cover-scroll{
+  position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+  z-index:5;display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+@keyframes pulse-down{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:.7;transform:translateY(6px)}}
+.cover-scroll-icon{width:1px;height:40px;background:linear-gradient(to bottom,transparent,var(--gold));animation:pulse-down 2s ease infinite;}
+.cover-scroll-txt{font-size:8px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;}
+
+/* ══════════════════
+   CHAPTER DIVIDERS
+══════════════════ */
+.ch-divider{
+  width:100%;padding:28px 24px 22px;
+  position:relative;overflow:hidden;
+  background:var(--dark2);
+}
+.ch-divider::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.2;
+}
+.ch-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:80px;font-weight:300;
+  color:rgba(200,150,10,.06);
+  position:absolute;right:16px;top:-10px;
+  line-height:1;z-index:1;
+}
+.ch-divider-inner{position:relative;z-index:2;}
+.ch-label-tag{
+  font-family:'Jost',sans-serif;font-size:8px;letter-spacing:6px;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:6px;display:flex;align-items:center;gap:10px;
+}
+.ch-label-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold);opacity:.6;}
+.ch-title-big{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,8.5vw,44px);font-weight:300;
+  color:var(--cream);line-height:1;
+}
+.ch-subtitle{
+  font-family:'Jost',sans-serif;font-size:10px;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);margin-top:5px;font-weight:200;
+}
+
+/* ══════════════════
+   SCENE SECTIONS
+══════════════════ */
+.scene{position:relative;overflow:hidden;}
+.scene svg{display:block;width:100%;}
+
+/* ══════════════════
+   INFO CARD — DARK PREMIUM
+══════════════════ */
+.info-card{
+  position:relative;z-index:5;
+  background:var(--dark2);
+  margin:0 18px;
+  border:1px solid rgba(200,150,10,.12);
+  padding:26px 22px 28px;
+  border-top:2px solid var(--gold);
+}
+
+/* names */
+.ic-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,12.5vw,68px);font-weight:300;
+  color:var(--cream);line-height:.85;display:block;text-align:center;
+}
+.ic-name.gold{color:var(--gold2);}
+.ic-amp{
+  font-family:'Pinyon Script',cursive;
+  font-size:28px;color:var(--rose2);
+  display:block;text-align:center;margin:8px 0;
+  letter-spacing:2px;
+}
+
+.ic-divider{
+  display:flex;align-items:center;gap:8px;margin:16px 0;
+}
+.ic-div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(200,150,10,.25),transparent);}
+.ic-div-diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.6;}
+
+/* date box */
+.datebox{
+  display:flex;align-items:stretch;
+  border:1px solid rgba(200,150,10,.15);
+  border-top:2px solid var(--gold);
+}
+.db-mo{
+  padding:10px 13px;font-family:'Jost',sans-serif;font-size:8px;
+  letter-spacing:4px;color:var(--gold);text-transform:uppercase;
+  font-weight:300;border-right:1px solid rgba(200,150,10,.12);
+  display:flex;align-items:center;
+}
+.db-day{
+  padding:10px 18px;
+  font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;
+  color:var(--cream);line-height:1;display:flex;align-items:center;
+}
+.db-right{
+  padding:10px 13px;border-left:1px solid rgba(200,150,10,.12);
+  display:flex;flex-direction:column;justify-content:center;gap:3px;
+}
+.db-dow{font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;}
+.db-time{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);font-weight:300;}
+
+/* calendar links */
+.cal-row{display:flex;gap:8px;margin-top:10px;}
+.cal-btn{
+  flex:1;padding:8px 6px;text-align:center;text-decoration:none;
+  border:1px solid rgba(200,150,10,.15);
+  font-family:'Jost',sans-serif;font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;justify-content:center;gap:4px;
+  transition:background .2s,border-color .2s;
+}
+.cal-btn:hover{background:rgba(200,150,10,.06);border-color:rgba(200,150,10,.3);}
+
+/* venue */
+.venue-block{display:flex;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(200,150,10,.1);}
+.venue-ico{font-size:18px;flex-shrink:0;margin-top:2px;}
+.venue-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--cream);line-height:1.2;}
+.venue-sub{font-family:'Jost',sans-serif;font-size:10px;color:var(--muted);margin-top:3px;line-height:1.5;font-weight:200;}
+.venue-link{display:inline-block;margin-top:6px;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(200,150,10,.3);}
+
+/* action buttons */
+.act-row{display:flex;gap:8px;margin-top:14px;}
+.act-btn{
+  flex:1;padding:12px 8px;text-align:center;text-decoration:none;
+  font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  transition:opacity .2s;
+}
+.act-btn:hover{opacity:.85;}
+.btn-call{background:var(--dark3);color:var(--cream);border:1px solid rgba(240,232,216,.15);}
+.btn-wa{background:#25D366;color:#fff;}
+.btn-map{background:rgba(200,150,10,.1);color:var(--gold);border:1px solid rgba(200,150,10,.2);}
+
+/* ══════════════════
+   QUOTE BLOCK
+══════════════════ */
+.quote-block{
+  position:relative;z-index:5;
+  margin:0 18px;padding:24px 22px;
+  border-left:2px solid var(--gold);
+  background:rgba(200,150,10,.04);
+}
+.quote-mark{
+  font-family:'Cormorant Garamond',serif;
+  font-size:72px;font-weight:300;color:rgba(200,150,10,.15);
+  line-height:.5;margin-bottom:8px;display:block;
+}
+.quote-txt{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(15px,4vw,18px);color:var(--cream);line-height:1.8;font-weight:300;
+}
+.quote-cap{
+  font-family:'Jost',sans-serif;font-size:9px;letter-spacing:4px;
+  text-transform:uppercase;color:var(--muted);margin-top:10px;font-weight:200;
+}
+
+/* ══════════════════
+   WALK CAPTION
+══════════════════ */
+.walk-caption{
+  position:relative;z-index:5;
+  margin:0 18px;padding:22px;
+  border-bottom:1px solid rgba(200,150,10,.15);
+}
+.walk-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:300;color:var(--cream);
+  margin-bottom:8px;
+}
+.walk-body{
+  font-family:'Jost',sans-serif;font-size:13px;
+  color:var(--muted);line-height:1.8;font-weight:200;
+}
+
+/* ══════════════════
+   PHOTO STRIP
+══════════════════ */
+.photo-strip{
+  position:relative;overflow:hidden;height:260px;
+  background:var(--dark3);
+}
+.photo-placeholder{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(10,8,6,.8),rgba(184,80,96,.15));
+}
+.photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 30%,rgba(10,8,6,.9));
+}
+.photo-names{position:absolute;bottom:22px;left:0;right:0;text-align:center;z-index:2;}
+.photo-big-name{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(22px,5.5vw,28px);
+  font-weight:300;color:var(--cream);letter-spacing:4px;
+}
+.photo-dt{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-top:5px;}
+
+/* ══════════════════
+   NIGHT CARD
+══════════════════ */
+.night-card{
+  position:relative;z-index:5;
+  margin:0 18px;padding:26px 22px 28px;
+  background:rgba(10,8,6,.95);
+  border:1px solid rgba(200,150,10,.12);
+  border-top:2px solid var(--gold);
+}
+.night-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(46px,12vw,64px);font-weight:300;
+  color:var(--cream);line-height:.85;display:block;text-align:center;
+}
+.night-name.gold{color:var(--gold2);}
+.night-amp{
+  font-family:'Pinyon Script',cursive;font-size:28px;
+  color:var(--rose2);display:block;text-align:center;margin:8px 0;
+}
+
+.countdown-row{display:flex;gap:6px;justify-content:center;margin-top:14px;}
+.cd-box{
+  flex:1;text-align:center;
+  background:rgba(200,150,10,.06);
+  border:1px solid rgba(200,150,10,.12);
+  padding:12px 4px;
+}
+.cd-num{
+  font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;
+  color:var(--gold2);display:block;line-height:1;
+}
+.cd-label{
+  font-family:'Jost',sans-serif;font-size:7px;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);margin-top:4px;font-weight:200;
+}
+
+.venue-night{display:flex;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(200,150,10,.1);}
+.vn-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--cream);line-height:1.2;}
+.vn-sub{font-family:'Jost',sans-serif;font-size:10px;color:var(--muted);margin-top:3px;font-weight:200;}
+
+.act-night{display:flex;gap:8px;margin-top:12px;}
+.bna{flex:1;padding:12px 8px;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity .2s;}
+.bna:hover{opacity:.8;}
+.bna-call{color:var(--cream);border:1px solid rgba(240,232,216,.15);background:rgba(240,232,216,.05);}
+.bna-wa{background:#25D366;color:#fff;}
+.bna-map{background:rgba(200,150,10,.1);color:var(--gold);border:1px solid rgba(200,150,10,.2);}
+
+/* ══════════════════
+   FAMILY SECTION
+══════════════════ */
+.family-section{
+  padding:40px 0 32px;
+  background:var(--dark2);
+  border-top:1px solid rgba(200,150,10,.12);
+  border-bottom:1px solid rgba(200,150,10,.12);
+}
+.family-header{text-align:center;padding:0 22px 28px;}
+.family-heading{
+  font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;
+  color:var(--cream);margin-bottom:5px;
+}
+.family-sub{font-family:'Jost',sans-serif;font-size:8px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);font-weight:200;}
+
+.fam-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:12px auto 0;}
+
+.family-cols{display:flex;}
+.fam-col{flex:1;padding:0 18px 20px;}
+.fam-col:first-child{border-right:1px solid rgba(200,150,10,.1);}
+.fam-col-head{text-align:center;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(200,150,10,.08);}
+.fam-side{font-family:'Jost',sans-serif;font-size:7px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:200;}
+.fam-house{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--cream);line-height:1.3;}
+
+.person-block{margin-bottom:14px;}
+.p-role{font-family:'Jost',sans-serif;font-size:7px;letter-spacing:4px;text-transform:uppercase;color:rgba(200,150,10,.5);margin-bottom:4px;font-weight:200;}
+.p-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:var(--cream);line-height:1.2;}
+.p-name.hero{font-size:22px;color:var(--gold2);}
+.p-name.rose{font-size:22px;color:var(--rose2);}
+.p-name.sm{font-size:14px;color:var(--muted);}
+.p-name.late{opacity:.5;}
+
+/* ══════════════════
+   WISH WALL
+══════════════════ */
+.wish-section{padding:36px 0;background:var(--dark);}
+.wish-header{text-align:center;padding:0 22px 22px;}
+.wish-heading{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--cream);margin-bottom:5px;}
+.wish-sub{font-family:'Jost',sans-serif;font-size:8px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);font-weight:200;}
+
+.wish-form{padding:0 18px 16px;}
+.wish-input{
+  width:100%;padding:14px 16px;
+  background:rgba(240,232,216,.04);
+  border:1px solid rgba(200,150,10,.15);
+  border-top:2px solid var(--gold);
+  font-family:'Jost',sans-serif;font-size:13px;
+  color:var(--cream);resize:none;outline:none;
+  transition:border-color .25s;
+}
+.wish-input::placeholder{color:var(--muted);}
+.wish-input:focus{border-color:var(--gold);}
+.wish-name-row{display:flex;gap:8px;margin-top:8px;}
+.wish-name-in{
+  flex:1;padding:11px 14px;
+  background:rgba(240,232,216,.04);
+  border:1px solid rgba(200,150,10,.15);
+  font-family:'Jost',sans-serif;font-size:13px;color:var(--cream);outline:none;
+}
+.wish-name-in::placeholder{color:var(--muted);}
+.wish-submit{
+  padding:11px 22px;background:var(--gold);color:var(--dark);
+  border:none;font-family:'Jost',sans-serif;font-size:11px;
+  letter-spacing:3px;text-transform:uppercase;cursor:pointer;
+  transition:background .2s;
+}
+.wish-submit:hover{background:var(--gold2);}
+.wish-list{padding:0 18px;}
+.wish-item{padding:16px 0;border-bottom:1px solid rgba(200,150,10,.08);}
+.wish-item:last-child{border-bottom:none;}
+.wish-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--cream);line-height:1.7;}
+.wish-from{font-family:'Jost',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-top:5px;font-weight:200;}
+
+/* ══════════════════
+   CARD GENERATOR
+══════════════════ */
+.card-gen{padding:22px 18px;background:var(--dark2);border-top:1px solid rgba(200,150,10,.1);}
+.cg-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--cream);text-align:center;margin-bottom:14px;}
+#wishCanvas{display:block;width:100%;border:1px solid rgba(200,150,10,.15);}
+.gen-btn-row{display:flex;gap:8px;margin-top:10px;}
+.gen-btn{
+  flex:1;padding:11px 8px;border:none;
+  font-family:'Jost',sans-serif;font-size:9px;
+  letter-spacing:3px;text-transform:uppercase;cursor:pointer;
+  transition:opacity .2s;
+}
+.gen-btn:hover{opacity:.85;}
+.btn-gen{background:var(--dark3);color:var(--cream);border:1px solid rgba(240,232,216,.15);}
+.btn-dl{background:var(--gold);color:var(--dark);}
+.btn-wa2{background:#25D366;color:#fff;}
+
+/* ── WA FLOAT ── */
+.wa-float{
+  position:fixed;bottom:22px;right:22px;z-index:500;
+  width:52px;height:52px;border-radius:50%;
+  background:#25D366;display:flex;align-items:center;justify-content:center;
+  text-decoration:none;box-shadow:0 4px 24px rgba(37,211,102,.35);
+  transition:transform .2s;
+}
+.wa-float:hover{transform:scale(1.08);}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════
+     COVER
+════════════════════════ -->
+<section class="cover">
+  <div class="cover-bg-script">M&S</div>
+
+  <!-- gold particles -->
+  <div class="particle" style="width:3px;height:3px;left:32%;bottom:22%;animation-delay:0s;animation-duration:5s"></div>
+  <div class="particle" style="width:2px;height:2px;left:54%;bottom:18%;animation-delay:1.5s;animation-duration:4s"></div>
+  <div class="particle" style="width:4px;height:4px;left:44%;bottom:20%;animation-delay:2.8s;animation-duration:6s"></div>
+  <div class="particle" style="width:2px;height:2px;left:60%;bottom:25%;animation-delay:.7s;animation-duration:4.5s"></div>
+
+  <!-- CINEMATIC COUPLE SVG — dramatic, detailed -->
+  <div class="cover-couple-wrap rv-fade d3">
+    <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+
+      <!-- ── BOY — dark navy suit ── -->
+      <g id="boy" transform="translate(36,10)">
+        <!-- head -->
+        <circle cx="42" cy="20" r="16" fill="#e8d8b8" stroke="rgba(200,150,10,.3)" stroke-width="1"/>
+        <!-- hair: neat side part -->
+        <path d="M26,17 Q28,3 42,2 Q54,3 58,14" fill="#1a1208" stroke="none"/>
+        <path d="M26,17 Q24,12 27,10" fill="#1a1208" stroke="none"/>
+        <!-- face detail: subtle jawline -->
+        <path d="M30,26 Q42,34 54,26" fill="none" stroke="rgba(160,120,80,.2)" stroke-width=".8"/>
+        <!-- ear -->
+        <ellipse cx="26" cy="20" rx="3" ry="4" fill="#ddc8a0" stroke="rgba(200,150,10,.2)" stroke-width=".8"/>
+        <!-- neck -->
+        <rect x="37" y="34" width="10" height="10" rx="1" fill="#ddc8a0"/>
+        <!-- dress shirt white -->
+        <path d="M30,44 L37,36 L42,40 L47,36 L54,44 L56,82 L28,82Z" fill="rgba(240,232,216,.12)" stroke="rgba(240,232,216,.25)" stroke-width="1.2"/>
+        <!-- suit jacket — dark navy -->
+        <path d="M26,44 L36,36 L42,42 L48,36 L58,44 L60,84 L24,84Z" fill="rgba(20,30,60,.75)" stroke="rgba(60,90,160,.3)" stroke-width="1.5" stroke-linejoin="round"/>
+        <!-- lapels -->
+        <path d="M36,36 L30,52 L42,46 L54,52 L48,36" fill="none" stroke="rgba(60,90,160,.4)" stroke-width="1"/>
+        <!-- pocket square -->
+        <path d="M50,52 L56,50 L55,56" fill="rgba(200,150,10,.5)" stroke="rgba(200,150,10,.6)" stroke-width=".5"/>
+        <!-- left arm — suit sleeve -->
+        <path d="M26,48 L12,64 L10,82" fill="none" stroke="rgba(20,30,60,.8)" stroke-width="7" stroke-linecap="round"/>
+        <path d="M26,48 L12,64 L10,82" fill="none" stroke="rgba(60,90,160,.3)" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- right arm holding flowers? no — relaxed -->
+        <path d="M58,48 L70,62 L72,80" fill="none" stroke="rgba(20,30,60,.8)" stroke-width="7" stroke-linecap="round"/>
+        <path d="M58,48 L70,62 L72,80" fill="none" stroke="rgba(60,90,160,.3)" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- trousers — dark -->
+        <path d="M28,84 L22,130 L36,130 L42,106 L48,130 L62,130 L56,84Z" fill="rgba(12,16,36,.85)"/>
+        <!-- shoes — dress shoes -->
+        <path d="M20,133 Q28,128 36,133 L36,137 Q28,140 20,137Z" fill="#0a0808"/>
+        <path d="M48,133 Q56,128 64,133 L64,137 Q56,140 48,137Z" fill="#0a0808"/>
+        <!-- watch gleam -->
+        <rect x="70" y="68" width="6" height="4" rx="1" fill="rgba(200,150,10,.4)" stroke="rgba(200,150,10,.6)" stroke-width=".8"/>
+      </g>
+
+      <!-- ── subtle glow between them ── -->
+      <ellipse cx="150" cy="100" rx="25" ry="30" fill="rgba(200,150,10,.04)"/>
+      <text x="150" y="90" font-size="16" text-anchor="middle" fill="rgba(200,150,10,.4)" font-family="serif">✦</text>
+
+      <!-- ── GIRL — elegant saree/gown hybrid ── -->
+      <g id="girl" transform="translate(168,8)">
+        <!-- head -->
+        <circle cx="42" cy="22" r="16" fill="#e8d8b8" stroke="rgba(184,80,96,.3)" stroke-width="1"/>
+        <!-- hair: elegant updo with wisps -->
+        <!-- main bun suggestion -->
+        <ellipse cx="44" cy="8" rx="14" ry="10" fill="#2a1808" stroke="none"/>
+        <!-- bun detail -->
+        <ellipse cx="50" cy="5" rx="7" ry="5" fill="#3a2010" stroke="none"/>
+        <!-- side wisps -->
+        <path d="M28,16 Q22,22 24,30" fill="none" stroke="#2a1808" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M56,16 Q60,24 58,32" fill="none" stroke="#2a1808" stroke-width="2" stroke-linecap="round"/>
+        <!-- bindi -->
+        <circle cx="42" cy="18" r="1.5" fill="var(--rose)" opacity=".7"/>
+        <!-- ear / earring -->
+        <ellipse cx="58" cy="22" rx="2.5" ry="3.5" fill="#ddc8a0"/>
+        <path d="M58,26 L58,34" stroke="rgba(200,150,10,.7)" stroke-width="1" stroke-linecap="round"/>
+        <circle cx="58" cy="35" r="2" fill="rgba(200,150,10,.7)"/>
+        <!-- neck -->
+        <rect x="37" y="36" width="10" height="10" rx="1" fill="#ddc8a0"/>
+        <!-- necklace -->
+        <path d="M34,44 Q42,50 50,44" fill="none" stroke="rgba(200,150,10,.6)" stroke-width="1.2"/>
+        <circle cx="42" cy="51" r="2" fill="rgba(200,150,10,.6)"/>
+        <!-- gown/anarkali — flowing rose/gold -->
+        <path d="M30,46 L38,38 L42,43 L46,38 L54,46 L64,90 Q42,102 20,90Z" fill="rgba(184,80,96,.65)" stroke="rgba(212,96,122,.4)" stroke-width="1.5"/>
+        <!-- gown yoke embroidery hint -->
+        <path d="M34,46 Q42,54 50,46" fill="none" stroke="rgba(200,150,10,.3)" stroke-width="1.5"/>
+        <!-- dupatta — draped elegantly -->
+        <path d="M30,48 Q14,36 8,46 Q10,62 20,58 L26,50" fill="rgba(200,150,10,.18)" stroke="rgba(200,150,10,.4)" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M54,50 Q68,40 74,50 Q72,66 60,62 L56,54" fill="rgba(200,150,10,.14)" stroke="rgba(200,150,10,.35)" stroke-width="1.5"/>
+        <!-- arms graceful -->
+        <path d="M30,52 L18,68 L14,86" fill="none" stroke="rgba(184,80,96,.7)" stroke-width="5.5" stroke-linecap="round"/>
+        <path d="M54,52 L66,68 L70,84" fill="none" stroke="rgba(184,80,96,.7)" stroke-width="5.5" stroke-linecap="round"/>
+        <!-- bangles -->
+        <ellipse cx="14" cy="76" rx="4" ry="2.5" fill="none" stroke="rgba(200,150,10,.7)" stroke-width="1.8"/>
+        <ellipse cx="14" cy="80" rx="3.5" ry="2.2" fill="none" stroke="rgba(184,80,96,.5)" stroke-width="1.4"/>
+        <!-- gown hem flare -->
+        <path d="M20,90 Q42,106 64,90 L68,130 Q42,138 16,130Z" fill="rgba(184,80,96,.5)" stroke="rgba(212,96,122,.3)" stroke-width="1"/>
+        <!-- hem embroidery -->
+        <path d="M18,128 Q42,136 66,128" fill="none" stroke="rgba(200,150,10,.35)" stroke-width="1.5"/>
+        <!-- heels suggestion -->
+        <path d="M24,133 Q32,130 36,135 L36,140 Q28,142 22,139Z" fill="rgba(100,40,60,.6)"/>
+        <path d="M48,133 Q56,130 60,135 L60,140 Q52,142 46,139Z" fill="rgba(100,40,60,.6)"/>
+        <!-- heel stiletto -->
+        <line x1="36" y1="140" x2="37" y2="148" stroke="rgba(100,40,60,.7)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="60" y1="140" x2="61" y2="148" stroke="rgba(100,40,60,.7)" stroke-width="1.5" stroke-linecap="round"/>
+      </g>
+
+      <!-- ground glow -->
+      <ellipse cx="80" cy="152" rx="30" ry="6" fill="rgba(200,150,10,.05)"/>
+      <ellipse cx="210" cy="152" rx="30" ry="6" fill="rgba(200,150,10,.05)"/>
+    </svg>
+  </div>
+
+  <div class="cover-content">
+    <div class="cover-eyebrow rv">A Love Story</div>
+    <div class="rv d1">
+      <span class="cover-name-main">Murshid</span>
+      <span class="cover-amp-line">weds</span>
+      <span class="cover-name-main gold">Shibila</span>
+    </div>
+    <div class="cover-date-block rv d2">
+      <div class="cover-date-text">Saturday · 4 April 2026 · Aloor, Palakkad</div>
+    </div>
+  </div>
+
+  <div class="cover-scroll">
+    <div class="cover-scroll-txt">Scroll</div>
+    <div class="cover-scroll-icon"></div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     CHAPTER 1
+════════════════════════ -->
+<div class="ch-divider rv">
+  <div class="ch-num">I</div>
+  <div class="ch-divider-inner">
+    <div class="ch-label-tag">Chapter One</div>
+    <div class="ch-title-big">First Day</div>
+    <div class="ch-subtitle">Same college · Different worlds · One gate</div>
+  </div>
+</div>
+
+<section class="scene" style="background:var(--dark)">
+  <svg viewBox="0 0 420 230" style="opacity:.5">
+    <!-- dark dramatic sky -->
+    <rect x="0" y="0" width="420" height="150" fill="rgba(20,28,60,.15)"/>
+    <!-- dramatic light ray from above -->
+    <path d="M180,0 L120,150 L300,150 L240,0Z" fill="rgba(200,150,10,.025)"/>
+    <!-- building — dramatic columns -->
+    <rect x="105" y="55" width="210" height="120" fill="rgba(240,232,216,.04)" stroke="rgba(240,232,216,.12)" stroke-width="1"/>
+    <path d="M105,55 L210,15 L315,55Z" fill="rgba(240,232,216,.03)" stroke="rgba(240,232,216,.1)" stroke-width="1"/>
+    <!-- columns -->
+    <rect x="115" y="55" width="8" height="100" fill="rgba(200,150,10,.06)" stroke="rgba(200,150,10,.15)" stroke-width=".6"/>
+    <rect x="145" y="55" width="8" height="100" fill="rgba(200,150,10,.06)" stroke="rgba(200,150,10,.15)" stroke-width=".6"/>
+    <rect x="175" y="55" width="8" height="100" fill="rgba(200,150,10,.06)" stroke="rgba(200,150,10,.15)" stroke-width=".6"/>
+    <rect x="239" y="55" width="8" height="100" fill="rgba(200,150,10,.06)" stroke="rgba(200,150,10,.15)" stroke-width=".6"/>
+    <rect x="269" y="55" width="8" height="100" fill="rgba(200,150,10,.06)" stroke="rgba(200,150,10,.15)" stroke-width=".6"/>
+    <rect x="299" y="55" width="8" height="100" fill="rgba(200,150,10,.06)" stroke="rgba(200,150,10,.15)" stroke-width=".6"/>
+    <!-- arch door — backlit -->
+    <path d="M184,155 L184,102 Q210,86 236,102 L236,155Z" fill="rgba(200,150,10,.08)" stroke="rgba(200,150,10,.2)" stroke-width="1"/>
+    <!-- door glow -->
+    <ellipse cx="210" cy="130" rx="20" ry="28" fill="rgba(200,150,10,.05)"/>
+    <!-- ground -->
+    <line x1="0" y1="175" x2="420" y2="175" stroke="rgba(200,150,10,.08)" stroke-width="1"/>
+    <!-- silhouette trees -->
+    <ellipse cx="40" cy="130" rx="24" ry="46" fill="rgba(240,232,216,.05)" stroke="rgba(240,232,216,.1)" stroke-width=".7"/>
+    <line x1="40" y1="176" x2="40" y2="190" stroke="rgba(240,232,216,.1)" stroke-width="1.5"/>
+    <ellipse cx="380" cy="130" rx="24" ry="46" fill="rgba(240,232,216,.05)" stroke="rgba(240,232,216,.1)" stroke-width=".7"/>
+    <line x1="380" y1="176" x2="380" y2="190" stroke="rgba(240,232,216,.1)" stroke-width="1.5"/>
+
+    <!-- BOY silhouette — dark suit, left -->
+    <g transform="translate(30,92)" opacity=".75">
+      <circle cx="28" cy="0" r="16" fill="#e8d8b8" stroke="rgba(200,150,10,.2)" stroke-width="1.2"/>
+      <path d="M14,-3 Q28,-16 42,-3 L42,-9 Q28,-20 14,-9Z" fill="#1a1208"/>
+      <rect x="23" y="13" width="10" height="9" rx="1" fill="#ddc8a0"/>
+      <path d="M16,22 L24,14 L28,19 L32,14 L40,22 L42,62 L14,62Z" fill="rgba(20,30,60,.85)" stroke="rgba(60,90,160,.3)" stroke-width="1.5"/>
+      <path d="M16,26 L6,44 L4,62" fill="none" stroke="rgba(20,30,60,.85)" stroke-width="7" stroke-linecap="round"/>
+      <path d="M40,26 L52,42 L54,60" fill="none" stroke="rgba(20,30,60,.85)" stroke-width="7" stroke-linecap="round"/>
+      <rect x="-10" y="58" width="14" height="4" rx="1" fill="rgba(60,90,160,.65)"/>
+      <rect x="-8" y="52" width="12" height="5" rx="1" fill="rgba(90,120,190,.6)"/>
+      <path d="M14,62 L10,96 L22,96 L28,76 L34,94 L46,94 L42,62Z" fill="rgba(12,16,36,.9)"/>
+      <path d="M8,99 Q16,94 22,99 L22,103 Q14,106 8,103Z" fill="#060404"/>
+      <path d="M34,99 Q42,94 48,99 L48,103 Q40,106 34,103Z" fill="#060404"/>
+    </g>
+
+    <!-- GIRL silhouette — gown, right -->
+    <g transform="translate(330,88)" opacity=".75">
+      <circle cx="28" cy="0" r="16" fill="#e8d8b8" stroke="rgba(184,80,96,.25)" stroke-width="1.2"/>
+      <ellipse cx="30" cy="-10" rx="14" ry="9" fill="#2a1808"/>
+      <ellipse cx="35" cy="-13" rx="7" ry="5" fill="#3a2010"/>
+      <path d="M14,6 Q10,16 11,30" fill="none" stroke="#2a1808" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="42" cy="8" r="1.5" fill="rgba(184,80,96,.7)"/>
+      <rect x="23" y="13" width="10" height="9" rx="1" fill="#ddc8a0"/>
+      <path d="M14,22 L22,14 L28,19 L34,14 L42,22 L52,68 Q28,80 4,68Z" fill="rgba(184,80,96,.65)" stroke="rgba(212,96,122,.35)" stroke-width="1.5"/>
+      <path d="M14,26 Q4,18 0,26 Q2,38 10,35" fill="rgba(200,150,10,.22)" stroke="rgba(200,150,10,.4)" stroke-width="1.3"/>
+      <path d="M14,28 L4,46 L2,64" fill="none" stroke="rgba(184,80,96,.7)" stroke-width="5.5" stroke-linecap="round"/>
+      <path d="M42,28 L54,46 L56,62" fill="none" stroke="rgba(184,80,96,.7)" stroke-width="5.5" stroke-linecap="round"/>
+      <ellipse cx="2" cy="48" rx="3.5" ry="2.2" fill="none" stroke="rgba(200,150,10,.65)" stroke-width="1.6"/>
+      <path d="M4,68 L0,108 Q28,118 56,108 L52,68Z" fill="rgba(184,80,96,.5)" stroke="rgba(212,96,122,.3)" stroke-width="1"/>
+      <path d="M8,108 Q16,104 20,110 L20,115 Q12,118 6,114Z" fill="rgba(100,40,60,.65)"/>
+      <path d="M36,108 Q44,104 48,110 L48,115 Q40,118 34,114Z" fill="rgba(100,40,60,.65)"/>
+    </g>
+
+    <!-- gold light connecting them -->
+    <path d="M82,190 Q210,180 338,190" fill="none" stroke="rgba(200,150,10,.12)" stroke-width="1" stroke-dasharray="6,6"/>
+    <circle cx="210" cy="186" r="3" fill="rgba(200,150,10,.2)"/>
+  </svg>
+
+  <div class="info-card rv">
+    <div style="text-align:center;margin-bottom:16px">
+      <span class="ic-name rv-left">Murshid</span>
+      <span class="ic-amp">weds</span>
+      <span class="ic-name gold rv-right">Shibila</span>
+    </div>
+
+    <div class="ic-divider"><div class="ic-div-line"></div><div class="ic-div-diamond"></div><div class="ic-div-line"></div></div>
+
+    <div class="datebox rv">
+      <div class="db-mo">April<br>2026</div>
+      <div class="db-day">4</div>
+      <div class="db-right">
+        <div class="db-dow">Saturday</div>
+        <div class="db-time">11:00 AM</div>
+      </div>
+    </div>
+
+    <div class="cal-row rv d1">
+      <a href="#" class="cal-btn">📅 Google Calendar</a>
+      <a href="#" class="cal-btn"> Apple Calendar</a>
+    </div>
+
+    <div class="venue-block rv d2">
+      <div class="venue-ico">📍</div>
+      <div>
+        <div class="venue-name">Sriyas Palace, MKM Auditorium</div>
+        <div class="venue-sub">Thrithala Road, Aloor, Palakkad, Kerala<br>6 Shawwal 1447 AH</div>
+        <a href="https://maps.google.com/?q=Sriyas+Palace+Aloor+Palakkad" class="venue-link" target="_blank">Open in Maps ↗</a>
+      </div>
+    </div>
+
+    <div class="act-row rv d3">
+      <a href="tel:8590059970" class="act-btn btn-call">📞 Call</a>
+      <a href="https://wa.me/917034852166" class="act-btn btn-wa" target="_blank">💬 WhatsApp</a>
+      <a href="https://maps.google.com/?q=Sriyas+Palace+Aloor+Palakkad" class="act-btn btn-map" target="_blank">🗺️ Map</a>
+    </div>
+
+    <div style="margin-top:14px;text-align:center;font-family:'Jost',sans-serif;font-size:9px;color:var(--muted);letter-spacing:2px;line-height:2;font-weight:200">
+      With blessings from<br>
+      <span style="color:rgba(240,232,216,.45);font-size:10px">Kalamsekarath & Parayam Valappil Family</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     CHAPTER 2
+════════════════════════ -->
+<div class="ch-divider rv">
+  <div class="ch-num">II</div>
+  <div class="ch-divider-inner">
+    <div class="ch-label-tag">Chapter Two</div>
+    <div class="ch-title-big">The Connection</div>
+    <div class="ch-subtitle">Where silence became conversation</div>
+  </div>
+</div>
+
+<section class="scene" style="background:var(--dark2)">
+  <svg viewBox="0 0 420 240" style="opacity:.48">
+    <!-- moody library light -->
+    <rect x="0" y="0" width="420" height="240" fill="rgba(20,16,8,.5)"/>
+    <!-- warm lamp glow -->
+    <radialGradient id="lamp" cx="72%" cy="72%" r="40%">
+      <stop offset="0%" stop-color="rgba(200,150,10,.14)"/>
+      <stop offset="100%" stop-color="rgba(200,150,10,.0)"/>
+    </radialGradient>
+    <rect x="0" y="0" width="420" height="240" fill="url(#lamp)"/>
+    <!-- shelves structure -->
+    <line x1="0" y1="45" x2="420" y2="45" stroke="rgba(200,150,10,.1)" stroke-width="1.5"/>
+    <line x1="0" y1="90" x2="420" y2="90" stroke="rgba(200,150,10,.1)" stroke-width="1.5"/>
+    <line x1="0" y1="135" x2="420" y2="135" stroke="rgba(200,150,10,.1)" stroke-width="1.5"/>
+    <!-- books — warm tones -->
+    <rect x="8" y="16" width="15" height="29" rx="1" fill="rgba(184,140,60,.3)"/>
+    <rect x="25" y="20" width="12" height="25" rx="1" fill="rgba(160,60,60,.3)"/>
+    <rect x="39" y="14" width="18" height="31" rx="1" fill="rgba(80,120,160,.3)"/>
+    <rect x="59" y="18" width="14" height="27" rx="1" fill="rgba(140,80,140,.3)"/>
+    <rect x="75" y="16" width="11" height="29" rx="1" fill="rgba(60,140,80,.3)"/>
+    <rect x="270" y="16" width="15" height="29" rx="1" fill="rgba(184,80,60,.28)"/>
+    <rect x="287" y="20" width="18" height="25" rx="1" fill="rgba(60,100,160,.28)"/>
+    <rect x="307" y="14" width="12" height="31" rx="1" fill="rgba(140,60,80,.28)"/>
+    <rect x="321" y="18" width="16" height="27" rx="1" fill="rgba(80,160,100,.28)"/>
+    <rect x="340" y="15" width="14" height="30" rx="1" fill="rgba(160,140,60,.28)"/>
+    <rect x="356" y="19" width="18" height="26" rx="1" fill="rgba(100,60,140,.28)"/>
+    <rect x="376" y="14" width="14" height="31" rx="1" fill="rgba(60,120,140,.28)"/>
+    <!-- table -->
+    <rect x="82" y="186" width="256" height="5" rx="2" fill="rgba(200,150,10,.15)"/>
+    <line x1="100" y1="191" x2="100" y2="230" stroke="rgba(200,150,10,.1)" stroke-width="2"/>
+    <line x1="320" y1="191" x2="320" y2="230" stroke="rgba(200,150,10,.1)" stroke-width="2"/>
+    <!-- open book glowing -->
+    <path d="M132,174 L210,168 L288,174 L288,188 L210,182 L132,188Z" fill="rgba(240,232,216,.12)" stroke="rgba(200,150,10,.15)" stroke-width="1"/>
+    <line x1="210" y1="168" x2="210" y2="188" stroke="rgba(200,150,10,.12)" stroke-width=".8"/>
+    <!-- lamp post and shade -->
+    <line x1="315" y1="186" x2="315" y2="140" stroke="rgba(200,150,10,.2)" stroke-width="2"/>
+    <path d="M298,140 L332,140 L326,166 L304,166Z" fill="rgba(200,150,10,.18)" stroke="rgba(200,150,10,.25)" stroke-width="1"/>
+    <ellipse cx="315" cy="178" rx="45" ry="18" fill="rgba(200,150,10,.07)"/>
+
+    <!-- BOY seated — dark suit -->
+    <g transform="translate(102,102)" opacity=".82">
+      <circle cx="26" cy="0" r="16" fill="#e0c8a0" stroke="rgba(200,150,10,.25)" stroke-width="1.2"/>
+      <path d="M10,-3 Q26,-16 42,-3 L42,-9 Q26,-20 10,-9Z" fill="#1a1208"/>
+      <rect x="21" y="13" width="10" height="9" rx="1" fill="#d8c090"/>
+      <path d="M12,22 L21,13 L26,18 L31,13 L40,22 L42,55 L10,55Z" fill="rgba(20,30,60,.85)" stroke="rgba(60,90,160,.3)" stroke-width="1.4"/>
+      <path d="M40,28 L56,34" fill="none" stroke="rgba(20,30,60,.85)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M12,28 L-2,36" fill="none" stroke="rgba(20,30,60,.85)" stroke-width="5" stroke-linecap="round"/>
+    </g>
+
+    <!-- GIRL seated — elegant -->
+    <g transform="translate(252,98)" opacity=".82">
+      <circle cx="26" cy="0" r="16" fill="#e0c8a0" stroke="rgba(184,80,96,.3)" stroke-width="1.2"/>
+      <ellipse cx="28" cy="-10" rx="14" ry="9" fill="#2a1808"/>
+      <path d="M12,6 Q8,16 9,30" fill="none" stroke="#2a1808" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="38" cy="12" r="1.5" fill="rgba(184,80,96,.7)"/>
+      <rect x="21" y="13" width="10" height="9" rx="1" fill="#d8c090"/>
+      <path d="M12,22 L21,13 L26,18 L31,13 L40,22 L46,58 Q26,67 6,58Z" fill="rgba(184,80,96,.65)" stroke="rgba(212,96,122,.3)" stroke-width="1.4"/>
+      <path d="M12,26 Q4,18 0,26 Q2,38 9,35" fill="rgba(200,150,10,.2)" stroke="rgba(200,150,10,.38)" stroke-width="1.2"/>
+      <path d="M12,28 L2,44" fill="none" stroke="rgba(184,80,96,.7)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M40,28 L52,44" fill="none" stroke="rgba(184,80,96,.7)" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="1" cy="36" rx="3.5" ry="2.2" fill="none" stroke="rgba(200,150,10,.7)" stroke-width="1.5"/>
+    </g>
+
+    <!-- golden line between them -->
+    <line x1="160" y1="160" x2="258" y2="158" stroke="rgba(200,150,10,.2)" stroke-width="1" stroke-dasharray="4,5"/>
+    <circle cx="209" cy="158" r="3" fill="rgba(200,150,10,.25)"/>
+  </svg>
+
+  <div class="quote-block rv">
+    <span class="quote-mark">"</span>
+    <div class="quote-txt">There are conversations that go too long to be coincidence — and too quiet to be noise. This was one of those.</div>
+    <div class="quote-cap">Chapter II · Library · Where it began</div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     CHAPTER 3
+════════════════════════ -->
+<div class="ch-divider rv">
+  <div class="ch-num">III</div>
+  <div class="ch-divider-inner">
+    <div class="ch-label-tag">Chapter Three</div>
+    <div class="ch-title-big">Growing Closer</div>
+    <div class="ch-subtitle">Long walks · Shared silences · Something more</div>
+  </div>
+</div>
+
+<section class="scene" style="background:var(--dark)">
+  <svg viewBox="0 0 420 230" style="opacity:.52">
+    <!-- warm dusk gradient -->
+    <defs>
+      <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="rgba(180,80,20,.08)"/>
+        <stop offset="60%" stop-color="rgba(8,6,26,.0)"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="420" height="230" fill="url(#dusk)"/>
+    <!-- path road -->
+    <path d="M0,210 Q210,185 420,210 L420,230 L0,230Z" fill="rgba(200,150,10,.04)"/>
+    <line x1="0" y1="210" x2="420" y2="210" stroke="rgba(200,150,10,.08)" stroke-width="1"/>
+    <!-- trees silhouette -->
+    <ellipse cx="28" cy="144" rx="24" ry="52" fill="rgba(240,232,216,.05)" stroke="rgba(240,232,216,.1)" stroke-width=".7"/>
+    <line x1="28" y1="196" x2="28" y2="212" stroke="rgba(240,232,216,.08)" stroke-width="1.5"/>
+    <ellipse cx="392" cy="144" rx="24" ry="52" fill="rgba(240,232,216,.05)" stroke="rgba(240,232,216,.1)" stroke-width=".7"/>
+    <line x1="392" y1="196" x2="392" y2="212" stroke="rgba(240,232,216,.08)" stroke-width="1.5"/>
+    <ellipse cx="76" cy="158" rx="16" ry="36" fill="rgba(240,232,216,.04)" stroke="rgba(240,232,216,.07)" stroke-width=".7"/>
+    <line x1="76" y1="194" x2="76" y2="212" stroke="rgba(240,232,216,.06)" stroke-width="1.2"/>
+    <ellipse cx="344" cy="158" rx="16" ry="36" fill="rgba(240,232,216,.04)" stroke="rgba(240,232,216,.07)" stroke-width=".7"/>
+    <line x1="344" y1="194" x2="344" y2="212" stroke="rgba(240,232,216,.06)" stroke-width="1.2"/>
+
+    <!-- BOY walking — dark suit, stride -->
+    <g transform="translate(120,90)" opacity=".82">
+      <circle cx="28" cy="0" r="16" fill="#e0c8a0" stroke="rgba(200,150,10,.2)" stroke-width="1.2"/>
+      <path d="M12,-3 Q28,-16 44,-3 L44,-9 Q28,-20 12,-9Z" fill="#1a1208"/>
+      <rect x="23" y="13" width="10" height="9" rx="1" fill="#d8c090"/>
+      <path d="M14,22 L23,13 L28,18 L33,13 L42,22 L44,60 L12,60Z" fill="rgba(20,30,60,.88)" stroke="rgba(60,90,160,.3)" stroke-width="1.5"/>
+      <!-- pocket square -->
+      <path d="M38,28 L44,26 L43,32" fill="rgba(200,150,10,.5)"/>
+      <path d="M14,28 L0,48" fill="none" stroke="rgba(20,30,60,.88)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M42,28 L56,44" fill="none" stroke="rgba(20,30,60,.88)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M14,60 L8,100 L22,100 L28,76 L34,98 L48,98 L42,60Z" fill="rgba(12,16,36,.92)"/>
+      <path d="M6,103 Q14,98 20,103 L20,108 Q12,111 6,108Z" fill="#080402"/>
+      <path d="M36,101 Q44,96 50,101 L50,106 Q42,109 36,106Z" fill="#080402"/>
+    </g>
+
+    <!-- GIRL walking — elegant, close -->
+    <g transform="translate(218,86)" opacity=".82">
+      <circle cx="28" cy="0" r="16" fill="#e0c8a0" stroke="rgba(184,80,96,.25)" stroke-width="1.2"/>
+      <ellipse cx="30" cy="-10" rx="14" ry="9" fill="#2a1808"/>
+      <ellipse cx="36" cy="-13" rx="7" ry="5" fill="#3a2010"/>
+      <path d="M14,6 Q10,18 11,32" fill="none" stroke="#2a1808" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="42" cy="10" r="1.5" fill="rgba(184,80,96,.7)"/>
+      <rect x="23" y="13" width="10" height="9" rx="1" fill="#d8c090"/>
+      <path d="M14,22 L23,13 L28,18 L33,13 L42,22 L54,70 Q28,82 2,70Z" fill="rgba(184,80,96,.65)" stroke="rgba(212,96,122,.3)" stroke-width="1.5"/>
+      <path d="M42,24 Q54,16 60,25 Q57,38 46,34" fill="rgba(200,150,10,.2)" stroke="rgba(200,150,10,.4)" stroke-width="1.3"/>
+      <path d="M42,28 L56,46" fill="none" stroke="rgba(184,80,96,.7)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M14,28 L0,46" fill="none" stroke="rgba(184,80,96,.7)" stroke-width="6" stroke-linecap="round"/>
+      <ellipse cx="0" cy="36" rx="3.5" ry="2.2" fill="none" stroke="rgba(200,150,10,.68)" stroke-width="1.6"/>
+      <ellipse cx="0" cy="40" rx="3" ry="2" fill="none" stroke="rgba(184,80,96,.5)" stroke-width="1.3"/>
+      <path d="M2,70 L-2,108 Q28,118 58,108 L54,70Z" fill="rgba(184,80,96,.5)" stroke="rgba(212,96,122,.25)" stroke-width="1"/>
+      <path d="M4,108 Q12,104 16,110 L16,116 Q8,119 2,115Z" fill="rgba(100,40,60,.65)"/>
+      <path d="M40,108 Q48,104 52,110 L52,116 Q44,119 38,115Z" fill="rgba(100,40,60,.65)"/>
+      <line x1="16" y1="116" x2="17" y2="126" stroke="rgba(100,40,60,.7)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="52" y1="116" x2="53" y2="126" stroke="rgba(100,40,60,.7)" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- gold particle trail between them -->
+    <circle cx="218" cy="135" r="2" fill="rgba(200,150,10,.25)"/>
+    <circle cx="222" cy="125" r="1.5" fill="rgba(200,150,10,.18)"/>
+    <circle cx="215" cy="115" r="1" fill="rgba(200,150,10,.12)"/>
+  </svg>
+
+  <div class="walk-caption rv">
+    <div class="walk-title">Growing Closer</div>
+    <div class="walk-body">Long walks. Longer conversations. Shared silences that needed no words. The friendship became something neither of them had a name for — until the families began to smile knowing smiles.</div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     PHOTO STRIP
+════════════════════════ -->
+<div class="photo-strip rv">
+  <div class="photo-placeholder">
+    <div style="text-align:center;z-index:1;position:relative">
+      <div style="font-size:40px;margin-bottom:8px">📸</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:rgba(200,150,10,.4);letter-spacing:2px">their photos here</div>
+    </div>
+  </div>
+  <div class="photo-overlay"></div>
+  <div class="photo-names">
+    <div class="photo-big-name">Murshid & Shibila</div>
+    <div class="photo-dt">4 April 2026 · Aloor, Palakkad</div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════
+     CHAPTER 4
+════════════════════════ -->
+<div class="ch-divider rv" style="background:var(--dark)">
+  <div class="ch-num">IV</div>
+  <div class="ch-divider-inner">
+    <div class="ch-label-tag" style="color:var(--gold)">Chapter Four</div>
+    <div class="ch-title-big">The Promise</div>
+    <div class="ch-subtitle">Under the stars · He made it forever</div>
+  </div>
+</div>
+
+<section class="scene" style="background:var(--dark)">
+  <svg viewBox="0 0 420 270" style="opacity:.6">
+    <defs>
+      <radialGradient id="nightglow" cx="50%" cy="50%" r="40%">
+        <stop offset="0%" stop-color="rgba(200,150,10,.12)"/>
+        <stop offset="100%" stop-color="rgba(200,150,10,.0)"/>
+      </radialGradient>
+    </defs>
+    <!-- stars -->
+    <circle cx="20" cy="16" r="1.2" fill="#f8e898"/><circle cx="54" cy="7" r="1.8" fill="#f8e898"/>
+    <circle cx="92" cy="24" r="1" fill="#f8e898"/><circle cx="136" cy="9" r="2" fill="#f8e898"/>
+    <circle cx="178" cy="20" r="1.4" fill="#f8e898"/><circle cx="214" cy="5" r="1.8" fill="#f8e898"/>
+    <circle cx="252" cy="17" r="1.2" fill="#f8e898"/><circle cx="296" cy="7" r="1.5" fill="#f8e898"/>
+    <circle cx="338" cy="22" r="1" fill="#f8e898"/><circle cx="378" cy="11" r="1.6" fill="#f8e898"/>
+    <circle cx="38" cy="42" r="1" fill="#f8e898"/><circle cx="86" cy="50" r="1.5" fill="#f8e898"/>
+    <circle cx="146" cy="38" r="1.2" fill="#f8e898"/><circle cx="198" cy="54" r="1" fill="#f8e898"/>
+    <circle cx="258" cy="44" r="1.4" fill="#f8e898"/><circle cx="318" cy="36" r="1" fill="#f8e898"/>
+    <circle cx="388" cy="46" r="1.2" fill="#f8e898"/>
+    <!-- moon -->
+    <circle cx="342" cy="34" r="18" fill="rgba(248,232,152,.08)" stroke="rgba(248,232,152,.18)" stroke-width="1"/>
+    <circle cx="351" cy="29" r="14" fill="#0a0806"/>
+    <!-- ring glow -->
+    <rect x="0" y="0" width="420" height="270" fill="url(#nightglow)" opacity=".6"/>
+    <text x="210" y="138" font-size="26" text-anchor="middle" fill="rgba(200,150,10,.65)">💍</text>
+    <ellipse cx="210" cy="145" rx="28" ry="9" fill="rgba(200,150,10,.06)"/>
+
+    <!-- BOY kneeling — suit -->
+    <g transform="translate(110,126)" opacity=".82">
+      <circle cx="28" cy="0" r="16" fill="#e0c8a0" stroke="rgba(200,150,10,.2)" stroke-width="1.2"/>
+      <path d="M12,-3 Q28,-16 44,-3 L44,-9 Q28,-20 12,-9Z" fill="#1a1208"/>
+      <rect x="23" y="13" width="10" height="9" rx="1" fill="#d8c090"/>
+      <path d="M14,22 L23,13 L28,18 L33,13 L42,22 L44,56 L12,56Z" fill="rgba(20,30,60,.85)" stroke="rgba(60,90,160,.3)" stroke-width="1.4"/>
+      <!-- arm extending ring -->
+      <path d="M42,28 L74,20" fill="none" stroke="rgba(20,30,60,.85)" stroke-width="7" stroke-linecap="round"/>
+      <path d="M14,28 L4,38" fill="none" stroke="rgba(20,30,60,.85)" stroke-width="7" stroke-linecap="round"/>
+      <!-- kneeling -->
+      <path d="M12,56 L6,82 L20,82 L28,64 L36,78 L50,78 L44,56Z" fill="rgba(12,16,36,.9)"/>
+    </g>
+
+    <!-- GIRL standing — gown, hands up in joy -->
+    <g transform="translate(230,118)" opacity=".82">
+      <circle cx="28" cy="0" r="16" fill="#e0c8a0" stroke="rgba(184,80,96,.25)" stroke-width="1.2"/>
+      <ellipse cx="30" cy="-10" rx="14" ry="9" fill="#2a1808"/>
+      <ellipse cx="36" cy="-13" rx="7" ry="5" fill="#3a2010"/>
+      <path d="M14,6 Q10,18 11,32" fill="none" stroke="#2a1808" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="42" cy="10" r="1.5" fill="rgba(184,80,96,.7)"/>
+      <rect x="23" y="13" width="10" height="9" rx="1" fill="#d8c090"/>
+      <path d="M14,22 L23,13 L28,18 L33,13 L42,22 L54,68 Q28,80 2,68Z" fill="rgba(184,80,96,.65)" stroke="rgba(212,96,122,.3)" stroke-width="1.5"/>
+      <path d="M42,24 Q54,16 60,25 Q57,38 46,34" fill="rgba(200,150,10,.2)" stroke="rgba(200,150,10,.4)" stroke-width="1.3"/>
+      <!-- arms raised in joy -->
+      <path d="M14,28 L0,10" fill="none" stroke="rgba(184,80,96,.7)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M42,28 L58,10" fill="none" stroke="rgba(184,80,96,.7)" stroke-width="6" stroke-linecap="round"/>
+      <ellipse cx="0" cy="12" rx="3.5" ry="2.2" fill="none" stroke="rgba(200,150,10,.68)" stroke-width="1.6"/>
+      <path d="M2,68 L-2,108 Q28,120 58,108 L54,68Z" fill="rgba(184,80,96,.5)" stroke="rgba(212,96,122,.25)" stroke-width="1"/>
+    </g>
+
+    <!-- star sparkles -->
+    <text x="152" y="112" font-size="10" fill="rgba(200,150,10,.55)">✦</text>
+    <text x="264" y="108" font-size="10" fill="rgba(200,150,10,.55)">✦</text>
+    <text x="210" y="96" font-size="8" fill="rgba(200,150,10,.4)">✦</text>
+    <!-- arch light -->
+    <path d="M136,122 Q210,84 282,122" fill="none" stroke="rgba(200,150,10,.1)" stroke-width="1.2" stroke-dasharray="5,6"/>
+  </svg>
+
+  <div class="night-card rv">
+    <span class="night-name">Murshid</span>
+    <span class="night-amp">weds</span>
+    <span class="night-name gold">Shibila</span>
+
+    <div class="countdown-row rv d1" id="countdown">
+      <div class="cd-box"><span class="cd-num" id="cd-days">—</span><div class="cd-label">Days</div></div>
+      <div class="cd-box"><span class="cd-num" id="cd-hrs">—</span><div class="cd-label">Hours</div></div>
+      <div class="cd-box"><span class="cd-num" id="cd-min">—</span><div class="cd-label">Mins</div></div>
+      <div class="cd-box"><span class="cd-num" id="cd-sec">—</span><div class="cd-label">Secs</div></div>
+    </div>
+
+    <div class="venue-night rv d2">
+      <div style="font-size:18px;flex-shrink:0;margin-top:2px">📍</div>
+      <div>
+        <div class="vn-name">Sriyas Palace, MKM Auditorium</div>
+        <div class="vn-sub">Thrithala Road, Aloor, Palakkad · 6 Shawwal 1447 AH</div>
+      </div>
+    </div>
+
+    <div class="act-night rv d3">
+      <a href="tel:8590059970" class="bna bna-call">📞 Call</a>
+      <a href="https://wa.me/917034852166" class="bna bna-wa" target="_blank">💬 WhatsApp</a>
+      <a href="https://maps.google.com/?q=Sriyas+Palace+Aloor+Palakkad" class="bna bna-map" target="_blank">🗺️ Map</a>
+    </div>
+
+    <div style="margin-top:14px;text-align:center;font-family:'Jost',sans-serif;font-size:9px;color:var(--muted);letter-spacing:2px;line-height:2;font-weight:200">
+      With blessings from<br>
+      <span style="color:rgba(200,150,10,.5);font-size:10px">Kalamsekarath & Parayam Valappil Family</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     FAMILY SECTION
+════════════════════════ -->
+<section class="family-section">
+  <div class="family-header rv">
+    <div class="family-heading">Our Families</div>
+    <div class="fam-line"></div>
+    <div class="family-sub" style="margin-top:10px">With love & blessings from both sides</div>
+  </div>
+
+  <div class="family-cols">
+    <div class="fam-col rv-left">
+      <div class="fam-col-head">
+        <div class="fam-side">Groom's Side</div>
+        <div class="fam-house">Kalamsekarath<br>House, Pattithara</div>
+      </div>
+      <div class="person-block">
+        <div class="p-role">Son</div>
+        <div class="p-name hero">Murshid</div>
+      </div>
+      <div class="person-block">
+        <div class="p-role">Father</div>
+        <div class="p-name">Abdul Gafoor K A</div>
+      </div>
+      <div class="person-block">
+        <div class="p-role">Mother</div>
+        <div class="p-name">Sameera P V</div>
+      </div>
+      <div class="person-block">
+        <div class="p-role">Grandparents</div>
+        <div class="p-name sm late">(late) Abubacker Master</div>
+        <div class="p-name sm late">(late) Saftya Biwi</div>
+      </div>
+    </div>
+
+    <div class="fam-col rv-right">
+      <div class="fam-col-head">
+        <div class="fam-side">Bride's Side</div>
+        <div class="fam-house">Mampullinhalil<br>House, Thrithala</div>
+      </div>
+      <div class="person-block">
+        <div class="p-role">Daughter</div>
+        <div class="p-name rose">Shibila</div>
+      </div>
+      <div class="person-block">
+        <div class="p-role">Father</div>
+        <div class="p-name">M M Anwar Sadique</div>
+      </div>
+      <div class="person-block">
+        <div class="p-role">Mother</div>
+        <div class="p-name">Soudha Anwar</div>
+      </div>
+      <div class="person-block">
+        <div class="p-role">Grandparents</div>
+        <div class="p-name sm">M.N Mammikutty Master</div>
+        <div class="p-name sm late">(late) Sulaikha</div>
+        <div class="p-name sm late">(late) Muhammed</div>
+        <div class="p-name sm">Beevathu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════
+     WISH WALL
+════════════════════════ -->
+<section class="wish-section">
+  <div class="wish-header rv">
+    <div class="wish-heading">Send Your Wishes</div>
+    <div class="fam-line"></div>
+    <div class="wish-sub" style="margin-top:10px">Leave your blessings for the couple</div>
+  </div>
+
+  <div class="wish-form rv">
+    <textarea class="wish-input" id="wishText" rows="3" placeholder="Write your wishes for Murshid & Shibila…"></textarea>
+    <div class="wish-name-row">
+      <input class="wish-name-in" id="wishName" type="text" placeholder="Your name">
+      <button class="wish-submit" onclick="submitWish()">Send</button>
+    </div>
+  </div>
+
+  <div class="wish-list" id="wishList"></div>
+</section>
+
+
+<!-- ════════════════════════
+     CARD GENERATOR
+════════════════════════ -->
+<section class="card-gen rv">
+  <div class="cg-title">Create a Wish Card</div>
+  <canvas id="wishCanvas" width="1080" height="1080" style="max-width:100%"></canvas>
+  <div class="gen-btn-row">
+    <button class="gen-btn btn-gen" onclick="generateCard()">Generate</button>
+    <button class="gen-btn btn-dl" onclick="downloadCard()">Download</button>
+    <button class="gen-btn btn-wa2" onclick="shareWA()">WhatsApp</button>
+  </div>
+</section>
+
+<a href="https://wa.me/917034852166" class="wa-float" target="_blank">
+  <svg viewBox="0 0 24 24" fill="white" width="26" height="26"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.118 1.532 5.847L.073 23.927l6.19-1.413A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.366l-.36-.213-3.715.974.991-3.625-.234-.372A9.818 9.818 0 0112 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+</a>
+
+<script>
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){e.target.classList.add('in');observer.unobserve(e.target);}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.rv,.rv-up,.rv-left,.rv-right,.rv-fade').forEach(el=>observer.observe(el));
+
+// ── COUNTDOWN ──
+function tick(){
+  const t=new Date('2026-04-04T11:00:00+05:30')-new Date();
+  if(t<=0) return;
+  document.getElementById('cd-days').textContent=Math.floor(t/86400000);
+  document.getElementById('cd-hrs').textContent=Math.floor((t%86400000)/3600000);
+  document.getElementById('cd-min').textContent=Math.floor((t%3600000)/60000);
+  document.getElementById('cd-sec').textContent=Math.floor((t%60000)/1000);
+}
+tick();setInterval(tick,1000);
+
+// ── WISH WALL ──
+const KEY='ms_wishes_v2';
+function loadWishes(){
+  const w=JSON.parse(localStorage.getItem(KEY)||'[]');
+  const l=document.getElementById('wishList');
+  l.innerHTML='';
+  if(!w.length){l.innerHTML='<div style="text-align:center;font-family:Cormorant Garamond,serif;font-style:italic;font-size:17px;color:rgba(200,150,10,.3);padding:18px 0;letter-spacing:2px">No wishes yet — be the first ✦</div>';return;}
+  w.slice().reverse().forEach(x=>{
+    const d=document.createElement('div');d.className='wish-item';
+    d.innerHTML=`<div class="wish-text">"${x.text}"</div><div class="wish-from">— ${x.name}</div>`;
+    l.appendChild(d);
+  });
+}
+function submitWish(){
+  const text=document.getElementById('wishText').value.trim();
+  const name=document.getElementById('wishName').value.trim()||'Anonymous';
+  if(!text)return;
+  const w=JSON.parse(localStorage.getItem(KEY)||'[]');
+  w.push({text,name,time:Date.now()});
+  localStorage.setItem(KEY,JSON.stringify(w));
+  document.getElementById('wishText').value='';
+  document.getElementById('wishName').value='';
+  loadWishes();
+}
+loadWishes();
+
+// ── CARD GENERATOR ──
+function generateCard(){
+  const canvas=document.getElementById('wishCanvas');
+  const ctx=canvas.getContext('2d');
+  const text=document.getElementById('wishText').value||'Wishing you a lifetime of happiness!';
+  const name=document.getElementById('wishName').value||'Your Friend';
+  ctx.clearRect(0,0,1080,1080);
+  ctx.fillStyle='#0a0806';ctx.fillRect(0,0,1080,1080);
+  // border
+  ctx.strokeStyle='rgba(200,150,10,.3)';ctx.lineWidth=2;ctx.strokeRect(40,40,1000,1000);
+  ctx.strokeStyle='rgba(200,150,10,.15)';ctx.lineWidth=1;ctx.strokeRect(52,52,976,976);
+  // corner ornaments
+  ctx.fillStyle='rgba(200,150,10,.4)';
+  const pts=[[80,80],[1000,80],[80,1000],[1000,1000]];
+  pts.forEach(([x,y])=>{ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();});
+  // names
+  ctx.fillStyle='#f0e8d8';ctx.font='300 100px Cormorant Garamond,serif';ctx.textAlign='center';
+  ctx.fillText('Murshid',540,280);
+  ctx.fillStyle='#d4607a';ctx.font='italic 300 42px Cormorant Garamond,serif';
+  ctx.fillText('weds',540,345);
+  ctx.fillStyle='#c8960a';ctx.font='300 100px Cormorant Garamond,serif';
+  ctx.fillText('Shibila',540,450);
+  // divider
+  ctx.strokeStyle='rgba(200,150,10,.3)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(300,490);ctx.lineTo(780,490);ctx.stroke();
+  // wish
+  ctx.fillStyle='rgba(240,232,216,.7)';ctx.font='italic 300 38px Cormorant Garamond,serif';
+  ctx.fillText(`"${text}"`,540,600);
+  ctx.fillStyle='rgba(200,150,10,.7)';ctx.font='200 26px Jost,sans-serif';
+  ctx.fillText(`— ${name}`,540,660);
+  // date
+  ctx.fillStyle='rgba(200,150,10,.3)';ctx.font='200 22px Jost,sans-serif';
+  ctx.letterSpacing='4px';ctx.fillText('4 April 2026 · Aloor, Palakkad',540,800);
+}
+function downloadCard(){generateCard();const a=document.createElement('a');a.download='wish-murshid-shibila.png';a.href=document.getElementById('wishCanvas').toDataURL();a.click();}
+function shareWA(){window.open('https://wa.me/?text=Wishing%20Murshid%20%26%20Shibila%20a%20beautiful%20life!%20%F0%9F%92%8D','_blank');}
+</script>
+</body>
+</html>
