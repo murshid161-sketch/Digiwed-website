@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiWed — Digital Wedding Invitations Kerala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#faf7f2; --cream2:#f3ede3; --white:#ffffff;
+  --gold:#c9a84c; --gold2:#e8d5a3; --gold3:#f5ecd0;
+  --ink:#1c1610; --ink2:#3d3028; --ink3:#7a6d60;
+  --green:#25D366;
+  --shadow:0 2px 16px rgba(28,22,16,.07);
+  --shadow2:0 8px 40px rgba(28,22,16,.14);
+  --r:6px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100vw;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;overflow-x:hidden;}
+
+/* ─── NAV ─── */
+nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,.15);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:500;letter-spacing:-.02em;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--gold);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--ink3);text-decoration:none;font-size:.82rem;letter-spacing:.04em;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-wa{background:var(--green);color:#fff;padding:9px 18px;border-radius:50px;font-size:.78rem;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:6px;transition:box-shadow .2s,transform .2s;}
+.nav-wa:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(37,211,102,.35);}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.nav-burger span{width:22px;height:2px;background:var(--ink);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:300;background:var(--white);flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--ink);text-decoration:none;}
+.mobile-menu .mcls{position:absolute;top:20px;right:6%;font-size:1.5rem;cursor:pointer;color:var(--ink3);}
+
+/* ─── HERO ─── */
+.hero{background:var(--white);padding:80px 6% 72px;text-align:center;position:relative;overflow:hidden;max-width:100%;box-sizing:border-box;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.hero-tag{font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:10px;margin-bottom:1.4rem;}
+.hero-tag::before,.hero-tag::after{content:'';width:24px;height:1px;background:var(--gold2);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5vw,4.2rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:1.2rem;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ink2);line-height:1.75;margin-bottom:2.4rem;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-dark{background:var(--ink);color:#fff;padding:13px 28px;border-radius:var(--r);font-size:.82rem;font-weight:500;letter-spacing:.06em;text-decoration:none;transition:background .2s,transform .2s;}
+.btn-dark:hover{background:var(--gold);transform:translateY(-1px);}
+.btn-ghost{border:1px solid var(--gold2);color:var(--ink2);padding:13px 28px;border-radius:var(--r);font-size:.82rem;letter-spacing:.06em;text-decoration:none;transition:border-color .2s,color .2s;}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ─── TRUST BAR ─── */
+.trust-bar{background:var(--ink);padding:13px 6%;display:flex;align-items:center;justify-content:center;gap:2.4rem;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:.76rem;font-weight:500;color:var(--gold2);letter-spacing:.06em;text-transform:uppercase;}
+.trust-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;}
+
+/* ─── SHOWCASE ─── */
+.showcase{padding:80px 0 60px;background:var(--cream2);overflow-x:hidden;max-width:100vw;}
+.showcase-header{padding:0 6% 48px;text-align:center;}
+.section-tag{font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:10px;margin-bottom:.8rem;}
+.section-tag::before,.section-tag::after{content:'';width:20px;height:1px;background:var(--gold2);}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3vw,2.7rem);font-weight:400;letter-spacing:-.02em;line-height:1.2;margin-bottom:.5rem;}
+.section-sub{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ink3);line-height:1.65;}
+
+/* ─── ROW ─── */
+.showcase-row{margin-bottom:64px;}
+.row-header{padding:0 6% 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.row-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:400;color:var(--ink2);}
+.row-meta{font-size:.74rem;color:var(--ink3);font-style:italic;margin-top:2px;}
+.row-arrows{display:flex;gap:8px;}
+.arr-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--gold2);background:var(--white);color:var(--ink2);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.arr-btn:hover{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+/* ─── PHONES TRACK ─── */
+.phones-outer{overflow-x:scroll;overflow-y:visible;padding:16px 6% 12px;cursor:grab;scrollbar-width:none;-ms-overflow-style:none;}
+.phones-outer::-webkit-scrollbar{display:none;}
+.phones-outer:active{cursor:grabbing;}
+.phones-track{display:flex;gap:24px;width:max-content;}
+
+/* ─── PHONE WRAP ─── */
+.phone-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;flex-shrink:0;}
+
+/* ─── iPHONE BODY ─── */
+.iphone{
+  width:172px; height:362px;
+  border-radius:40px;
+  background:#0a0a0a;
+  border:7px solid #1c1c1c;
+  position:relative;
+  box-shadow:
+    0 0 0 1px #2a2a2a,
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    16px 28px 60px rgba(0,0,0,.4),
+    4px 8px 18px rgba(0,0,0,.25),
+    0 2px 4px rgba(0,0,0,.4);
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.iphone:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:
+    0 0 0 1px #2a2a2a,
+    inset 0 0 0 1px rgba(255,255,255,.05),
+    20px 40px 80px rgba(0,0,0,.45),
+    4px 8px 20px rgba(0,0,0,.3),
+    0 2px 4px rgba(0,0,0,.4);
+}
+
+/* Volume buttons */
+.iphone::before{
+  content:'';position:absolute;left:-10px;top:76px;
+  width:3px;height:26px;background:#222;border-radius:2px 0 0 2px;
+  box-shadow:0 36px 0 #222, 0 64px 0 #222;
+}
+/* Power button */
+.iphone::after{
+  content:'';position:absolute;right:-10px;top:96px;
+  width:3px;height:50px;background:#222;border-radius:0 2px 2px 0;
+}
+
+/* Screen area */
+.iphone-inner{
+  width:100%;height:100%;
+  border-radius:34px;
+  overflow:hidden;
+  position:relative;
+  background:#000;
+}
+
+/* Dynamic Island */
+.iphone-island{
+  position:absolute;top:8px;left:50%;transform:translateX(-50%);
+  width:54px;height:14px;
+  background:#000;border-radius:20px;
+  z-index:20;
+  box-shadow:0 0 0 2px rgba(255,255,255,.04);
+}
+
+/* The iframe lives here */
+.phone-iframe{
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  border:none;
+  border-radius:34px;
+  pointer-events:none; /* allow page scroll, not iframe click */
+}
+
+/* Home bar */
+.iphone-home{
+  position:absolute;bottom:5px;left:50%;transform:translateX(-50%);
+  width:44px;height:4px;border-radius:3px;
+  background:rgba(255,255,255,.2);
+  z-index:20;
+}
+
+/* ─── PHONE LABEL ─── */
+.phone-label{text-align:center;}
+.pl-name{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:400;color:var(--ink);margin-bottom:3px;}
+.pl-price{font-size:.7rem;font-weight:500;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;gap:4px;}.pl-now{color:var(--gold);font-weight:600;}.pl-was{color:var(--ink3);text-decoration:line-through;font-size:.65rem;}.pl-off{background:#e8f5e9;color:#2e7d32;font-size:.55rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:1px 5px;border-radius:50px;}
+.pl-badge{display:inline-block;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:50px;font-weight:600;}
+.pl-muslim{background:#e8f5f0;color:#0d4f3c;}
+.pl-christian{background:#fdf4e0;color:#7a5a10;}
+.pl-all{background:var(--cream2);color:var(--ink3);}
+.pl-order{display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-size:.72rem;color:var(--ink3);text-decoration:none;border:1px solid var(--cream2);padding:5px 12px;border-radius:50px;transition:all .2s;}
+.pl-order:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ─── ROW DESCRIPTION BOX ─── */
+.row-desc{margin:0 6% 0;background:var(--white);border:1px solid var(--cream2);border-radius:10px;padding:22px 26px;display:flex;flex-wrap:wrap;gap:1.5rem;align-items:flex-start;}
+.desc-item{flex:1;min-width:180px;}
+.desc-item-title{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--ink);margin-bottom:4px;}
+.desc-item-text{font-size:.76rem;color:var(--ink3);line-height:1.6;}
+
+/* ─── FEATURES ─── */
+.features-section{padding:80px 6%;background:var(--white);}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.4rem;margin-top:3rem;}
+.feature-card{background:var(--cream);border:1px solid var(--cream2);border-radius:10px;padding:22px 18px;transition:border-color .2s,transform .2s;}
+.feature-card:hover{border-color:var(--gold2);transform:translateY(-2px);}
+.feature-icon{font-size:1.5rem;margin-bottom:10px;}
+.feature-name{font-family:'Playfair Display',serif;font-size:.92rem;margin-bottom:5px;}
+.feature-desc{font-size:.75rem;color:var(--ink3);line-height:1.5;}
+
+/* ─── HOW IT WORKS ─── */
+.hiw-section{padding:80px 6%;background:var(--cream);}
+.hiw-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem;position:relative;}
+.hiw-steps::before{content:'';position:absolute;top:27px;left:16.5%;right:16.5%;height:1px;background:linear-gradient(90deg,var(--gold2),var(--gold),var(--gold2));}
+.hiw-step{text-align:center;}
+.hiw-num{width:54px;height:54px;border-radius:50%;background:var(--white);border:1px solid var(--gold2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gold);margin:0 auto 1.1rem;position:relative;z-index:1;}
+.hiw-step h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;margin-bottom:7px;}
+.hiw-step p{font-size:.8rem;color:var(--ink3);line-height:1.6;}
+
+/* ─── PRICING ─── */
+.pricing-section{padding:80px 6%;background:var(--white);}
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:780px;margin:3rem auto 0;}
+.price-card{background:var(--cream);border:1px solid var(--cream2);border-radius:14px;padding:34px 30px;position:relative;transition:transform .3s,box-shadow .3s;}
+.price-card:hover{transform:translateY(-4px);box-shadow:var(--shadow2);}
+.price-card.featured{background:var(--ink);border-color:transparent;}
+.price-card.featured .price-name{color:var(--gold2);}
+.price-card.featured .price-amount{color:#fff;}
+.price-card.featured .price-sub{color:rgba(255,255,255,.45);}
+.price-card.featured .price-feature{color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.08);}
+.price-card.featured .price-feature::before{color:var(--gold);}
+.price-badge-top{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--ink);padding:3px 14px;border-radius:50px;font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
+.price-name{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3);margin-bottom:.9rem;}
+.price-amount{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:400;line-height:1;margin-bottom:3px;}
+.price-sub{font-size:.76rem;color:var(--ink3);margin-bottom:1.6rem;}
+.price-features{list-style:none;margin-bottom:1.8rem;}
+.price-feature{font-size:.8rem;padding:7px 0;border-bottom:1px solid var(--cream2);display:flex;align-items:center;gap:9px;color:var(--ink2);}
+.price-feature::before{content:'✦';color:var(--gold);font-size:.58rem;flex-shrink:0;}
+.price-cta{display:block;text-align:center;padding:12px;border-radius:var(--r);font-size:.8rem;font-weight:500;letter-spacing:.06em;text-decoration:none;transition:all .2s;}
+.price-card:not(.featured) .price-cta{background:var(--ink);color:#fff;}
+.price-card:not(.featured) .price-cta:hover{background:var(--gold);}
+.price-card.featured .price-cta{background:var(--gold);color:var(--ink);}
+.price-card.featured .price-cta:hover{background:var(--gold2);}
+.price-original{font-size:.88rem;color:var(--ink3);text-decoration:line-through;margin-left:6px;font-weight:400;}
+.price-card.featured .price-original{color:rgba(255,255,255,.35);}
+.price-discount{display:inline-block;background:#e8f5e9;color:#2e7d32;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:50px;margin-left:5px;vertical-align:middle;}
+.price-card.featured .price-discount{background:rgba(46,125,50,.2);color:#a5d6a7;}
+.offer-banner{background:linear-gradient(90deg,#fef9e7,#fdf3c8);border:1px solid rgba(201,168,76,.4);border-radius:8px;padding:9px 13px;margin-bottom:1.3rem;display:flex;align-items:center;gap:7px;font-size:.72rem;color:#7a5e00;font-weight:500;line-height:1.4;}
+.price-card.featured .offer-banner{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.28);color:var(--gold2);}
+
+/* ─── CTA ─── */
+.cta-banner{padding:72px 6%;background:linear-gradient(135deg,#1c1610 0%,#3d2e20 100%);text-align:center;position:relative;overflow:hidden;}
+.cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,168,76,.08) 0%,transparent 70%);}
+.cta-banner h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);color:#fff;font-weight:400;margin-bottom:.6rem;position:relative;}
+.cta-banner h2 em{color:var(--gold);font-style:italic;}
+.cta-banner p{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:rgba(255,255,255,.55);margin-bottom:2rem;position:relative;}
+.btn-wa-large{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;padding:14px 30px;border-radius:50px;font-size:.88rem;font-weight:500;text-decoration:none;position:relative;transition:transform .2s,box-shadow .2s;}
+.btn-wa-large:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.3);}
+
+/* ─── FOOTER ─── */
+footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6% 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.4rem;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--ink);text-decoration:none;}
+.footer-logo span{color:var(--gold);}
+.footer-links{display:flex;gap:1.4rem;list-style:none;flex-wrap:wrap;}
+.footer-links a{font-size:.76rem;color:var(--ink3);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+.footer-copy{font-size:.7rem;color:var(--ink3);}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1060px){.pricing-grid[style]{grid-template-columns:1fr !important;}}.@media(max-width:860px){.hiw-steps{grid-template-columns:1fr;}.hiw-steps::before{display:none;}.pricing-grid{grid-template-columns:1fr !important;max-width:420px;}.nav-links{display:none;}.nav-burger{display:flex;}}
+@media(max-width:600px){footer{flex-direction:column;text-align:center;}.trust-bar{gap:1rem;}}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mcls" id="closeMenu">✕</span>
+  <a href="#templates">Templates</a>
+  <a href="#features">Features</a>
+  <a href="#pricing">Pricing</a>
+  <a href="https://wa.me/917034852166?text=Hi%2C%20I'd%20like%20to%20order%20a%20DigiWed%20invitation" style="margin-top:1rem;background:var(--green);color:#fff;padding:12px 28px;border-radius:50px;font-size:1rem;">Order Now</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Digi<span>Wed</span></a>
+  <ul class="nav-links">
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/917034852166?text=Hi%2C%20I'd%20like%20to%20order%20a%20DigiWed%20invitation" class="nav-wa">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Order Now
+  </a>
+  <div class="nav-burger" id="burgerBtn"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Kerala's Digital Invitation Studio</div>
+  <h1>Your love story,<br>delivered <em>beautifully</em></h1>
+  <p class="hero-sub">Stunning digital wedding invitations — crafted in Kerala, shared in seconds via WhatsApp. No app, no download, just pure elegance on any phone.</p>
+  <div class="hero-btns">
+    <a href="#templates" class="btn-dark">Explore Templates</a>
+    <a href="https://wa.me/917034852166?text=Hi%2C%20I%20want%20to%20see%20the%20DigiWed%20demo" class="btn-ghost">See a Live Demo</a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-dot"></span>10+ Unique Designs</div>
+  <div class="trust-item"><span class="trust-dot"></span>WhatsApp Delivery</div>
+  <div class="trust-item"><span class="trust-dot"></span>Muslim · Hindu · Christian</div>
+  <div class="trust-item"><span class="trust-dot"></span>Made in Kerala</div>
+  <div class="trust-item"><span class="trust-dot"></span>Same-Day Delivery</div>
+</div>
+
+<!-- ══════════════ SHOWCASE ══════════════ -->
+<section class="showcase" id="templates">
+
+  <div class="showcase-header">
+    <div class="section-tag">Live Previews</div>
+    <h2 class="section-title">Swipe through our templates</h2>
+    <p class="section-sub">Real invitation designs — exactly as your guests will see them. Drag to explore.</p>
+  </div>
+
+  <!-- ── ROW 1 ── -->
+  <div class="showcase-row">
+    <div class="row-header">
+      <div>
+        <div class="row-title">Muslim &amp; Classic Themes</div>
+        <div class="row-meta">Templates 1 – 5 &nbsp;·&nbsp; Drag to slide</div>
+      </div>
+      <div class="row-arrows">
+        <button class="arr-btn" onclick="slide(0,-1)">←</button>
+        <button class="arr-btn" onclick="slide(0,1)">→</button>
+      </div>
+    </div>
+
+    <div class="phones-outer" id="outer0">
+      <div class="phones-track" id="track0">
+
+        <!-- T1 -->
+        <div class="phone-wrap">
+          <div class="iphone" id="ph0">
+            <div class="iphone-inner">
+              <div class="iphone-island"></div>
+              <iframe class="phone-iframe" src="t1.html" title="Emerald Islamic" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr0"></iframe>
+              <div class="iphone-home"></div>
+            </div>
+          </div>
+          <div class="phone-label">
+            <div class="pl-name">Emerald Islamic</div>
+            <div class="pl-price"><span class="pl-now">₹1,000</span><span class="pl-was">₹2,500</span><span class="pl-off">60% OFF</span></div>
+            <span class="pl-badge pl-muslim">Muslim</span><br>
+            <a class="pl-order" href="order.html?plan=premium">Order →</a>
+          </div>
+        </div>
+
+        <!-- T2 -->
+        <div class="phone-wrap">
+          <div class="iphone" id="ph1">
+            <div class="iphone-inner">
+              <div class="iphone-island" style="background:#2a2418"></div>
+              <iframe class="phone-iframe" src="t2.html" title="Ivory Luxe" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr1"></iframe>
+              <div class="iphone-home" style="background:rgba(0,0,0,.15)"></div>
+            </div>
+          </div>
+          <div class="phone-label">
+            <div class="pl-name">Ivory Luxe</div>
+            <div class="pl-price"><span class="pl-now">₹1,000</span><span class="pl-was">₹2,000</span><span class="pl-off">50% OFF</span></div>
+            <span class="pl-badge pl-muslim">Muslim</span><br>
+            <a class="pl-order" href="order.html?plan=essential">Order →</a>
+          </div>
+        </div>
+
+        <!-- T3 -->
+        <div class="phone-wrap">
+          <div class="iphone" id="ph2">
+            <div class="iphone-inner">
+              <div class="iphone-island"></div>
+              <iframe class="phone-iframe" src="t3.html" title="Amethyst Dream" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr2"></iframe>
+              <div class="iphone-home"></div>
+            </div>
+          </div>
+          <div class="phone-label">
+            <div class="pl-name">Amethyst Dream</div>
+            <div class="pl-price"><span class="pl-now">₹1,000</span><span class="pl-was">₹2,500</span><span class="pl-off">60% OFF</span></div>
+            <span class="pl-badge pl-all">All Faiths</span><br>
+            <a class="pl-order" href="order.html?plan=premium">Order →</a>
+          </div>
+        </div>
+
+        <!-- T4 -->
+        <div class="phone-wrap">
+          <div class="iphone" id="ph3">
+            <div class="iphone-inner">
+              <div class="iphone-island" style="background:#2a2418"></div>
+              <iframe class="phone-iframe" src="t4.html" title="Warm Rustic" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr3"></iframe>
+              <div class="iphone-home" style="background:rgba(0,0,0,.12)"></div>
+            </div>
+          </div>
+          <div class="phone-label">
+            <div class="pl-name">Warm Rustic</div>
+            <div class="pl-price"><span class="pl-now">₹1,000</span><span class="pl-was">₹2,500</span><span class="pl-off">60% OFF</span></div>
+            <span class="pl-badge pl-muslim">Muslim</span><br>
+            <a class="pl-order" href="order.html?plan=premium">Order →</a>
+          </div>
+        </div>
+
+        <!-- T5 -->
+        <div class="phone-wrap">
+          <div class="iphone" id="ph4">
+            <div class="iphone-inner">
+              <div class="iphone-island" style="background:#2a2418"></div>
+              <iframe class="phone-iframe" src="t5.html" title="Ivory Garden" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr4"></iframe>
+              <div class="iphone-home" style="background:rgba(0,0,0,.1)"></div>
+            </div>
+          </div>
+          <div class="phone-label">
+            <div class="pl-name">Ivory Garden</div>
+            <div class="pl-price"><span class="pl-now">₹1,000</span><span class="pl-was">₹2,000</span><span class="pl-off">50% OFF</span></div>
+            <span class="pl-badge pl-all">All Faiths</span><br>
+            <a class="pl-order" href="order.html?plan=essential">Order →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Row 1 description -->
+    <div class="row-desc">
+      <div class="desc-item"><div class="desc-item-title">Emerald Islamic</div><div class="desc-item-text">Bismillah banner · Arabic text · Geometric patterns · Photo gallery · Family section</div></div>
+      <div class="desc-item"><div class="desc-item-title">Ivory Luxe</div><div class="desc-item-text">Classic parchment · Gold script · Clean typography · Countdown · Venue map</div></div>
+      <div class="desc-item"><div class="desc-item-title">Amethyst Dream</div><div class="desc-item-text">Deep purple gradient · 3D photo carousel · BGM · Wishes wall · Luxury animations</div></div>
+      <div class="desc-item"><div class="desc-item-title">Warm Rustic</div><div class="desc-item-text">Full photo background · Warm tones · WhatsApp RSVP · Date card · Contact buttons</div></div>
+      <div class="desc-item"><div class="desc-item-title">Ivory Garden</div><div class="desc-item-text">Botanical theme · Moss green · Floral motifs · Countdown · Soft elegant typography</div></div>
+    </div>
+  </div>
+
+  <!-- ── ROW 2 ── -->
+  <div class="showcase-row">
+    <div class="row-header">
+      <div>
+        <div class="row-title">Christian, Romance &amp; Luxury</div>
+        <div class="row-meta">Templates 6 – 10 &nbsp;·&nbsp; Drag to slide</div>
+      </div>
+      <div class="row-arrows">
+        <button class="arr-btn" onclick="slide(1,-1)">←</button>
+        <button class="arr-btn" onclick="slide(1,1)">→</button>
+      </div>
+    </div>
+
+    <div class="phones-outer" id="outer1">
+      <div class="phones-track" id="track1">
+
+        <!-- T6 -->
+        <div class="phone-wrap">
+          <div class="iphone" id="ph5">
+            <div class="iphone-inner">
+              <div class="iphone-island"></div>
+              <iframe class="phone-iframe" src="t6.html" title="Midnight Emerald" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr5"></iframe>
+              <div class="iphone-home"></div>
+            </div>
+          </div>
+          <div class="phone-label">
+            <div class="pl-name">Midnight Emerald</div>
+            <div class="pl-price"><span class="pl-now">₹1,000</span><span class="pl-was">₹2,500</span><span class="pl-off">60% OFF</span></div>
+            <span class="pl-badge pl-muslim">Muslim</span><br>
+            <a class="pl-order" href="order.html?plan=premium">Order →</a>
+          </div>
+        </div>
+
+        <!-- T7 -->
+        <div class="phone-wrap">
+          <div class="iphone" id="ph6">
+            <div class="iphone-inner">
+              <div class="iphone-island" style="background:#2a2418"></div>
+              <iframe class="phone-iframe" src="t7.html" title="Golden Chapel" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr6"></iframe>
+              <div class="iphone-home" style="background:rgba(0,0,0,.1)"></div>
+            </div>
+          </div>
+          <div class="phone-label">
+            <div class="pl-name">Golden Chapel</div>
+            <div class="pl-price"><span class="pl-now">₹1,000</span><span class="pl-was">₹2,500</span><span class="pl-off">60% OFF</span></div>
+            <span class="pl-badge pl-christian">Christian</span><br>
+            <a class="pl-order" href="order.html?plan=premium">Order →</a>
+          </div>
+        </div>
+
+        <!-- T8 -->
+        <div class="phone-wrap">
+          <div class="iphone" id="ph7">
+            <div class="iphone-inner">
+              <div class="iphone-island" style="background:#2a2020"></div>
+              <iframe class="phone-iframe" src="t8.html" title="Blush Romance" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr7"></iframe>
+              <div class="iphone-home" style="background:rgba(0,0,0,.08)"></div>
+            </div>
+          </div>
+          <div class="phone-label">
+            <div class="pl-name">Blush Romance</div>
+            <div class="pl-price"><span class="pl-now">₹1,000</span><span class="pl-was">₹2,000</span><span class="pl-off">50% OFF</span></div>
+            <span class="pl-badge pl-all">All Faiths</span><br>
+            <a class="pl-order" href="order.html?plan=essential">Order →</a>
+          </div>
+        </div>
+
+        <!-- T9 -->
+        <div class="phone-wrap">
+          <div class="iphone" id="ph8">
+            <div class="iphone-inner">
+              <div class="iphone-island"></div>
+              <iframe class="phone-iframe" src="t9.html" title="Royal Night" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr8"></iframe>
+              <div class="iphone-home"></div>
+            </div>
+          </div>
+          <div class="phone-label">
+            <div class="pl-name">Royal Night</div>
+            <div class="pl-price"><span class="pl-now">₹1,000</span><span class="pl-was">₹2,500</span><span class="pl-off">60% OFF</span></div>
+            <span class="pl-badge pl-muslim">Muslim</span><br>
+            <a class="pl-order" href="order.html?plan=premium">Order →</a>
+          </div>
+        </div>
+
+        <!-- T10 -->
+        <div class="phone-wrap">
+          <div class="iphone" id="ph9">
+            <div class="iphone-inner">
+              <div class="iphone-island"></div>
+              <iframe class="phone-iframe" src="t10.html" title="Midnight Gold" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr9"></iframe>
+              <div class="iphone-home"></div>
+            </div>
+          </div>
+          <div class="phone-label">
+            <div class="pl-name">Midnight Gold</div>
+            <div class="pl-price"><span class="pl-now">₹1,000</span><span class="pl-was">₹2,500</span><span class="pl-off">60% OFF</span></div>
+            <span class="pl-badge pl-all">All Faiths</span><br>
+            <a class="pl-order" href="order.html?plan=premium">Order →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Row 2 description -->
+    <div class="row-desc">
+      <div class="desc-item"><div class="desc-item-title">Midnight Emerald</div><div class="desc-item-text">Emerald to purple gradient · Couple photo · Rich dark tones · Music · Wishes wall</div></div>
+      <div class="desc-item"><div class="desc-item-title">Golden Chapel</div><div class="desc-item-text">Ivory &amp; gold · Church cross · Bible verse · Script calligraphy · Christian ceremony section</div></div>
+      <div class="desc-item"><div class="desc-item-title">Blush Romance</div><div class="desc-item-text">Love story chapters · Soft blush · Narrative timeline · Light airy feel · Date display</div></div>
+      <div class="desc-item"><div class="desc-item-title">Royal Night</div><div class="desc-item-text">Deep royal purple · Bold gold · Cinzel typography · Wishes wall · Regal animations</div></div>
+      <div class="desc-item"><div class="desc-item-title">Midnight Gold</div><div class="desc-item-text">Cinematic dark · Liquid gold script · Photo carousel · Dramatic love story · BGM</div></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div style="text-align:center;max-width:520px;margin:0 auto 3rem;">
+    <div class="section-tag">What's Included</div>
+    <h2 class="section-title">Every invitation includes</h2>
+    <p class="section-sub">All templates packed with interactive features — no extra charge.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal"><div class="feature-icon">⏳</div><div class="feature-name">Live Countdown Timer</div><div class="feature-desc">Real-time countdown updating every second to the wedding day.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">📍</div><div class="feature-name">Google Maps Venue</div><div class="feature-desc">One-tap navigation to the wedding venue from anywhere.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">📸</div><div class="feature-name">Photo Gallery</div><div class="feature-desc">Beautiful couple photo gallery with smooth carousel animations.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">🎵</div><div class="feature-name">Background Music</div><div class="feature-desc">Your favourite song plays softly as guests read the invitation.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">💬</div><div class="feature-name">Guest Wishes Wall</div><div class="feature-desc">Guests can leave heartfelt wishes directly in the invitation.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">👨‍👩‍👧</div><div class="feature-name">Family Details</div><div class="feature-desc">Both families listed beautifully — parents, siblings, and more.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">📅</div><div class="feature-name">Add to Calendar</div><div class="feature-desc">Guests save the date to Google or Apple Calendar instantly.</div></div>
+    <div class="feature-card reveal"><div class="feature-icon">📱</div><div class="feature-name">WhatsApp Share</div><div class="feature-desc">Shared as a link — opens instantly in any browser, no app needed.</div></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="hiw-section">
+  <div style="text-align:center;max-width:520px;margin:0 auto;">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title">Order in 3 simple steps</h2>
+    <p class="section-sub">From choosing your template to sharing with guests — in hours, not days.</p>
+  </div>
+  <div class="hiw-steps">
+    <div class="hiw-step reveal"><div class="hiw-num">01</div><h3>Choose Your Design</h3><p>Browse our templates, pick the one that matches your style, and message us on WhatsApp.</p></div>
+    <div class="hiw-step reveal"><div class="hiw-num">02</div><h3>We Customise It</h3><p>Your personalised invitation is crafted with your names, photos, venue, and music — within hours.</p></div>
+    <div class="hiw-step reveal"><div class="hiw-num">03</div><h3>Share &amp; Celebrate</h3><p>Receive your link and share with guests on WhatsApp. They tap to view — that's it.</p></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div style="text-align:center;max-width:540px;margin:0 auto;">
+    <div class="section-tag">Pricing</div>
+    <h2 class="section-title">Simple, honest pricing</h2>
+    <p class="section-sub">🎉 Launch offer — 50–60% off. Limited time only.</p>
+  </div>
+
+  <!-- Google Drive Add-on notice -->
+  <div style="max-width:1060px;margin:1.6rem auto 0;padding:0 6%;box-sizing:border-box;">
+    <div style="background:linear-gradient(90deg,#e8f5f0,#f0faf6);border:1px solid #a5d6c8;border-radius:10px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;">
+      <span style="font-size:1.4rem;flex-shrink:0;">📸</span>
+      <div>
+        <div style="font-size:.82rem;font-weight:600;color:#0d4f3c;margin-bottom:3px;">Google Drive Photo Upload — Add-on · <strong>+₹500</strong></div>
+        <div style="font-size:.75rem;color:#1a6b52;line-height:1.5;">Available on all plans. Guests can upload their photos directly to a private Google Drive folder linked inside your invitation. Add it to any plan for just ₹500 extra.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing-grid" style="grid-template-columns:repeat(3,1fr);max-width:1060px;">
+
+    <!-- ESSENTIAL -->
+    <div class="price-card reveal">
+      <div class="price-name">Essential</div>
+      <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:2px;">
+        <div class="price-amount">₹1,000</div>
+        <span style="font-size:.95rem;color:var(--ink3);text-decoration:line-through;font-weight:400;">₹2,000</span>
+        <span style="background:#e8f5e9;color:#2e7d32;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:50px;">50% OFF</span>
+      </div>
+      <div class="price-sub">One-time · Includes hosting</div>
+      <div class="offer-banner">Save ₹1,000 — launch offer!</div>
+      <ul class="price-features">
+        <li class="price-feature">Fully customised invitation</li>
+        <li class="price-feature">Countdown timer &amp; venue map</li>
+        <li class="price-feature">Family details section</li>
+        <li class="price-feature">Guest wishes wall</li>
+        <li class="price-feature">Add to calendar</li>
+        <li class="price-feature">WhatsApp link delivery</li>
+      </ul>
+      <!-- Google Drive add-on box -->
+      <div style="border:1px dashed #a5d6c8;border-radius:8px;padding:10px 12px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-size:1rem;">📸</span>
+          <div>
+            <div style="font-size:.72rem;font-weight:600;color:#1a1610;">Guest Photo Upload</div>
+            <div style="font-size:.65rem;color:var(--ink3);">Google Drive link in invitation</div>
+          </div>
+        </div>
+        <a href="order.html?plan=essential" style="background:#0d4f3c;color:#fff;font-size:.65rem;font-weight:600;padding:5px 10px;border-radius:50px;text-decoration:none;white-space:nowrap;flex-shrink:0;">+ ₹500</a>
+      </div>
+      <a href="order.html?plan=essential" class="price-cta">Order for ₹1,000 →</a>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="price-card featured reveal">
+      <div class="price-badge-top">Most Popular</div>
+      <div class="price-name">Premium</div>
+      <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:2px;">
+        <div class="price-amount">₹1,000</div>
+        <span style="font-size:.95rem;color:rgba(255,255,255,.4);text-decoration:line-through;font-weight:400;">₹2,500</span>
+        <span style="background:rgba(46,125,50,.25);color:#a5d6a7;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:50px;">60% OFF</span>
+      </div>
+      <div class="price-sub">One-time · Includes hosting</div>
+      <div class="offer-banner">Save ₹1,500 — launch offer!</div>
+      <ul class="price-features">
+        <li class="price-feature">Everything in Essential</li>
+        <li class="price-feature">Photo gallery &amp; carousel</li>
+        <li class="price-feature">Background music</li>
+        <li class="price-feature">Advanced animations</li>
+        <li class="price-feature">Luxury theme designs</li>
+        <li class="price-feature">Priority same-day delivery</li>
+      </ul>
+      <!-- Google Drive add-on box -->
+      <div style="border:1px dashed rgba(165,214,167,.5);border-radius:8px;padding:10px 12px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-size:1rem;">📸</span>
+          <div>
+            <div style="font-size:.72rem;font-weight:600;color:#fff;">Guest Photo Upload</div>
+            <div style="font-size:.65rem;color:rgba(255,255,255,.55);">Google Drive link in invitation</div>
+          </div>
+        </div>
+        <a href="order.html?plan=premium" style="background:var(--gold);color:var(--ink);font-size:.65rem;font-weight:600;padding:5px 10px;border-radius:50px;text-decoration:none;white-space:nowrap;flex-shrink:0;">+ ₹500</a>
+      </div>
+      <a href="order.html?plan=premium" class="price-cta">Order for ₹1,000 →</a>
+    </div>
+
+    <!-- CUSTOMISATION -->
+    <div class="price-card reveal" style="border:2px solid var(--gold2);position:relative;">
+      <div class="price-badge-top" style="background:var(--ink);color:var(--gold2);">Fully Custom</div>
+      <div class="price-name">Customisation</div>
+      <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:2px;">
+        <div class="price-amount">₹3,500</div>
+      </div>
+      <div class="price-sub">One-time · Includes hosting</div>
+      <div class="offer-banner" style="background:linear-gradient(90deg,#fdf3c8,#fef9e7);">✨ Your vision, built from scratch</div>
+      <ul class="price-features">
+        <li class="price-feature">Everything in Premium</li>
+        <li class="price-feature">100% custom design &amp; layout</li>
+        <li class="price-feature">Custom background &amp; colours</li>
+        <li class="price-feature">Custom fonts &amp; animations</li>
+        <li class="price-feature">Unique theme built for you</li>
+        <li class="price-feature">Dedicated design consultation</li>
+      </ul>
+      <!-- Google Drive add-on box -->
+      <div style="border:1px dashed rgba(201,168,76,.4);border-radius:8px;padding:10px 12px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div style="display:flex;align-items:center;gap:7px;">
+          <span style="font-size:1rem;">📸</span>
+          <div>
+            <div style="font-size:.72rem;font-weight:600;color:#1a1610;">Guest Photo Upload</div>
+            <div style="font-size:.65rem;color:var(--ink3);">Google Drive link in invitation</div>
+          </div>
+        </div>
+        <a href="order.html?plan=customisation" style="background:var(--gold);color:var(--ink);font-size:.65rem;font-weight:600;padding:5px 10px;border-radius:50px;text-decoration:none;white-space:nowrap;flex-shrink:0;">+ ₹500</a>
+      </div>
+      <a href="order.html?plan=customisation" class="price-cta" style="background:var(--gold);color:var(--ink);">Order for ₹3,500 →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner" id="contact">
+  <h2>Ready to send your <em>perfect invitation?</em></h2>
+  <p>Chat with us on WhatsApp — design ready today.</p>
+  <a href="https://wa.me/917034852166?text=Hi%2C%20I'd%20like%20to%20order%20a%20DigiWed%20invitation" class="btn-wa-large">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Chat on WhatsApp
+  </a>
+</section>
+
+<footer>
+  <a href="#" class="footer-logo">Digi<span>Wed</span></a>
+  <ul class="footer-links">
+    <li><a href="#templates">Templates</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="https://instagram.com/digi_.wed" target="_blank">Instagram</a></li>
+    <li><a href="https://wa.me/917034852166" target="_blank">WhatsApp</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 DigiWed · Thrithala, Palakkad, Kerala</div>
+</footer>
+
+<script>
+const DESIGN_W = 390;
+
+function scaleIframes() {
+  document.querySelectorAll('.phone-iframe').forEach(fr => {
+    const w = fr.parentElement.clientWidth;
+    const h = fr.parentElement.clientHeight;
+    const scale = w / DESIGN_W;
+    fr.style.width           = DESIGN_W + 'px';
+    fr.style.height          = (h / scale) + 'px';
+    fr.style.transform       = 'scale(' + scale + ')';
+    fr.style.transformOrigin = 'top left';
+    fr.style.pointerEvents   = 'none';
+  });
+}
+window.addEventListener('resize', scaleIframes);
+scaleIframes();
+
+const CFG = [
+  { speed:0.50, pBot:1800, pTop:900  },
+  { speed:0.65, pBot:2600, pTop:1300 },
+  { speed:0.45, pBot:1400, pTop:700  },
+  { speed:0.70, pBot:3000, pTop:1500 },
+  { speed:0.55, pBot:2000, pTop:1000 },
+  { speed:0.60, pBot:1600, pTop:800  },
+  { speed:0.40, pBot:2800, pTop:1400 },
+  { speed:0.68, pBot:1200, pTop:600  },
+  { speed:0.52, pBot:2400, pTop:1200 },
+  { speed:0.58, pBot:2200, pTop:1100 }
+];
+
+const ST = CFG.map(() => ({ pos:0, dir:1, paused:false }));
+const frames = Array.from(document.querySelectorAll('.phone-iframe'));
+
+setInterval(() => {
+  frames.forEach((fr, i) => {
+    if (ST[i].paused) return;
+    try {
+      const win = fr.contentWindow;
+      if (!win || !win.document) return;
+      const doc  = win.document;
+      const body = doc.body;
+      if (!body || doc.readyState === 'loading') return;
+
+      doc.querySelectorAll('audio,video').forEach(a => {
+        if (!a.paused) a.pause();
+        a.muted = true; a.volume = 0;
+      });
+
+      const max = Math.max(doc.documentElement.scrollHeight, body.scrollHeight)
+                  - (doc.documentElement.clientHeight || win.innerHeight);
+      if (max <= 10) return;
+
+      ST[i].pos += ST[i].dir * CFG[i].speed;
+
+      if (ST[i].pos >= max) {
+        ST[i].pos = max; ST[i].dir = -1; ST[i].paused = true;
+        setTimeout(() => { ST[i].paused = false; }, CFG[i].pBot);
+      } else if (ST[i].pos <= 0) {
+        ST[i].pos = 0; ST[i].dir = 1; ST[i].paused = true;
+        setTimeout(() => { ST[i].paused = false; }, CFG[i].pTop);
+      }
+
+      win.scrollTo(0, ST[i].pos);
+      doc.documentElement.scrollTop = ST[i].pos;
+      body.scrollTop = ST[i].pos;
+    } catch(e) {}
+  });
+}, 16);
+
+document.querySelectorAll('.phones-outer').forEach(outer => {
+  let isDown = false, startX, scrollL;
+  outer.addEventListener('mousedown',  e => { isDown=true; outer.style.cursor='grabbing'; startX=e.pageX-outer.offsetLeft; scrollL=outer.scrollLeft; });
+  outer.addEventListener('mouseleave', () => { isDown=false; outer.style.cursor='grab'; });
+  outer.addEventListener('mouseup',    () => { isDown=false; outer.style.cursor='grab'; });
+  outer.addEventListener('mousemove',  e => { if(!isDown) return; e.preventDefault(); outer.scrollLeft=scrollL-(e.pageX-outer.offsetLeft-startX)*1.3; });
+  outer.addEventListener('touchstart', e => { startX=e.touches[0].pageX-outer.offsetLeft; scrollL=outer.scrollLeft; }, {passive:true});
+  outer.addEventListener('touchmove',  e => { outer.scrollLeft=scrollL-(e.touches[0].pageX-outer.offsetLeft-startX)*1.3; }, {passive:true});
+});
+
+window.slide = function(row, dir) {
+  document.getElementById('outer'+row).scrollBy({ left: dir*220, behavior:'smooth' });
+};
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i*60); obs.unobserve(e.target); }
+  });
+}, { threshold:.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+document.getElementById('burgerBtn').addEventListener('click',  () => document.getElementById('mobileMenu').classList.add('open'));
+document.getElementById('closeMenu').addEventListener('click',  () => document.getElementById('mobileMenu').classList.remove('open'));
+document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+</script>
+</body>
+</html>
