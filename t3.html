@@ -90,7 +90,23 @@ body{font-family:'EB Garamond',serif;background:var(--cream);color:var(--text);m
 .footer-date{font-size:.75rem;letter-spacing:.2em;color:rgba(240,228,192,.35);text-transform:uppercase}
 .footer-brand{margin-top:20px;font-size:.65rem;letter-spacing:.15em;color:rgba(240,228,192,.2);text-transform:uppercase}
 </style>
-<meta name="robots" content="noindex, nofollow"><style>/* DigiWed demo: hide scrollbar inside phone mockups */html,body{scrollbar-width:none;-ms-overflow-style:none}html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}</style></head>
+<meta name="robots" content="noindex, nofollow"><script>/* DigiWed demo: silence BGM when embedded in showcase grid (?bgmoff) */
+(function(){
+  try{
+    if(window.location.search.indexOf('bgmoff') === -1) return;
+    window.__bgmoff = true;
+    var p = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function(){ try{ this.muted = true; this.volume = 0; }catch(e){} return p.apply(this, arguments); };
+    ['AudioContext','webkitAudioContext'].forEach(function(n){
+      var AC = window[n];
+      if(!AC) return;
+      var W = function(){ var ctx = new AC(); try{ ctx.suspend(); ctx.resume = function(){ return Promise.resolve(); }; }catch(e){} return ctx; };
+      W.prototype = AC.prototype;
+      window[n] = W;
+    });
+  }catch(e){}
+})();
+</script><style>/* DigiWed demo: hide scrollbar inside phone mockups */html,body{scrollbar-width:none;-ms-overflow-style:none}html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}</style></head>
 <body>
 
 <audio id="bgm" loop preload="auto">

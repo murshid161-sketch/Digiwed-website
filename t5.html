@@ -475,7 +475,23 @@ footer span{color:var(--gold)}
 .wday-footer{margin-top:28px;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.12);text-transform:uppercase;}
 
 </style>
-<meta name="robots" content="noindex, nofollow"><style>/* DigiWed demo: hide scrollbar inside phone mockups */html,body{scrollbar-width:none;-ms-overflow-style:none}html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}</style></head>
+<meta name="robots" content="noindex, nofollow"><script>/* DigiWed demo: silence BGM when embedded in showcase grid (?bgmoff) */
+(function(){
+  try{
+    if(window.location.search.indexOf('bgmoff') === -1) return;
+    window.__bgmoff = true;
+    var p = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function(){ try{ this.muted = true; this.volume = 0; }catch(e){} return p.apply(this, arguments); };
+    ['AudioContext','webkitAudioContext'].forEach(function(n){
+      var AC = window[n];
+      if(!AC) return;
+      var W = function(){ var ctx = new AC(); try{ ctx.suspend(); ctx.resume = function(){ return Promise.resolve(); }; }catch(e){} return ctx; };
+      W.prototype = AC.prototype;
+      window[n] = W;
+    });
+  }catch(e){}
+})();
+</script><style>/* DigiWed demo: hide scrollbar inside phone mockups */html,body{scrollbar-width:none;-ms-overflow-style:none}html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}</style></head>
 <body>
 
 <a class="wafloat" href="https://wa.me/917034852166?text=Assalamu%20Alaikum!%20Congratulations%20to%20Yaseen%20%26%20Jumana!" target="_blank">

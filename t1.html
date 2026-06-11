@@ -347,7 +347,23 @@ a{color:inherit;text-decoration:none}
 .img-slot-add span{font-family:'Cinzel',serif;font-size:8px;letter-spacing:.22em;color:rgba(255,255,255,.9)}
 
 </style>
-<meta name="robots" content="noindex, nofollow"><style>/* DigiWed demo: hide scrollbar inside phone mockups */html,body{scrollbar-width:none;-ms-overflow-style:none}html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}</style></head>
+<meta name="robots" content="noindex, nofollow"><script>/* DigiWed demo: silence BGM when embedded in showcase grid (?bgmoff) */
+(function(){
+  try{
+    if(window.location.search.indexOf('bgmoff') === -1) return;
+    window.__bgmoff = true;
+    var p = HTMLMediaElement.prototype.play;
+    HTMLMediaElement.prototype.play = function(){ try{ this.muted = true; this.volume = 0; }catch(e){} return p.apply(this, arguments); };
+    ['AudioContext','webkitAudioContext'].forEach(function(n){
+      var AC = window[n];
+      if(!AC) return;
+      var W = function(){ var ctx = new AC(); try{ ctx.suspend(); ctx.resume = function(){ return Promise.resolve(); }; }catch(e){} return ctx; };
+      W.prototype = AC.prototype;
+      window[n] = W;
+    });
+  }catch(e){}
+})();
+</script><style>/* DigiWed demo: hide scrollbar inside phone mockups */html,body{scrollbar-width:none;-ms-overflow-style:none}html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}</style></head>
 <body>
 
 <!-- TRAVEL DOTS -->
