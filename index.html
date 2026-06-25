@@ -43,6 +43,20 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I send a digital wedding invitation on WhatsApp?", "acceptedAnswer": { "@type": "Answer", "text": "With DigiWed your wedding invitation is a single web link. We design your personalised invite, then send you one link you simply forward on WhatsApp — guests tap it to open a full invitation with your photos, event details, map, music and a live wishes wall. No app or download needed, on any phone." } },
+    { "@type": "Question", "name": "How much does a digital wedding invitation cost in Kerala?", "acceptedAnswer": { "@type": "Answer", "text": "DigiWed plans start at ₹2,500 for the Standard invitation, ₹3,500 for Premium (with personalised guest names and RSVP tracking) and ₹6,000 for the fully custom Old Money invitation. It is a one-time payment that includes hosting — no monthly fees." } },
+    { "@type": "Question", "name": "Can I get my wedding invitation in Malayalam?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We create digital wedding invitations in Malayalam, English or a mix of both, and design for Muslim (Nikah), Hindu and Christian ceremonies. Just tell us your preference when you order." } },
+    { "@type": "Question", "name": "Can guests RSVP on a digital wedding invitation?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — on the Premium and Old Money plans guests confirm attendance in one tap and you see every response in a private dashboard. Every plan also includes a live wishes wall where guests leave their blessings." } },
+    { "@type": "Question", "name": "How long does it take to get my invitation?", "acceptedAnswer": { "@type": "Answer", "text": "Most DigiWed invitations are designed and delivered within hours — often the same day. You receive your WhatsApp link ready to share with all your guests." } },
+    { "@type": "Question", "name": "Do my guests need to install an app?", "acceptedAnswer": { "@type": "Answer", "text": "No. A DigiWed invitation opens instantly in any web browser straight from the WhatsApp link — nothing to download, on Android or iPhone." } }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <!-- Firebase (Compat SDK) — powers the customer reviews wall. Must load before the main script block. -->
@@ -372,6 +386,17 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
 .rvlb-del:hover{border-color:#e57373;color:#e57373;}
 /* toast */
 #toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(80px);background:rgba(20,18,12,.95);color:#f0ebe0;padding:12px 22px;border-radius:30px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.4px;z-index:4000;opacity:0;transition:all .35s ease;pointer-events:none;max-width:86vw;text-align:center;}
+
+/* ─── FAQ ─── */
+.faq-section{padding:72px 6% 64px;background:var(--white);}
+.faq-wrap{max-width:760px;margin:0 auto;}
+.faq-item{border-bottom:1px solid rgba(201,168,76,.18);}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--ink);font-weight:400;}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{content:'+';position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:1.4rem;color:var(--gold);transition:transform .25s;}
+.faq-item[open] summary::after{content:'\2212';}
+.faq-item p{padding:0 0 22px;color:var(--ink2);font-size:.92rem;line-height:1.72;}
+.faq-item p a{color:var(--gold);text-decoration:none;font-weight:500;}
 </style>
 </head>
 <body>
@@ -407,7 +432,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
 <!-- HERO -->
 <section class="hero">
   <div class="hero-tag">Kerala's Digital Invitation Studio</div>
-  <h1>Your love story,<br>delivered <em>beautifully</em></h1>
+  <h1>Digital Wedding Invitations,<br>delivered <em>beautifully</em></h1>
   <p class="hero-sub">Stunning digital wedding invitations — crafted in Kerala, shared in seconds via WhatsApp. No app, no download, just pure elegance on any phone.</p>
   <div class="hero-btns">
     <a href="#templates" class="btn-dark">Explore Templates</a>
@@ -853,7 +878,22 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
   </div>
 </section>
 
-<!-- CTA -->
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div style="text-align:center;max-width:600px;margin:0 auto 2.5rem;">
+    <div class="section-tag">FAQ</div>
+    <h2 class="section-title">Digital wedding invitations — your questions</h2>
+    <p class="section-sub">Everything Kerala couples ask before they order.</p>
+  </div>
+  <div class="faq-wrap">
+    <details class="faq-item"><summary>How do I send a digital wedding invitation on WhatsApp?</summary><p>With DigiWed your wedding invitation is a single web link. We design your personalised invite, then send you one link you simply forward on WhatsApp — guests tap it to open a full invitation with your photos, event details, map, music and a live wishes wall. No app or download needed, on any phone.</p></details>
+    <details class="faq-item"><summary>How much does a digital wedding invitation cost in Kerala?</summary><p>DigiWed plans start at ₹2,500 for the Standard invitation, ₹3,500 for Premium (with personalised guest names and RSVP tracking) and ₹6,000 for the fully custom Old Money invitation. It is a one-time payment that includes hosting — no monthly fees. <a href="#pricing">See full pricing →</a></p></details>
+    <details class="faq-item"><summary>Can I get my wedding invitation in Malayalam?</summary><p>Yes. We create digital wedding invitations in Malayalam, English or a mix of both, and design for Muslim (Nikah), Hindu and Christian ceremonies. Just tell us your preference when you order.</p></details>
+    <details class="faq-item"><summary>Can guests RSVP on a digital wedding invitation?</summary><p>Yes — on the Premium and Old Money plans guests confirm attendance in one tap and you see every response in a private dashboard. Every plan also includes a live wishes wall where guests leave their blessings.</p></details>
+    <details class="faq-item"><summary>How long does it take to get my invitation?</summary><p>Most DigiWed invitations are designed and delivered within hours — often the same day. You receive your WhatsApp link ready to share with all your guests.</p></details>
+    <details class="faq-item"><summary>Do my guests need to install an app?</summary><p>No. A DigiWed invitation opens instantly in any web browser straight from the WhatsApp link — nothing to download, on Android or iPhone.</p></details>
+  </div>
+</section>
 
 <!-- CTA -->
 <section class="cta-banner" id="contact">
