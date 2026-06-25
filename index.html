@@ -45,6 +45,9 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Firebase (Compat SDK) — powers the customer reviews wall. Must load before the main script block. -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <style>
 :root {
   --cream:#faf7f2; --cream2:#f3ede3; --white:#ffffff;
@@ -336,6 +339,39 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
 .lb-order-btn:hover{background:#b8922a;}
 .lb-wa-btn{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px;background:#25D366;color:#fff;text-align:center;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.04em;transition:background .2s;}
 .lb-wa-btn:hover{background:#1da851;}
+
+/* ─── CUSTOMER REVIEWS ─── */
+.reviews{padding:80px 0 64px;background:var(--cream2);overflow-x:hidden;max-width:100vw;}
+.rv-meta{text-align:center;max-width:172px;margin:0 auto;}
+.rv-stars{color:var(--gold);font-size:.8rem;letter-spacing:2px;line-height:1;margin-bottom:5px;}
+.rv-cname{font-family:'Playfair Display',serif;font-size:.92rem;color:var(--ink);margin-bottom:3px;}
+.rv-snip{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--ink3);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.rv-empty{text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ink3);padding:36px 6%;}
+.rv-add-wrap{text-align:center;margin-top:36px;padding:0 6%;}
+.rv-add-btn{background:var(--ink);color:#fff;border:none;padding:14px 30px;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:.84rem;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;}
+.rv-add-btn:hover{background:var(--gold);color:var(--ink);transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,168,76,.35);}
+.rv-skel-wrap{display:flex;gap:24px;padding-left:2px;}
+.rv-skel{width:172px;height:362px;border-radius:40px;flex-shrink:0;background:linear-gradient(90deg,rgba(28,22,16,.05) 25%,rgba(28,22,16,.1) 50%,rgba(28,22,16,.05) 75%);background-size:200% 100%;animation:rvskel 1.4s ease infinite;}
+@keyframes rvskel{0%{background-position:200% 0}100%{background-position:-200% 0}}
+/* submit + pin modal */
+.rv-modal{display:none;position:fixed;inset:0;z-index:2500;background:rgba(20,16,10,.6);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px;}
+.rv-modal.open{display:flex;}
+.rv-card{background:var(--white);border-radius:16px;max-width:400px;width:100%;padding:30px 26px 26px;position:relative;box-shadow:var(--shadow2);max-height:92vh;overflow-y:auto;}
+.rv-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:none;background:var(--cream2);color:var(--ink2);font-size:.95rem;cursor:pointer;}
+.rv-card-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:500;margin-bottom:6px;}
+.rv-card-sub{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink3);line-height:1.5;margin-bottom:18px;}
+.rv-lbl{display:block;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin:0 0 6px 2px;}
+.rv-input,.rv-textarea{width:100%;border:1px solid var(--gold2);background:var(--cream);border-radius:8px;padding:11px 13px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--ink);margin-bottom:14px;outline:none;transition:border-color .2s;}
+.rv-input:focus,.rv-textarea:focus{border-color:var(--gold);}
+.rv-textarea{min-height:92px;resize:vertical;line-height:1.5;}
+.rv-submit{width:100%;background:var(--gold);color:var(--ink);border:none;padding:13px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.86rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:background .2s;}
+.rv-submit:hover{background:#b8922a;}
+/* reviews lightbox extras */
+.rvlb-review{font-family:'Cormorant Garamond',serif;font-size:1.02rem;color:rgba(255,255,255,.85);line-height:1.55;margin-bottom:14px;font-style:italic;}
+.rvlb-del{width:100%;margin-top:10px;background:transparent;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.55);padding:9px;border-radius:8px;font-size:.74rem;cursor:pointer;transition:all .2s;}
+.rvlb-del:hover{border-color:#e57373;color:#e57373;}
+/* toast */
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(80px);background:rgba(20,18,12,.95);color:#f0ebe0;padding:12px 22px;border-radius:30px;font-family:'DM Sans',sans-serif;font-size:13px;letter-spacing:.4px;z-index:4000;opacity:0;transition:all .35s ease;pointer-events:none;max-width:86vw;text-align:center;}
 </style>
 </head>
 <body>
@@ -345,6 +381,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
   <span class="mcls" id="closeMenu">✕</span>
   <a href="#templates">Templates</a>
   <a href="#features">Features</a>
+  <a href="#reviews">Reviews</a>
   <a href="#pricing">Pricing</a>
   <a href="https://wa.me/917034852166?text=Hi%2C%20I'd%20like%20to%20order%20a%20DigiWed%20invitation" style="margin-top:1rem;background:var(--green);color:#fff;padding:12px 28px;border-radius:50px;font-size:1rem;">Order Now</a>
 </div>
@@ -356,6 +393,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
     <li><a href="#album">Album</a></li>
     <li><a href="#templates">Templates</a></li>
     <li><a href="#features">Features</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -450,7 +488,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
           <div class="iphone" id="ph0">
             <div class="iphone-inner">
               <div class="iphone-island"></div>
-              <iframe class="phone-iframe" src="t1.html?bgmoff=1" title="Golden Voyage" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr0" style="pointer-events:none;"></iframe><div onclick="openLb(0)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
+              <iframe class="phone-iframe" data-src="t1.html?bgmoff=1" title="Golden Voyage" loading="lazy" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr0" style="pointer-events:none;"></iframe><div onclick="openLb(0)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
               <div class="iphone-home"></div>
             </div>
           </div>
@@ -468,7 +506,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
           <div class="iphone" id="ph1">
             <div class="iphone-inner">
               <div class="iphone-island" style="background:#2a2418"></div>
-              <iframe class="phone-iframe" src="t2.html?bgmoff=1" title="Maroon Heritage" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr1" style="pointer-events:none;"></iframe><div onclick="openLb(1)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
+              <iframe class="phone-iframe" data-src="t2.html?bgmoff=1" title="Maroon Heritage" loading="lazy" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr1" style="pointer-events:none;"></iframe><div onclick="openLb(1)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
               <div class="iphone-home" style="background:rgba(0,0,0,.15)"></div>
             </div>
           </div>
@@ -486,7 +524,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
           <div class="iphone" id="ph2">
             <div class="iphone-inner">
               <div class="iphone-island"></div>
-              <iframe class="phone-iframe" src="t3.html?bgmoff=1" title="Amethyst Dream" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr2" style="pointer-events:none;"></iframe><div onclick="openLb(2)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
+              <iframe class="phone-iframe" data-src="t3.html?bgmoff=1" title="Amethyst Dream" loading="lazy" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr2" style="pointer-events:none;"></iframe><div onclick="openLb(2)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
               <div class="iphone-home"></div>
             </div>
           </div>
@@ -504,7 +542,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
           <div class="iphone" id="ph3">
             <div class="iphone-inner">
               <div class="iphone-island" style="background:#2a2418"></div>
-              <iframe class="phone-iframe" src="t4.html?bgmoff=1" title="Crimson Nikah" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr3" style="pointer-events:none;"></iframe><div onclick="openLb(3)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
+              <iframe class="phone-iframe" data-src="t4.html?bgmoff=1" title="Crimson Nikah" loading="lazy" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr3" style="pointer-events:none;"></iframe><div onclick="openLb(3)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
               <div class="iphone-home" style="background:rgba(0,0,0,.12)"></div>
             </div>
           </div>
@@ -522,7 +560,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
           <div class="iphone" id="ph4">
             <div class="iphone-inner">
               <div class="iphone-island" style="background:#2a2418"></div>
-              <iframe class="phone-iframe" src="t5.html?bgmoff=1" title="Ivory Garden" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr4" style="pointer-events:none;"></iframe><div onclick="openLb(4)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
+              <iframe class="phone-iframe" data-src="t5.html?bgmoff=1" title="Ivory Garden" loading="lazy" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr4" style="pointer-events:none;"></iframe><div onclick="openLb(4)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
               <div class="iphone-home" style="background:rgba(0,0,0,.1)"></div>
             </div>
           </div>
@@ -569,7 +607,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
           <div class="iphone" id="ph5">
             <div class="iphone-inner">
               <div class="iphone-island"></div>
-              <iframe class="phone-iframe" src="t6.html?bgmoff=1" title="Royal Velvet" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr5" style="pointer-events:none;"></iframe><div onclick="openLb(5)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
+              <iframe class="phone-iframe" data-src="t6.html?bgmoff=1" title="Royal Velvet" loading="lazy" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr5" style="pointer-events:none;"></iframe><div onclick="openLb(5)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
               <div class="iphone-home"></div>
             </div>
           </div>
@@ -587,7 +625,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
           <div class="iphone" id="ph6">
             <div class="iphone-inner">
               <div class="iphone-island" style="background:#2a2418"></div>
-              <iframe class="phone-iframe" src="t7.html?bgmoff=1" title="Blush Royale" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr6" style="pointer-events:none;"></iframe><div onclick="openLb(6)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
+              <iframe class="phone-iframe" data-src="t7.html?bgmoff=1" title="Blush Royale" loading="lazy" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr6" style="pointer-events:none;"></iframe><div onclick="openLb(6)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
               <div class="iphone-home" style="background:rgba(0,0,0,.1)"></div>
             </div>
           </div>
@@ -605,7 +643,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
           <div class="iphone" id="ph7">
             <div class="iphone-inner">
               <div class="iphone-island" style="background:#2a2020"></div>
-              <iframe class="phone-iframe" src="t8.html?bgmoff=1" title="Ivory Luxe" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr7" style="pointer-events:none;"></iframe><div onclick="openLb(7)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
+              <iframe class="phone-iframe" data-src="t8.html?bgmoff=1" title="Ivory Luxe" loading="lazy" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr7" style="pointer-events:none;"></iframe><div onclick="openLb(7)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
               <div class="iphone-home" style="background:rgba(0,0,0,.08)"></div>
             </div>
           </div>
@@ -623,7 +661,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
           <div class="iphone" id="ph8">
             <div class="iphone-inner">
               <div class="iphone-island"></div>
-              <iframe class="phone-iframe" src="t9.html?bgmoff=1" title="Cathedral Gold" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr8" style="pointer-events:none;"></iframe><div onclick="openLb(8)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
+              <iframe class="phone-iframe" data-src="t9.html?bgmoff=1" title="Cathedral Gold" loading="lazy" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr8" style="pointer-events:none;"></iframe><div onclick="openLb(8)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
               <div class="iphone-home"></div>
             </div>
           </div>
@@ -641,7 +679,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
           <div class="iphone" id="ph9">
             <div class="iphone-inner">
               <div class="iphone-island"></div>
-              <iframe class="phone-iframe" src="t10.html?bgmoff=1" title="Midnight Navy" loading="eager" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr9" style="pointer-events:none;"></iframe><div onclick="openLb(9)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
+              <iframe class="phone-iframe" data-src="t10.html?bgmoff=1" title="Midnight Navy" loading="lazy" allow="autoplay 'none'" sandbox="allow-scripts allow-same-origin" id="fr9" style="pointer-events:none;"></iframe><div onclick="openLb(9)" style="position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;"></div>
               <div class="iphone-home"></div>
             </div>
           </div>
@@ -703,6 +741,29 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
     <div class="hiw-step reveal"><div class="hiw-num">01</div><h3>Choose Your Design</h3><p>Browse our templates, pick the one that matches your style, and message us on WhatsApp.</p></div>
     <div class="hiw-step reveal"><div class="hiw-num">02</div><h3>We Customise It</h3><p>Your personalised invitation is crafted with your names, photos, venue, and music — within hours.</p></div>
     <div class="hiw-step reveal"><div class="hiw-num">03</div><h3>Share &amp; Celebrate</h3><p>Receive your link and share with guests on WhatsApp. They tap to view — that's it.</p></div>
+  </div>
+</section>
+
+<!-- REVIEWS / REAL COUPLES -->
+<section class="reviews" id="reviews">
+  <div class="showcase-header">
+    <div class="section-tag">Real Couples</div>
+    <h2 class="section-title">Loved by couples across Kerala</h2>
+    <p class="section-sub">Real invitations from real weddings — tap any phone to open it and read their words. Shared by our couples themselves.</p>
+  </div>
+
+  <div class="phones-outer" id="rvOuter">
+    <div class="phones-track" id="rvTrack">
+      <div class="rv-skel-wrap">
+        <div class="rv-skel"></div><div class="rv-skel"></div><div class="rv-skel"></div><div class="rv-skel"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rv-empty" id="rvEmpty" style="display:none;">Be the first to share your invitation &amp; review 🤍</div>
+
+  <div class="rv-add-wrap">
+    <button class="rv-add-btn" id="rvAddBtn">＋ Share your invitation &amp; review</button>
   </div>
 </section>
 
@@ -809,6 +870,7 @@ footer{background:var(--white);border-top:1px solid var(--cream2);padding:36px 6
   <ul class="footer-links">
     <li><a href="#templates">Templates</a></li>
     <li><a href="#features">Features</a></li>
+    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="https://instagram.com/digi_.wed" target="_blank">Instagram</a></li>
     <li><a href="https://wa.me/917034852166" target="_blank">WhatsApp</a></li>
@@ -833,6 +895,26 @@ function scaleIframes() {
 }
 window.addEventListener('resize', scaleIframes);
 scaleIframes();
+
+/* Lazy-load showcase demo iframes only when their phone scrolls into its row's view.
+   Each demo is a full live invite (Firebase socket + audio + images); loading all 10
+   at once blanks/stalls weak devices and in-app browsers. data-src -> src on demand. */
+(function(){
+  var lazy = Array.prototype.slice.call(document.querySelectorAll('.phones-track .phone-iframe[data-src]'))
+    .filter(function(f){ return f.closest('#rvTrack') === null; });
+  if(!lazy.length) return;
+  function loadFrame(fr){ if(fr && fr.dataset.src){ fr.src = fr.dataset.src; fr.removeAttribute('data-src'); } }
+  // Each demo is a full live invite (Firebase socket + audio + images). Loading all 10
+  // at once blanks/stalls weak phones and in-app/preview webviews. So stagger them — one
+  // every ~500ms. Robust everywhere: depends only on timers (which fire even when the tab
+  // is throttled), not on scroll, IntersectionObserver, or paint/rAF.
+  var i = 0;
+  (function next(){
+    if(i >= lazy.length) return;
+    loadFrame(lazy[i++]);
+    setTimeout(next, 500);
+  })();
+})();
 
 
 
@@ -892,8 +974,66 @@ document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('clic
   </div>
 </div>
 
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- SHARE-YOUR-REVIEW MODAL -->
+<div class="rv-modal" id="rvModal">
+  <div class="rv-card">
+    <button class="rv-modal-close" id="rvModalClose" aria-label="Close">✕</button>
+    <h3 class="rv-card-title">Share your invitation</h3>
+    <p class="rv-card-sub">Paste your DigiWed invite link, your names and a few words — it appears below for everyone to see, instantly.</p>
+    <label class="rv-lbl" for="rvUrl">Your invitation link</label>
+    <input class="rv-input" id="rvUrl" type="url" inputmode="url" placeholder="https://digiwed161-sys.github.io/YourInvite/">
+    <label class="rv-lbl" for="rvName">Your names</label>
+    <input class="rv-input" id="rvName" type="text" maxlength="40" placeholder="Akhila &amp; Jevins">
+    <label class="rv-lbl" for="rvText">Your review</label>
+    <textarea class="rv-textarea" id="rvText" maxlength="300" placeholder="DigiWed made our wedding invitation absolutely unforgettable…"></textarea>
+    <button class="rv-submit" id="rvSubmit">Post my review</button>
+  </div>
+</div>
+
+<!-- ADMIN PIN MODAL (remove spam) -->
+<div class="rv-modal" id="rvPinModal">
+  <div class="rv-card" style="max-width:300px;">
+    <button class="rv-modal-close" id="rvPinClose" aria-label="Close">✕</button>
+    <h3 class="rv-card-title">Admin</h3>
+    <p class="rv-card-sub">Enter the admin PIN to remove a review.</p>
+    <input class="rv-input" id="rvPinInput" type="password" placeholder="PIN" autocomplete="off">
+    <button class="rv-submit" id="rvPinSubmit">Unlock</button>
+  </div>
+</div>
+
+<!-- REVIEWS LIGHTBOX -->
+<div class="lb" id="rvLb">
+  <div class="lb-top">
+    <span class="lb-counter" id="rvLbCounter">1 / 1</span>
+    <button class="lb-close" id="rvLbClose">✕</button>
+  </div>
+  <div class="lb-body">
+    <button class="lb-arr" id="rvLbPrev">←</button>
+    <div>
+      <div class="lb-iphone">
+        <div class="lb-inner">
+          <div class="lb-island"></div>
+          <iframe class="lb-iframe" id="rvLbFrame" src="" sandbox="allow-scripts allow-same-origin" allow="autoplay 'none'" referrerpolicy="no-referrer"></iframe>
+          <div class="lb-home"></div>
+        </div>
+      </div>
+      <div class="lb-info">
+        <div class="rv-stars" style="font-size:1rem;letter-spacing:3px;margin-bottom:8px;">★★★★★</div>
+        <div class="lb-name" id="rvLbName">Couple</div>
+        <div class="rvlb-review" id="rvLbReview"></div>
+        <a class="lb-order-btn" id="rvLbOpen" href="#" target="_blank" rel="noopener">Open their invitation →</a>
+        <button class="rvlb-del" id="rvLbDel" style="display:none;">Remove this review</button>
+      </div>
+    </div>
+    <button class="lb-arr" id="rvLbNext">→</button>
+  </div>
+</div>
+
 <script>
-const LB_TEMPLATES = [{"file": "t1.html", "name": "Golden Voyage", "price": "₹3,500", "plan": "premium"}, {"file": "t2.html", "name": "Maroon Heritage", "price": "₹2,500", "plan": "standard"}, {"file": "t3.html", "name": "Amethyst Dream", "price": "₹2,500", "plan": "standard"}, {"file": "t4.html", "name": "Crimson Nikah", "price": "₹3,500", "plan": "premium"}, {"file": "t5.html", "name": "Ivory Garden", "price": "₹2,500", "plan": "standard"}, {"file": "t6.html", "name": "Royal Velvet", "price": "₹3,500", "plan": "premium"}, {"file": "t7.html", "name": "Blush Royale", "price": "₹3,500", "plan": "premium"}, {"file": "t8.html", "name": "Ivory Luxe", "price": "₹2,500", "plan": "standard"}, {"file": "t9.html", "name": "Cathedral Gold", "price": "₹2,500", "plan": "standard"}, {"file": "t10.html", "name": "Midnight Navy", "price": "₹2,500", "plan": "standard"}];
+const LB_TEMPLATES =[{"file": "t1.html", "name": "Golden Voyage", "price": "₹3,500", "plan": "premium"}, {"file": "t2.html", "name": "Maroon Heritage", "price": "₹2,500", "plan": "standard"}, {"file": "t3.html", "name": "Amethyst Dream", "price": "₹2,500", "plan": "standard"}, {"file": "t4.html", "name": "Crimson Nikah", "price": "₹3,500", "plan": "premium"}, {"file": "t5.html", "name": "Ivory Garden", "price": "₹2,500", "plan": "standard"}, {"file": "t6.html", "name": "Royal Velvet", "price": "₹3,500", "plan": "premium"}, {"file": "t7.html", "name": "Blush Royale", "price": "₹3,500", "plan": "premium"}, {"file": "t8.html", "name": "Ivory Luxe", "price": "₹2,500", "plan": "standard"}, {"file": "t9.html", "name": "Cathedral Gold", "price": "₹2,500", "plan": "standard"}, {"file": "t10.html", "name": "Midnight Navy", "price": "₹2,500", "plan": "standard"}];
 let lbIdx = 0;
 
 function scaleLbFrame() {
@@ -943,6 +1083,235 @@ document.addEventListener('keydown', function(e) {
   if(e.key==='ArrowLeft')  prevLb();
   if(e.key==='Escape')     closeLb();
 });
+</script>
+
+<!-- ─── CUSTOMER REVIEWS WALL ─── -->
+<script>
+/* Shared toast (no alert() — works in WhatsApp/Instagram webviews) */
+let _rvToastTimer = null;
+window.toast = function(msg, isErr){
+  const t = document.getElementById('toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.style.background = isErr ? 'rgba(140,30,30,.95)' : 'rgba(20,18,12,.95)';
+  t.style.opacity = '1';
+  t.style.transform = 'translateX(-50%) translateY(0)';
+  clearTimeout(_rvToastTimer);
+  _rvToastTimer = setTimeout(function(){
+    t.style.opacity = '0';
+    t.style.transform = 'translateX(-50%) translateY(80px)';
+  }, 3400);
+};
+
+(function(){
+  const RV_PATH = 'website-reviews';
+  const RV_PIN  = '2026DW';   // admin PIN (case-insensitive) — for removing spam reviews
+  const cfg = {
+    apiKey:"AIzaSy841fvxVl1KeHOro6WKJ72o22izuCpJ-b4",
+    authDomain:"yaseen-jumana-wedding.firebaseapp.com",
+    databaseURL:"https://yaseen-jumana-wedding-default-rtdb.firebaseio.com",
+    projectId:"yaseen-jumana-wedding",
+    storageBucket:"yaseen-jumana-wedding.firebasestorage.app",
+    messagingSenderId:"355557621111",
+    appId:"1:355557621111:web:d0b78c34bfe5a53b69f572"
+  };
+
+  let rvData  = [];
+  let rvIdx   = 0;
+  let rvAdmin = sessionStorage.getItem('rvAdmin') === '1';
+  let dbRef   = null;
+
+  function $(id){ return document.getElementById(id); }
+
+  /* Only ever embed/open http(s) links — blocks javascript:, data:, etc. */
+  function safeUrl(u){
+    try {
+      const x = new URL(String(u).trim());
+      if(x.protocol === 'http:' || x.protocol === 'https:') return x.href;
+    } catch(e){}
+    return '';
+  }
+  function withBgmOff(u){
+    if(!u) return '';
+    return u + (u.indexOf('?') > -1 ? '&' : '?') + 'bgmoff=1';
+  }
+
+  /* ── grid render ── */
+  function renderGrid(){
+    const track = $('rvTrack');
+    if(!track) return;
+    track.innerHTML = '';
+    const empty = $('rvEmpty');
+    const shown = rvData.filter(function(r){ return safeUrl(r.url); });
+    if(!shown.length){
+      if(empty) empty.style.display = 'block';
+      return;
+    }
+    if(empty) empty.style.display = 'none';
+
+    rvData.forEach(function(r, i){
+      const url = safeUrl(r.url);
+      if(!url) return;
+
+      const wrap   = document.createElement('div'); wrap.className = 'phone-wrap';
+      const iphone = document.createElement('div'); iphone.className = 'iphone';
+      const inner  = document.createElement('div'); inner.className = 'iphone-inner';
+      const island = document.createElement('div'); island.className = 'iphone-island';
+
+      const fr = document.createElement('iframe');
+      fr.className = 'phone-iframe';
+      fr.title = r.name || 'Invitation';
+      fr.loading = 'lazy';
+      fr.setAttribute('allow', "autoplay 'none'");
+      fr.setAttribute('sandbox', 'allow-scripts allow-same-origin');
+      fr.setAttribute('referrerpolicy', 'no-referrer');
+      fr.style.pointerEvents = 'none';
+      fr.src = withBgmOff(url);
+
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:absolute;inset:0;z-index:10;border-radius:34px;cursor:pointer;';
+      overlay.addEventListener('click', function(){ openLb(i); });
+
+      const home = document.createElement('div'); home.className = 'iphone-home';
+
+      inner.append(island, fr, overlay, home);
+      iphone.appendChild(inner);
+
+      const meta  = document.createElement('div'); meta.className = 'rv-meta';
+      const stars = document.createElement('div'); stars.className = 'rv-stars'; stars.textContent = '★★★★★';
+      const cname = document.createElement('div'); cname.className = 'rv-cname'; cname.textContent = r.name || '';
+      const snip  = document.createElement('div'); snip.className = 'rv-snip';  snip.textContent = '“' + (r.review || '') + '”';
+      meta.append(stars, cname, snip);
+
+      wrap.append(iphone, meta);
+      track.appendChild(wrap);
+    });
+
+    if(typeof scaleIframes === 'function') scaleIframes();
+  }
+
+  /* ── lightbox ── */
+  function scaleFrame(){
+    const fr = $('rvLbFrame');
+    if(!fr || !fr.parentElement) return;
+    const scale = fr.parentElement.clientWidth / 390;
+    fr.style.transform = 'scale(' + scale + ')';
+    fr.style.width  = '390px';
+    fr.style.height = (fr.parentElement.clientHeight / scale) + 'px';
+  }
+  function loadLb(){
+    const r = rvData[rvIdx];
+    if(!r) return;
+    $('rvLbCounter').textContent = (rvIdx + 1) + ' / ' + rvData.length;
+    $('rvLbName').textContent    = r.name || '';
+    $('rvLbReview').textContent  = '“' + (r.review || '') + '”';
+    const url = safeUrl(r.url);
+    $('rvLbOpen').href = url || '#';
+    $('rvLbFrame').src = withBgmOff(url);
+    $('rvLbDel').style.display = rvAdmin ? 'block' : 'none';
+    setTimeout(scaleFrame, 120);
+  }
+  function openLb(i){
+    if(!rvData.length) return;
+    rvIdx = i;
+    $('rvLb').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    loadLb();
+  }
+  function closeLb(){
+    $('rvLb').classList.remove('open');
+    document.body.style.overflow = '';
+    $('rvLbFrame').src = '';
+  }
+  function nextLb(){ if(rvData.length){ rvIdx = (rvIdx + 1) % rvData.length; loadLb(); } }
+  function prevLb(){ if(rvData.length){ rvIdx = (rvIdx - 1 + rvData.length) % rvData.length; loadLb(); } }
+  function deleteCurrent(){
+    const r = rvData[rvIdx];
+    if(!r || !rvAdmin || !dbRef) return;
+    dbRef.child(r.key).remove();
+    closeLb();
+    toast('Review removed.');
+  }
+
+  /* ── submit ── */
+  function openModal(){ $('rvModal').classList.add('open'); }
+  function closeModal(){ $('rvModal').classList.remove('open'); }
+  function submitReview(){
+    const url    = safeUrl($('rvUrl').value);
+    const name   = $('rvName').value.trim();
+    const review = $('rvText').value.trim();
+    if(!url){ toast('Please paste a valid https:// invitation link.', true); return; }
+    if(!name || !review){ toast('Please add your names and a few words.', true); return; }
+    if(!dbRef){ toast('Connection unavailable — please try again shortly.', true); return; }
+    const btn = $('rvSubmit');
+    btn.disabled = true; btn.style.opacity = '.5';
+    dbRef.push({ url: url, name: name, review: review, ts: Date.now() }, function(err){
+      btn.disabled = false; btn.style.opacity = '';
+      if(err){ toast('Could not post — check connection and tap Post again.', true); return; } // inputs preserved
+      $('rvUrl').value = ''; $('rvName').value = ''; $('rvText').value = '';
+      closeModal();
+      toast('Thank you! Your review is now live 🤍');
+    });
+  }
+
+  /* ── admin pin ── */
+  function openPin(){ $('rvPinModal').classList.add('open'); setTimeout(function(){ $('rvPinInput').focus(); }, 50); }
+  function closePin(){ $('rvPinModal').classList.remove('open'); }
+  function checkPin(){
+    if($('rvPinInput').value.trim().toUpperCase() === RV_PIN.toUpperCase()){
+      rvAdmin = true; sessionStorage.setItem('rvAdmin', '1');
+      $('rvPinInput').value = '';
+      closePin();
+      toast('Admin mode on — you can remove reviews.');
+      if($('rvLb').classList.contains('open')) loadLb();
+    } else {
+      toast('Incorrect PIN.', true);
+    }
+  }
+
+  /* ── init ── */
+  try {
+    if(typeof firebase !== 'undefined'){
+      if(!firebase.apps.length) firebase.initializeApp(cfg);
+      window.db = firebase.database();
+      dbRef = window.db.ref(RV_PATH);
+      dbRef.on('value', function(snap){
+        rvData = [];
+        snap.forEach(function(c){ rvData.push(Object.assign({ key: c.key }, c.val())); });
+        rvData.sort(function(a, b){ return (b.ts || 0) - (a.ts || 0); });   // newest first
+        renderGrid();
+      });
+    } else {
+      renderGrid();
+    }
+  } catch(e){ console.warn('Reviews Firebase:', e); renderGrid(); }
+
+  $('rvAddBtn').addEventListener('click', openModal);
+  $('rvModalClose').addEventListener('click', closeModal);
+  $('rvModal').addEventListener('click', function(e){ if(e.target === this) closeModal(); });
+  $('rvSubmit').addEventListener('click', submitReview);
+
+  $('rvLbClose').addEventListener('click', closeLb);
+  $('rvLbPrev').addEventListener('click', prevLb);
+  $('rvLbNext').addEventListener('click', nextLb);
+  $('rvLbDel').addEventListener('click', deleteCurrent);
+  $('rvLb').addEventListener('click', function(e){ if(e.target === this) closeLb(); });
+
+  $('rvPinClose').addEventListener('click', closePin);
+  $('rvPinSubmit').addEventListener('click', checkPin);
+  $('rvPinInput').addEventListener('keydown', function(e){ if(e.key === 'Enter') checkPin(); });
+
+  if(location.search.indexOf('reviewsadmin') > -1 || location.hash.indexOf('reviewsadmin') > -1){ openPin(); }
+
+  document.addEventListener('keydown', function(e){
+    const lb = $('rvLb');
+    if(!lb || !lb.classList.contains('open')) return;
+    if(e.key === 'ArrowRight') nextLb();
+    if(e.key === 'ArrowLeft')  prevLb();
+    if(e.key === 'Escape')     closeLb();
+  });
+  window.addEventListener('resize', scaleFrame);
+})();
 </script>
 
 </body>
