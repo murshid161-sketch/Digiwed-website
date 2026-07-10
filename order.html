@@ -163,7 +163,7 @@ const PLANS = {
 };
 
 const OFFER_CODE   = 'jins';
-const GOOGLE_FORM  = 'YOUR_GOOGLE_FORM_LINK_HERE'; // ← paste your Google Form URL here
+const DETAILS_FORM = 'form/'; // DigiWed client details form (digiwed.online/form/)
 const WA_NUMBER    = '917034852166';
 
 const params  = new URLSearchParams(window.location.search);
@@ -213,10 +213,10 @@ function renderSteps() {
         <div class="step-num">1</div>
         <div class="step-body">
           <div class="step-title">Fill Your Wedding Details</div>
-          <div class="step-desc">Download and fill the order form with your wedding details — names, venue, date, and photos. My WhatsApp number is on the form.</div>
-          <a href="${GOOGLE_FORM}" target="_blank" class="btn-gold">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-            Open Order Form
+          <div class="step-desc">Open our details form and fill in your names, families, events, date and photos. It saves as you go and sends straight to us on WhatsApp.</div>
+          <a href="${DETAILS_FORM}?plan=${planKey}" class="btn-gold">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            Open Details Form
           </a>
         </div>
       </div>

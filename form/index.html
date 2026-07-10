@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Your Wedding Details — DigiWed</title>
+<meta name="description" content="Share your wedding details with DigiWed and we'll craft your digital invitation within 12 hours — names, families, events, RSVP, photos and music."/>
+<link rel="canonical" href="https://digiwed.online/form/"/>
+<meta property="og:title" content="Your Wedding Details — DigiWed"/>
+<meta property="og:description" content="Share your wedding details and we'll craft your digital invitation within 12 hours."/>
+<meta property="og:url" content="https://digiwed.online/form/"/>
+<meta property="og:image" content="https://digiwed.online/og-image.png"/>
+<meta property="og:site_name" content="DigiWed"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --gold:#A8832A;--gold-l:#C9A84C;--gold-dim:rgba(168,131,42,.08);
+  --bg:#FAF8F5;--bg2:#F3EFE8;--surface:#FFFFFF;--border:rgba(168,131,42,.18);
+  --text:#2C2416;--muted:#8A7E6E;--rose:#b05a5a;--ok:#4a7a4a;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 10% 0%,rgba(201,168,76,.07) 0%,transparent 55%),radial-gradient(ellipse 60% 40% at 90% 100%,rgba(196,122,122,.05) 0%,transparent 55%);pointer-events:none;z-index:0}
+
+.wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 18px 90px}
+
+/* Progress */
+.progress-wrap{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(168,131,42,.12);z-index:100}
+.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold-l));transition:width .4s ease}
+.progress-pct{position:fixed;top:8px;right:12px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:.2em;color:var(--gold);background:rgba(255,255,255,.92);border:1px solid var(--border);padding:3px 10px;border-radius:20px;z-index:100;opacity:0;transition:opacity .3s}
+.progress-pct.show{opacity:1}
+
+/* Site nav (part of digiwed.online) */
+.site-nav{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:16px 18px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.site-logo{font-family:'Cormorant Garamond',serif;font-size:23px;color:var(--text);text-decoration:none;letter-spacing:.01em}
+.site-logo span{color:var(--gold)}
+.site-back{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s;white-space:nowrap}
+.site-back:hover{color:var(--gold)}
+
+/* Header */
+.header{text-align:center;padding:52px 0 32px;animation:fadeDown .8s ease both}
+.logo-mark{display:inline-flex;align-items:center;gap:10px;margin-bottom:24px}
+.logo-line{width:36px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.logo-line.r{background:linear-gradient(90deg,var(--gold),transparent)}
+.logo-text{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.35em;color:var(--gold)}
+.header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,6vw,44px);font-weight:400;line-height:1.1;margin-bottom:10px;color:var(--text)}
+.header h1 em{font-style:italic;color:var(--gold-l)}
+.header p{font-size:13px;color:var(--muted);letter-spacing:.05em;line-height:1.7}
+
+/* Note box */
+.note{background:rgba(168,131,42,.06);border:1px dashed rgba(168,131,42,.25);border-radius:4px;padding:14px 16px;margin-bottom:20px;font-size:12px;color:var(--muted);line-height:1.7}
+.note strong{color:var(--gold);font-weight:500}
+.note.tip{background:rgba(74,122,74,.06);border-color:rgba(74,122,74,.28)}
+.note.tip strong{color:var(--ok)}
+
+/* Card */
+.card{background:var(--surface);border:1px solid rgba(168,131,42,.14);border-radius:4px;padding:24px;margin-bottom:16px;animation:fadeUp .5s ease both;position:relative;overflow:hidden;box-shadow:0 2px 16px rgba(44,36,22,.05)}
+.card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--gold-l),transparent)}
+.step{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.3em;color:var(--gold);background:var(--gold-dim);border:1px solid rgba(168,131,42,.2);padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.card-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.28em;color:var(--gold);margin-bottom:4px;text-transform:uppercase;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tag{font-size:8px;letter-spacing:.15em;background:var(--gold);color:#fff;padding:2px 8px;border-radius:10px}
+.card-title .tick{width:15px;height:15px;border-radius:50%;background:var(--ok);color:#fff;font-size:9px;display:none;align-items:center;justify-content:center;letter-spacing:0}
+.card.done .card-title .tick{display:inline-flex}
+.card-sub{font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+
+/* Plan cards */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:6px}
+.plan{position:relative;cursor:pointer;display:block}
+.plan input{position:absolute;opacity:0;pointer-events:none}
+.plan .plan-box{border:1px solid rgba(168,131,42,.22);border-radius:4px;background:var(--bg);padding:14px 10px;text-align:center;transition:border-color .3s,background .3s,box-shadow .3s,transform .2s;height:100%}
+.plan .plan-name{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.18em;color:var(--text);margin-bottom:4px}
+.plan .plan-price{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);margin-bottom:8px}
+.plan .plan-feat{font-size:9.5px;color:var(--muted);line-height:1.7;letter-spacing:.03em}
+.plan .plan-tag{position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:.2em;background:var(--gold);color:#fff;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.plan input:checked + .plan-box{border-color:var(--gold-l);background:#fff;box-shadow:0 0 0 2px var(--gold-l),0 6px 20px rgba(168,131,42,.18);transform:translateY(-2px)}
+
+/* Fields */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.field label{font-size:10px;letter-spacing:.2em;color:var(--gold);font-family:'Cinzel',serif;text-transform:uppercase}
+.field .hint{color:var(--muted);font-size:9px;letter-spacing:0;text-transform:none;font-family:'Jost',sans-serif}
+.field input,.field textarea,.field select{background:var(--bg);border:1px solid rgba(168,131,42,.2);border-radius:3px;color:var(--text);font-family:'Jost',sans-serif;font-size:14px;font-weight:300;padding:11px 13px;outline:none;transition:border-color .3s,background .3s,box-shadow .3s;width:100%}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold-l);background:#fff;box-shadow:0 0 0 3px rgba(201,168,76,.1)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(138,126,110,.4)}
+.field textarea{resize:vertical;min-height:72px}
+.field select option{background:#fff;color:var(--text)}
+.field input.err,.field select.err{border-color:var(--rose);box-shadow:0 0 0 3px rgba(176,90,90,.12)}
+
+/* Segmented tabs (name order) */
+.seg{display:flex;gap:6px;background:var(--bg);border:1px solid rgba(168,131,42,.2);border-radius:5px;padding:4px}
+.seg-opt{flex:1;position:relative;cursor:pointer}
+.seg-opt input{position:absolute;opacity:0;pointer-events:none}
+.seg-opt span{display:block;text-align:center;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:11px 6px;border-radius:3px;transition:background .25s,color .25s,box-shadow .25s}
+.seg-opt:hover span{color:var(--gold)}
+.seg-opt input:checked + span{background:linear-gradient(135deg,var(--gold),var(--gold-l));color:#fff;box-shadow:0 3px 10px rgba(168,131,42,.28)}
+.order-preview{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--gold);text-align:center;padding:6px 0 2px}
+
+/* Event block */
+.event-block{border:1px solid rgba(168,131,42,.12);border-radius:4px;padding:16px;margin-bottom:14px;background:var(--bg2)}
+.event-num{display:inline-flex;align-items:center;gap:8px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;color:var(--gold);margin-bottom:12px}
+.event-num span{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+
+/* Divider */
+.div{display:flex;align-items:center;gap:14px;margin:18px 0;opacity:.4}
+.div::before,.div::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.div span{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.25em;color:var(--gold)}
+
+/* Submit */
+.submit-area{text-align:center;padding-top:16px}
+.btn-submit{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#A8832A,#C9A84C,#A8832A);background-size:200% 100%;color:#fff;font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;border:none;padding:17px 36px;border-radius:3px;cursor:pointer;transition:background-position .4s,transform .2s,box-shadow .3s;box-shadow:0 4px 20px rgba(168,131,42,.3)}
+.btn-submit:hover{background-position:100% 0;box-shadow:0 6px 30px rgba(168,131,42,.45);transform:translateY(-1px)}
+.btn-submit svg{width:19px;height:19px}
+.btn-copy{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--gold);font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(168,131,42,.35);padding:12px 24px;border-radius:3px;cursor:pointer;margin-top:14px;transition:background .3s,color .3s}
+.btn-copy:hover{background:var(--gold-dim)}
+.submit-note{margin-top:12px;font-size:12px;color:var(--muted);letter-spacing:.05em;line-height:1.6}
+.footer{text-align:center;padding:50px 0 20px;font-size:11px;color:rgba(44,36,22,.2);letter-spacing:.1em;font-family:'Cinzel',serif}
+
+/* Draft pill + toast */
+.draft-pill{position:fixed;left:50%;bottom:14px;transform:translateX(-50%) translateY(60px);background:rgba(255,255,255,.95);border:1px solid var(--border);color:var(--muted);font-size:10px;letter-spacing:.15em;font-family:'Cinzel',serif;padding:5px 14px;border-radius:20px;z-index:200;opacity:0;transition:all .35s ease;pointer-events:none}
+.draft-pill.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(80px);background:rgba(20,18,12,.95);color:#f0ebe0;padding:12px 22px;border-radius:30px;font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.5px;z-index:3000;opacity:0;transition:all .35s ease;pointer-events:none;max-width:86vw;text-align:center}
+
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:480px){
+  .row{grid-template-columns:1fr}.card{padding:18px}
+  .btn-submit{padding:15px 26px;font-size:10px}
+  .plans{grid-template-columns:1fr;gap:14px}
+  .plan .plan-box{display:grid;grid-template-columns:auto 1fr;align-items:center;text-align:left;gap:2px 14px;padding:12px 16px}
+  .plan .plan-price{grid-row:1/3;font-size:24px;margin:0}
+  .plan .plan-name{margin:0}
+  .plan .plan-feat{grid-column:2}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-wrap"><div class="progress-bar" id="pbar"></div></div>
+<div class="progress-pct" id="ppct">0%</div>
+
+<div class="site-nav">
+  <a class="site-logo" href="https://digiwed.online/">Digi<span>Wed</span></a>
+  <a class="site-back" id="backLink" href="https://digiwed.online/order.html">← Back to plans</a>
+</div>
+
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo-mark">
+      <div class="logo-line"></div>
+      <span class="logo-text">DigiWed</span>
+      <div class="logo-line r"></div>
+    </div>
+    <h1>Your <em>Wedding Invitation</em><br/>Details Form</h1>
+    <p>Everything we need to craft your invitation. We'll build it within 12 hours.</p>
+  </div>
+
+  <div class="note">
+    <strong>How this works:</strong> Fill what you can → tap <strong>Send via WhatsApp</strong> at the bottom → your details reach us instantly, then send your photos in the same chat. 🎯<br/>
+    <strong>✍️ Your answers save automatically</strong> on this device — close the page and come back anytime. Not sure about a field? Leave it — we'll ask.
+  </div>
+
+  <!-- 1. Plan -->
+  <div class="card" data-req="plan">
+    <div class="step">Step 01</div>
+    <div class="card-title">Choose Your Plan <span class="tick">✓</span></div>
+    <div class="card-sub">Every plan includes a live wishes wall, background music and a photo gallery.</div>
+
+    <div class="plans">
+      <label class="plan">
+        <input type="radio" name="plan" value="Standard — ₹2,500" autocomplete="off"/>
+        <div class="plan-box">
+          <div class="plan-name">Standard</div>
+          <div class="plan-price">₹2,500</div>
+          <div class="plan-feat">Wishes wall · BGM<br/>3-photo gallery</div>
+        </div>
+      </label>
+      <label class="plan">
+        <input type="radio" name="plan" value="Premium — ₹3,500" autocomplete="off"/>
+        <div class="plan-box">
+          <div class="plan-tag">Most Popular</div>
+          <div class="plan-name">Premium</div>
+          <div class="plan-price">₹3,500</div>
+          <div class="plan-feat">Everything in Standard<br/>5 photos · RSVP<br/>Personalised guest links</div>
+        </div>
+      </label>
+      <label class="plan">
+        <input type="radio" name="plan" value="Old Money — ₹6,000" autocomplete="off"/>
+        <div class="plan-box">
+          <div class="plan-name">Old Money</div>
+          <div class="plan-price">₹6,000</div>
+          <div class="plan-feat">Everything in Premium<br/>Unlimited photos · Video<br/>Love story · Custom design</div>
+        </div>
+      </label>
+    </div>
+    <div class="note" id="planNote" style="display:none;margin-top:16px;margin-bottom:0"></div>
+  </div>
+
+  <!-- 2. The Couple -->
+  <div class="card" data-req="brideName,groomName,displayNames,phone">
+    <div class="step">Step 02</div>
+    <div class="card-title">The Couple <span class="tick">✓</span></div>
+    <div class="card-sub">Names exactly as they should appear on the invitation.</div>
+
+    <div class="row">
+      <div class="field"><label>Bride's Full Name</label><input type="text" id="brideName" placeholder="e.g. Anitta Aji Soji"/></div>
+      <div class="field"><label>Groom's Full Name</label><input type="text" id="groomName" placeholder="e.g. Basil Kuriakose"/></div>
+    </div>
+    <div class="field"><label>Display Names <span class="hint">— the big names shown on the invite</span></label><input type="text" id="displayNames" placeholder="e.g. Anitta & Basil"/></div>
+    <div class="field"><label>Whose Name First on the Invite? <span class="hint">— tap to choose; we can swap this anytime, even after building</span></label>
+      <div class="seg" id="nameOrderSeg">
+        <label class="seg-opt"><input type="radio" name="nameOrder" value="Bride first" autocomplete="off"/><span>Bride First</span></label>
+        <label class="seg-opt"><input type="radio" name="nameOrder" value="Groom first" autocomplete="off"/><span>Groom First</span></label>
+        <label class="seg-opt"><input type="radio" name="nameOrder" value="You decide" autocomplete="off"/><span>You Decide</span></label>
+      </div>
+      <div class="order-preview" id="orderPreview" style="display:none"></div>
+    </div>
+    <div class="field"><label>Religion / Tradition</label>
+      <select id="religion">
+        <option value="">— Select —</option>
+        <option>Jacobite Syrian Orthodox</option>
+        <option>Catholic</option>
+        <option>CSI / Protestant</option>
+        <option>Marthoma</option>
+        <option>Pentecostal</option>
+        <option>Islamic (Nikah)</option>
+        <option>Hindu</option>
+        <option>Other Christian</option>
+        <option>Civil / No religious theme</option>
+      </select>
+    </div>
+    <div class="field"><label>Your WhatsApp Number <span class="hint">— so we can reach you</span></label><input type="tel" id="phone" placeholder="+91 00000 00000"/></div>
+  </div>
+
+  <!-- 3. The Wedding Moment -->
+  <div class="card" data-req="weddingDate">
+    <div class="step">Step 03</div>
+    <div class="card-title">The Wedding Moment <span class="tick">✓</span></div>
+    <div class="card-sub">This drives the live countdown and the hero of your invitation.</div>
+
+    <div class="row">
+      <div class="field"><label>Wedding Date <span class="hint">(the main day)</span></label><input type="date" id="weddingDate"/></div>
+      <div class="field"><label>Wedding Time</label><input type="text" id="weddingTime" placeholder="e.g. 10:30 AM · or 'to be announced'"/></div>
+    </div>
+    <div class="field"><label>Landing Tagline <span class="hint">(optional — a line under your names)</span></label>
+      <input type="text" id="tagline" placeholder="e.g. invite you to celebrate the beginning of our forever"/>
+    </div>
+    <div class="field"><label>Verse / Quote <span class="hint">(optional — Bible verse, Quran verse, or a line you love)</span></label>
+      <textarea id="verse" style="min-height:60px" placeholder="e.g. 'Two are better than one…' — Ecclesiastes 4:9"></textarea>
+    </div>
+  </div>
+
+  <!-- 4. Bride's Family -->
+  <div class="card" data-req="bParents">
+    <div class="step">Step 04</div>
+    <div class="card-title">Bride's Family <span class="tick">✓</span></div>
+    <div class="card-sub">Exactly as it should read on the invitation. Add “Late” before any name where needed.</div>
+
+    <div class="field"><label>Parents <span class="hint">(father &amp; mother)</span></label><input type="text" id="bParents" placeholder="e.g. Late Aji Mon R & Soji Thomas"/></div>
+    <div class="field"><label>House / Family Name &amp; Place</label><input type="text" id="bHousePlace" placeholder="e.g. Thundil Salem Bhavan, Kundara, Kollam"/></div>
+    <div class="field"><label>Siblings <span class="hint">(one per line, with relationship)</span></label>
+      <textarea id="bSiblings" placeholder="e.g. Simi Skaria (Elder Sister)&#10;Dr. Sibi Skaria (Elder Brother)"></textarea>
+    </div>
+    <div class="field"><label>Paternal Grandparents</label><input type="text" id="bGrandP" placeholder="e.g. Late Mr. Rajan & Late Mrs. Omana Rajan"/></div>
+    <div class="field"><label>Maternal Grandparents</label><input type="text" id="bGrandM" placeholder="e.g. Mr. Thomas Varghese & Mrs. Pennamma Thomas"/></div>
+  </div>
+
+  <!-- 5. Groom's Family -->
+  <div class="card" data-req="gParents">
+    <div class="step">Step 05</div>
+    <div class="card-title">Groom's Family <span class="tick">✓</span></div>
+    <div class="card-sub">Exactly as it should read on the invitation. Add “Late” before any name where needed.</div>
+
+    <div class="field"><label>Parents <span class="hint">(father &amp; mother)</span></label><input type="text" id="gParents" placeholder="e.g. K V Kuriakose & Reena Kuriakose"/></div>
+    <div class="field"><label>House / Family Name &amp; Place</label><input type="text" id="gHousePlace" placeholder="e.g. Kuruvichirangara House, Pattimattom, Ernakulam"/></div>
+    <div class="field"><label>Siblings <span class="hint">(one per line, with relationship)</span></label>
+      <textarea id="gSiblings" placeholder="e.g. Abraham Kuriakose (Younger Brother)"></textarea>
+    </div>
+    <div class="field"><label>Paternal Grandparents</label><input type="text" id="gGrandP" placeholder="e.g. Late K P Varghese & Sosamma Varghese"/></div>
+    <div class="field"><label>Maternal Grandparents</label><input type="text" id="gGrandM" placeholder="e.g. Late M J Abraham & Saramma Abraham"/></div>
+  </div>
+
+  <!-- 6. Events -->
+  <div class="card" data-req="e1name">
+    <div class="step">Step 06</div>
+    <div class="card-title">Events &amp; Schedule <span class="tick">✓</span></div>
+    <div class="card-sub">Add each event — Engagement, Ceremony / Nikah, Reception, etc. Leave blank if not applicable; write “to be announced” for anything not yet fixed.</div>
+
+    <!-- Event 1 -->
+    <div class="event-block">
+      <div class="event-num"><span>01</span> FIRST EVENT</div>
+      <div class="field"><label>Event Name</label><input type="text" id="e1name" placeholder="e.g. Engagement / Madhuramveppu / Mehendi"/></div>
+      <div class="row">
+        <div class="field"><label>Date</label><input type="date" id="e1date"/></div>
+        <div class="field"><label>Time</label><input type="text" id="e1time" placeholder="e.g. 11:30 AM onwards"/></div>
+      </div>
+      <div class="field"><label>Venue Name</label><input type="text" id="e1venue" placeholder="e.g. St. Thomas Church Auditorium"/></div>
+      <div class="field"><label>Venue Place</label><input type="text" id="e1addr" placeholder="e.g. Kundara, Kollam"/></div>
+      <div class="field"><label>Google Maps Link <span class="hint">(paste from the Maps app)</span></label><input type="url" id="e1map" placeholder="https://maps.app.goo.gl/..."/></div>
+    </div>
+
+    <!-- Event 2 -->
+    <div class="event-block">
+      <div class="event-num"><span>02</span> SECOND EVENT</div>
+      <div class="field"><label>Event Name</label><input type="text" id="e2name" placeholder="e.g. Wedding Ceremony / Nikah / Holy Matrimony"/></div>
+      <div class="row">
+        <div class="field"><label>Date</label><input type="date" id="e2date"/></div>
+        <div class="field"><label>Time</label><input type="text" id="e2time" placeholder="e.g. 3:00 PM – 4:30 PM"/></div>
+      </div>
+      <div class="field"><label>Venue Name</label><input type="text" id="e2venue" placeholder="e.g. St. Simon's Church"/></div>
+      <div class="field"><label>Venue Place</label><input type="text" id="e2addr" placeholder="e.g. Velloor, Pampady, Kottayam"/></div>
+      <div class="field"><label>Google Maps Link</label><input type="url" id="e2map" placeholder="https://maps.app.goo.gl/..."/></div>
+    </div>
+
+    <!-- Event 3 -->
+    <div class="event-block">
+      <div class="event-num"><span>03</span> THIRD EVENT</div>
+      <div class="field"><label>Event Name</label><input type="text" id="e3name" placeholder="e.g. Reception / Walima / Lunch"/></div>
+      <div class="row">
+        <div class="field"><label>Date</label><input type="date" id="e3date"/></div>
+        <div class="field"><label>Time</label><input type="text" id="e3time" placeholder="e.g. 6:30 PM onwards"/></div>
+      </div>
+      <div class="field"><label>Venue Name</label><input type="text" id="e3venue" placeholder="e.g. Cathedral Auditorium"/></div>
+      <div class="field"><label>Venue Place</label><input type="text" id="e3addr" placeholder="e.g. Pampady, Kottayam"/></div>
+      <div class="field"><label>Google Maps Link</label><input type="url" id="e3map" placeholder="https://maps.app.goo.gl/..."/></div>
+    </div>
+
+    <!-- Event 4 -->
+    <div class="event-block">
+      <div class="event-num"><span>04</span> FOURTH EVENT <span style="font-size:9px;color:var(--muted);letter-spacing:.05em">(optional)</span></div>
+      <div class="field"><label>Event Name</label><input type="text" id="e4name" placeholder="e.g. Post-Wedding Reception / Sadya / Party"/></div>
+      <div class="row">
+        <div class="field"><label>Date</label><input type="date" id="e4date"/></div>
+        <div class="field"><label>Time</label><input type="text" id="e4time" placeholder="e.g. 6:30 PM onwards"/></div>
+      </div>
+      <div class="field"><label>Venue Name</label><input type="text" id="e4venue" placeholder="e.g. Kaanavu Convention Centre"/></div>
+      <div class="field"><label>Venue Place</label><input type="text" id="e4addr" placeholder="e.g. Mekkadampu, Muvattupuzha"/></div>
+      <div class="field"><label>Google Maps Link</label><input type="url" id="e4map" placeholder="https://maps.app.goo.gl/..."/></div>
+    </div>
+
+    <div class="field"><label>Schedule Notes <span class="hint">(optional — anything about the order of events)</span></label>
+      <input type="text" id="eventNotes" placeholder="e.g. Ceremony &amp; reception are at the same venue"/>
+    </div>
+  </div>
+
+  <!-- 7. RSVP (Premium & Old Money) -->
+  <div class="card" id="rsvpCard">
+    <div class="step">Step 07</div>
+    <div class="card-title">RSVP Details <span class="tag">PREMIUM+</span> <span class="tick">✓</span></div>
+    <div class="card-sub">Guests confirm attendance with one tap on WhatsApp. Whose number should receive them?</div>
+
+    <div class="row">
+      <div class="field"><label>RSVP Deadline</label><input type="date" id="rsvpDate" /></div>
+      <div class="field"><label>Contact Name on Invite</label><input type="text" id="contactName" placeholder="e.g. Anitta & Basil"/></div>
+    </div>
+    <div class="row">
+      <div class="field"><label>RSVP Phone 1</label><input type="tel" id="phone1" placeholder="+91 00000 00000"/></div>
+      <div class="field"><label>RSVP Phone 2 (optional)</label><input type="tel" id="phone2" placeholder="+91 00000 00000"/></div>
+    </div>
+  </div>
+
+  <!-- 8. Photos, Gallery & Style -->
+  <div class="card">
+    <div class="step">Step 08</div>
+    <div class="card-title">Photos, Gallery &amp; Style <span class="tick">✓</span></div>
+    <div class="card-sub">Tell us the look — then send the actual photos in the WhatsApp chat.</div>
+
+    <div class="field">
+      <label>Preferred Style</label>
+      <select id="style">
+        <option value="">— Choose a vibe —</option>
+        <option>Luxury / Premium</option>
+        <option>Traditional / Classic</option>
+        <option>Modern / Minimal</option>
+        <option>Romantic / Floral</option>
+        <option>Rustic / Earthy</option>
+        <option>Surprise me!</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Colour Preference</label>
+      <input type="text" id="colour" placeholder="e.g. Emerald & antique gold, Blush & ivory…"/>
+    </div>
+    <div class="field">
+      <label>Gallery Photos to Send</label>
+      <select id="photoCount">
+        <option value="">— How many couple photos? —</option>
+        <option>1 photo (hero only)</option>
+        <option>2–3 photos</option>
+        <option>4–6 photos</option>
+        <option>More than 6 photos</option>
+        <option>No photos needed</option>
+      </select>
+    </div>
+    <div class="note tip" id="photoHint" style="margin-top:4px;margin-bottom:0">
+      <strong>📸 What to send on WhatsApp:</strong> a <strong>main couple photo</strong> (hero), a <strong>solo photo of the bride</strong> and <strong>of the groom</strong> (for the family section), plus your gallery photos. Send originals from your phone — not screenshots. Portrait works best; we handle cropping.
+    </div>
+  </div>
+
+  <!-- 9. Background Music -->
+  <div class="card">
+    <div class="step">Step 09</div>
+    <div class="card-title">Background Music <span class="tick">✓</span></div>
+    <div class="card-sub">Plays softly when a guest opens the invitation. Optional.</div>
+
+    <div class="field">
+      <label>Do you want BGM?</label>
+      <select id="bgmType">
+        <option value="">— Choose —</option>
+        <option>Yes — I'll suggest a song</option>
+        <option>Yes — You choose something suitable</option>
+        <option>No background music</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Song Name or YouTube Link <span class="hint">(optional)</span></label>
+      <input type="text" id="bgmSong" placeholder="e.g. Kanmaniyae – Premam / or paste a YouTube link"/>
+    </div>
+    <div class="field">
+      <label>Mood / Vibe</label>
+      <select id="bgmMood">
+        <option value="">— Optional —</option>
+        <option>Soft & Romantic</option>
+        <option>Classical / Traditional</option>
+        <option>Christian Devotional</option>
+        <option>Islamic Nasheed</option>
+        <option>Instrumental only</option>
+        <option>Upbeat / Celebratory</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 10. Love Story (Old Money) -->
+  <div class="card" id="omCard" style="display:none">
+    <div class="step">Step 10</div>
+    <div class="card-title">Your Love Story <span class="tag">OLD MONEY</span> <span class="tick">✓</span></div>
+    <div class="card-sub">A timeline of your journey, plus your wedding party and a video with live likes &amp; comments. We polish the wording — just give us the facts.</div>
+
+    <div class="field"><label>Story Milestones <span class="hint">— one per line: Moment · Date — a short line</span></label>
+      <textarea id="omStory" style="min-height:120px" placeholder="How we met · Oct 2025 — matched online and talked for hours&#10;First date · Nov 2025 — coffee in Kochi&#10;The proposal · Jan 2026 — he asked under the winter lights&#10;Forever begins · 14 Sep 2026 — our wedding day"></textarea>
+    </div>
+    <div class="field"><label>Wedding Party <span class="hint">— bridesmaids / groomsmen, one per line: Name — Role</span></label>
+      <textarea id="omParty" placeholder="e.g. Meenu — Maid of Honour&#10;Jobin — Best Man"></textarea>
+    </div>
+    <div class="field">
+      <label>Video Section?</label>
+      <select id="omVideo">
+        <option value="">— Choose —</option>
+        <option>Yes — we'll send a video (save-the-date / pre-wedding)</option>
+        <option>Yes — but the video will be ready later</option>
+        <option>No video section</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- 11. Features & Extras -->
+  <div class="card">
+    <div class="step">Step 11</div>
+    <div class="card-title">Features &amp; Extras <span class="tick">✓</span></div>
+    <div class="card-sub">Interactive touches for your invitation.</div>
+
+    <div class="field">
+      <label>Wishes Wall <span class="hint">— guests post live blessings on the page (included in every plan)</span></label>
+      <select id="wishes">
+        <option value="">— Choose —</option>
+        <option value="Yes">✅ Yes — add a Wishes Wall</option>
+        <option value="No">❌ No — not needed</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Live-Stream Link <span class="hint">(optional — YouTube/other, if you're streaming)</span></label>
+      <input type="url" id="liveStream" placeholder="https://youtube.com/live/..."/>
+    </div>
+    <div class="field" id="domainField" style="display:none">
+      <label>Custom Domain <span class="tag">OLD MONEY</span> <span class="hint">— your own .online web address</span></label>
+      <input type="text" id="customDomain" placeholder="e.g. anittaandbasil.online (we'll check availability)"/>
+    </div>
+  </div>
+
+  <!-- 12. Anything Else -->
+  <div class="card">
+    <div class="step">Step 12</div>
+    <div class="card-title">Anything Else <span class="tick">✓</span></div>
+    <div class="card-sub">Custom section order, specific wording, a family emblem, section you want removed — anything.</div>
+
+    <div class="field">
+      <textarea id="notes" style="min-height:100px" placeholder="Type anything here — we read every word. 🙏"></textarea>
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="submit-area">
+    <button class="btn-submit" id="sendBtn" onclick="submitForm()">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.117 1.534 5.845L0 24l6.336-1.511A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.854 0-3.59-.5-5.088-1.372l-.364-.217-3.765.897.934-3.667-.238-.377A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+      </svg>
+      Send via WhatsApp
+    </button>
+    <br/>
+    <button class="btn-copy" onclick="copyDetails()">⧉ &nbsp;Copy details instead</button>
+    <p class="submit-note">Opens WhatsApp with all your details pre-typed.<br/>We'll confirm your order within 1 hour. ✅</p>
+  </div>
+
+  <div class="div" style="margin-top:40px"><span>✦</span></div>
+  <div class="footer">DIGIWED · THRITHALA, PALAKKAD · digiwed.online</div>
+
+</div>
+
+<div class="draft-pill" id="draftPill">DRAFT SAVED ✓</div>
+<div id="toast"></div>
+
+<script>
+const WA_NUMBER = '919747986523';
+const DRAFT_KEY = 'digiwed_client_form_v3';
+
+/* ---------- helpers ---------- */
+function v(id){return document.getElementById(id)?.value?.trim()||''}
+function planVal(){return document.querySelector('input[name="plan"]:checked')?.value||''}
+function nameOrderVal(){return document.querySelector('input[name="nameOrder"]:checked')?.value||''}
+
+/* Pre-select plan from ?plan= when arriving from the order page */
+const PLAN_MAP={standard:'Standard — ₹2,500',essential:'Standard — ₹2,500',premium:'Premium — ₹3,500',customisation:'Premium — ₹3,500',oldmoney:'Old Money — ₹6,000'};
+function applyPlanParam(){
+  const pk=(new URLSearchParams(location.search).get('plan')||'').toLowerCase().replace(/\s+/g,'');
+  const back=document.getElementById('backLink');
+  if(pk&&back)back.href='https://digiwed.online/order.html?plan='+encodeURIComponent(pk);
+  const val=PLAN_MAP[pk];
+  if(!val)return;
+  const r=document.querySelector(`input[name="plan"][value="${CSS.escape(val)}"]`);
+  if(r)r.checked=true;
+}
+function firstName(s){return (s||'').trim().split(/\s+/)[0]||''}
+
+function renderOrderPreview(){
+  const el=document.getElementById('orderPreview');
+  const b=firstName(v('brideName')), g=firstName(v('groomName')), ord=nameOrderVal();
+  if((!b&&!g)||!ord||ord==='You decide'){el.style.display='none';return;}
+  const pair=ord==='Groom first'?[g,b]:[b,g];
+  el.textContent='On the invite:  '+pair.filter(Boolean).join('  &  ');
+  el.style.display='';
+}
+function fmtDate(d){
+  if(!d) return '';
+  const [y,m,day]=d.split('-');
+  const mn=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${parseInt(day)} ${mn[parseInt(m)-1]} ${y}`;
+}
+function bullets(txt){return txt.split('\n').map(s=>s.trim()).filter(Boolean).map(s=>`  • ${s}`).join('\n')}
+
+let toastTimer=null;
+function toast(msg,isErr){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.background=isErr?'rgba(140,30,30,.95)':'rgba(20,18,12,.95)';
+  t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(-50%) translateY(80px)'},3200);
+}
+
+/* ---------- autosave ---------- */
+const fields=[...document.querySelectorAll('.card input[id], .card select[id], .card textarea[id]')];
+let saveTimer=null, pillTimer=null;
+
+function saveDraft(){
+  const data={};
+  fields.forEach(f=>{if(f.value)data[f.id]=f.value});
+  const p=planVal(); if(p)data.__plan=p;
+  const no=nameOrderVal(); if(no)data.__nameOrder=no;
+  try{localStorage.setItem(DRAFT_KEY,JSON.stringify(data))}catch(e){}
+  const pill=document.getElementById('draftPill');
+  pill.classList.add('show');
+  clearTimeout(pillTimer);
+  pillTimer=setTimeout(()=>pill.classList.remove('show'),1200);
+}
+
+function restoreDraft(){
+  let data;
+  try{data=JSON.parse(localStorage.getItem(DRAFT_KEY)||'{}')}catch(e){return}
+  if(!data||typeof data!=='object')return;
+  let restored=0;
+  Object.keys(data).forEach(k=>{
+    if(k==='__plan'){
+      const r=document.querySelector(`input[name="plan"][value="${CSS.escape(data[k])}"]`);
+      if(r){r.checked=true;restored++}
+      return;
+    }
+    if(k==='__nameOrder'){
+      const r=document.querySelector(`input[name="nameOrder"][value="${CSS.escape(data[k])}"]`);
+      if(r){r.checked=true;restored++}
+      return;
+    }
+    const el=document.getElementById(k);
+    if(el){el.value=data[k];restored++}
+  });
+  if(restored>2)toast('Welcome back — your saved answers are restored ✍️');
+}
+
+/* ---------- progress + ticks ---------- */
+const KEY_FIELDS=['brideName','groomName','displayNames','phone','weddingDate','bParents','gParents','e1name','e1date','style','photoCount','bgmType','wishes'];
+
+function updateProgress(){
+  let filled=KEY_FIELDS.filter(id=>v(id)).length;
+  const total=KEY_FIELDS.length+1;             // +1 for plan
+  if(planVal())filled++;
+  const pct=Math.round(filled/total*100);
+  document.getElementById('pbar').style.width=pct+'%';
+  const p=document.getElementById('ppct');
+  p.textContent=pct+'%';
+  p.classList.toggle('show',pct>0);
+
+  document.querySelectorAll('.card[data-req]').forEach(card=>{
+    const req=card.dataset.req.split(',');
+    const ok=req.every(id=>id==='plan'?!!planVal():!!v(id));
+    card.classList.toggle('done',ok);
+  });
+}
+
+/* ---------- renumber visible step badges ---------- */
+function renumberSteps(){
+  let n=0;
+  document.querySelectorAll('.card').forEach(card=>{
+    const badge=card.querySelector('.step');
+    if(!badge||card.style.display==='none')return;
+    n++;
+    badge.textContent='Step '+String(n).padStart(2,'0');
+  });
+}
+
+/* ---------- form adapts to the selected plan ---------- */
+function updatePlanUI(){
+  const p=planVal();
+  const om=p.startsWith('Old Money');
+  const std=p.startsWith('Standard');
+
+  document.getElementById('rsvpCard').style.display=std?'none':'';   // RSVP = Premium & Old Money
+  document.getElementById('omCard').style.display=om?'':'none';       // Love story = Old Money
+  document.getElementById('domainField').style.display=om?'':'none';  // Custom domain = Old Money
+  renumberSteps();
+
+  const pn=document.getElementById('planNote');
+  let inc='';
+  if(std)inc='<strong>Standard includes:</strong> Wishes Wall · background music · 3-photo gallery. RSVP and personalised guest links are Premium features, so those sections stay hidden below.';
+  else if(p.startsWith('Premium'))inc='<strong>Premium includes:</strong> everything in Standard + a 5-photo gallery · RSVP · personalised guest links + dashboard.';
+  else if(om)inc='<strong>Old Money includes:</strong> everything in Premium + unlimited gallery · video · love story · custom domain · fully custom design.';
+  if(inc){pn.innerHTML='✓ '+inc;pn.style.display='';}else{pn.style.display='none';}
+
+  const hint=document.getElementById('photoHint');
+  let cap='';
+  if(std)cap='Your Standard plan shows a 3-photo gallery.';
+  else if(p.startsWith('Premium'))cap='Your Premium plan shows up to 5 gallery photos.';
+  else if(om)cap='Old Money has an unlimited gallery — send as many as you like.';
+  hint.innerHTML='<strong>📸 What to send on WhatsApp:</strong> a <strong>main couple photo</strong> (hero), a <strong>solo photo of the bride</strong> and <strong>of the groom</strong> (for the family section), plus your gallery photos. Send originals from your phone — not screenshots. Portrait works best; we handle cropping.'+(cap?' <strong>'+cap+'</strong>':'');
+}
+
+/* ---------- wiring ---------- */
+document.addEventListener('DOMContentLoaded',()=>{
+  restoreDraft();
+  applyPlanParam();
+  updatePlanUI();
+  updateProgress();
+  renderOrderPreview();
+  document.querySelector('.wrap').addEventListener('input',e=>{
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(saveDraft,600);
+    if(e.target.name==='plan')updatePlanUI();
+    renderOrderPreview();
+    updateProgress();
+    e.target.classList.remove('err');
+  });
+});
+
+/* ---------- message builder ---------- */
+function buildMsg(){
+  const p=planVal(), om=p.startsWith('Old Money'), std=p.startsWith('Standard');
+  let msg=`*🌸 DigiWed — New Invitation Order*\n\n`;
+
+  if(p)msg+=`*📦 Plan:* ${p}\n`;
+  msg+=`*👰 Bride:* ${v('brideName')}\n`;
+  msg+=`*🤵 Groom:* ${v('groomName')}\n`;
+  if(v('displayNames'))msg+=`*💍 Display:* ${v('displayNames')}\n`;
+  if(nameOrderVal())msg+=`*🔤 Name Order:* ${nameOrderVal()}\n`;
+  if(v('religion'))msg+=`*⛪ Tradition:* ${v('religion')}\n`;
+  if(v('phone'))msg+=`*📞 WhatsApp:* ${v('phone')}\n`;
+  msg+='\n';
+
+  msg+=`*🗓️ Wedding Moment*\n`;
+  if(v('weddingDate'))msg+=`Date: ${fmtDate(v('weddingDate'))}\n`;
+  if(v('weddingTime'))msg+=`Time: ${v('weddingTime')}\n`;
+  if(v('tagline'))msg+=`Tagline: ${v('tagline')}\n`;
+  if(v('verse'))msg+=`Verse/Quote: ${v('verse')}\n`;
+  msg+='\n';
+
+  msg+=`*👰 Bride's Family*\n`;
+  msg+=`Parents: ${v('bParents')||'—'}\n`;
+  if(v('bHousePlace'))msg+=`House/Place: ${v('bHousePlace')}\n`;
+  if(v('bSiblings'))msg+=`Siblings:\n${bullets(v('bSiblings'))}\n`;
+  if(v('bGrandP'))msg+=`Paternal Grandparents: ${v('bGrandP')}\n`;
+  if(v('bGrandM'))msg+=`Maternal Grandparents: ${v('bGrandM')}\n`;
+  msg+='\n';
+
+  msg+=`*🤵 Groom's Family*\n`;
+  msg+=`Parents: ${v('gParents')||'—'}\n`;
+  if(v('gHousePlace'))msg+=`House/Place: ${v('gHousePlace')}\n`;
+  if(v('gSiblings'))msg+=`Siblings:\n${bullets(v('gSiblings'))}\n`;
+  if(v('gGrandP'))msg+=`Paternal Grandparents: ${v('gGrandP')}\n`;
+  if(v('gGrandM'))msg+=`Maternal Grandparents: ${v('gGrandM')}\n`;
+  msg+='\n';
+
+  msg+=`*📅 Events*\n`;
+  [1,2,3,4].forEach(n=>{
+    const name=v(`e${n}name`);
+    if(!name)return;
+    msg+=`\n*Event ${n}: ${name}*\n`;
+    if(v(`e${n}date`))msg+=`Date: ${fmtDate(v(`e${n}date`))}\n`;
+    if(v(`e${n}time`))msg+=`Time: ${v(`e${n}time`)}\n`;
+    if(v(`e${n}venue`))msg+=`Venue: ${v(`e${n}venue`)}\n`;
+    if(v(`e${n}addr`))msg+=`Place: ${v(`e${n}addr`)}\n`;
+    if(v(`e${n}map`))msg+=`Maps: ${v(`e${n}map`)}\n`;
+  });
+  if(v('eventNotes'))msg+=`\nSchedule note: ${v('eventNotes')}\n`;
+  msg+='\n';
+
+  if(!std){
+    const rsvpDate=v('rsvpDate'),contactName=v('contactName'),p1=v('phone1'),p2=v('phone2');
+    if(rsvpDate||contactName||p1){
+      msg+=`*✅ RSVP Details*\n`;
+      if(rsvpDate)msg+=`Deadline: ${fmtDate(rsvpDate)}\n`;
+      if(contactName)msg+=`Contact Name: ${contactName}\n`;
+      if(p1)msg+=`Phone 1: ${p1}\n`;
+      if(p2)msg+=`Phone 2: ${p2}\n`;
+      msg+='\n';
+    }
+  }
+
+  if(v('style')||v('colour')||v('photoCount')){
+    msg+=`*🎨 Style & Photos*\n`;
+    if(v('style'))msg+=`Style: ${v('style')}\n`;
+    if(v('colour'))msg+=`Colour: ${v('colour')}\n`;
+    if(v('photoCount'))msg+=`Gallery: ${v('photoCount')}\n`;
+    msg+='\n';
+  }
+
+  if(v('bgmType')||v('bgmSong')||v('bgmMood')){
+    msg+=`*🎵 Background Music*\n`;
+    if(v('bgmType'))msg+=`BGM: ${v('bgmType')}\n`;
+    if(v('bgmSong'))msg+=`Song: ${v('bgmSong')}\n`;
+    if(v('bgmMood'))msg+=`Mood: ${v('bgmMood')}\n`;
+    msg+='\n';
+  }
+
+  if(om&&(v('omStory')||v('omParty')||v('omVideo'))){
+    msg+=`*👑 Old Money Extras*\n`;
+    if(v('omStory'))msg+=`Love Story:\n${bullets(v('omStory'))}\n`;
+    if(v('omParty'))msg+=`Wedding Party:\n${bullets(v('omParty'))}\n`;
+    if(v('omVideo'))msg+=`Video: ${v('omVideo')}\n`;
+    msg+='\n';
+  }
+
+  const feat=[];
+  if(v('wishes'))feat.push(`Wishes Wall: ${v('wishes')}`);
+  if(v('liveStream'))feat.push(`Live-stream: ${v('liveStream')}`);
+  if(om&&v('customDomain'))feat.push(`Custom domain: ${v('customDomain')}`);
+  if(feat.length)msg+=`*✨ Features*\n${feat.join('\n')}\n\n`;
+
+  if(v('notes'))msg+=`*📝 Anything Else*\n${v('notes')}\n\n`;
+
+  msg+=`_Sent via digiwed.online_`;
+  return msg;
+}
+
+/* ---------- validation ---------- */
+function validate(){
+  if(!planVal()){
+    toast('Please choose a plan first (Step 01).',true);
+    document.querySelector('.plans').scrollIntoView({behavior:'smooth',block:'center'});
+    return false;
+  }
+  const required=[['brideName',"the Bride's name"],['groomName',"the Groom's name"],['phone','your WhatsApp number']];
+  for(const [id,label] of required){
+    if(!v(id)){
+      toast(`Please enter ${label}.`,true);
+      const el=document.getElementById(id);
+      el.classList.add('err');
+      el.scrollIntoView({behavior:'smooth',block:'center'});
+      setTimeout(()=>el.focus({preventScroll:true}),450);
+      return false;
+    }
+  }
+  return true;
+}
+
+/* ---------- actions ---------- */
+function submitForm(){
+  if(!validate())return;
+  saveDraft();
+  const msg=buildMsg();
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
+  toast('Opening WhatsApp… send your photos in the same chat 📸');
+}
+
+function copyDetails(){
+  if(!validate())return;
+  saveDraft();
+  const msg=buildMsg().replace(/\*/g,'');
+  const done=()=>toast('Details copied — paste them to us on WhatsApp ✓');
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(msg).then(done).catch(()=>fallbackCopy(msg,done));
+  }else{
+    fallbackCopy(msg,done);
+  }
+}
+
+function fallbackCopy(text,done){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.select();
+  try{document.execCommand('copy');done()}catch(e){toast('Copy failed — please use the WhatsApp button.',true)}
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>
